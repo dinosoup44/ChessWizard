@@ -244,8 +244,9 @@ shared models/generator; no UI behavior or persistence path changed.
 Validation replays all 458 saved results using read-only SQLite and an engine
 fallback object that raises if called. It compares every prior detail (apart from
 new provenance), candidate payload and TacticalOpportunity, repeats representative
-provenance, scans cache health and checks a byte-identical database. See
-[the consolidation report](../reports/ANALYSIS_BACKBONE_V1.md).
+provenance, scans cache health and checks a byte-identical database. The
+[Fork reference implementation summary](MISSED_FORK_V3.md#backbone-reference-implementation)
+records the equivalence result; detailed local replay receipts remain private.
 
 Pin is now the second read-only adopter; live dispatch remains unchanged. See
 [the Pin checkpoint](PIN_BACKBONE_MIGRATION.md).
@@ -285,7 +286,7 @@ counterfactuals use already-recorded evidence; they neither generate a parallel
 candidate set nor prove what a separately configured single-line engine would do.
 The original cohort's V3.1 data covers an existing-candidate subset, so it cannot
 supply an unbiased full-discovery rate comparison. See
-[the second-cohort report](../reports/FORK_SECOND_500_MULTILINE_VALIDATION.md).
+[the second-cohort validation summary](#second-cohort-validation-result--2026-09-08).
 
 
 ## Second-cohort validation result — 2026-09-08
@@ -333,10 +334,10 @@ V3.1 new-discovery experiment. Its 6 changed-payoff hits and 52 ambiguities cann
 be treated as comparable discovery rates. A small approved matched review and
 an audit separating unsettled proof from the three settled disagreements are
 better next experiments than a third broad cohort or immediate threshold tuning.
-Default Fork routing and live Pin activation remain unchanged. See the
-[full report](../reports/FORK_SECOND_500_MULTILINE_VALIDATION.md),
-[exact scope](../reports/fork_second_500_scope.json), and
-[structured summary](../reports/fork_second_500_summary.json).
+Default Fork routing and live Pin activation remain unchanged. This section
+summarizes the historical validation; exact game IDs, per-position evidence and
+machine-readable audit receipts remain private. See the
+[public source boundaries](PUBLIC_SOURCE.md) for what is distributed.
 
 
 ## Read-only proof audit boundary (2026-09-08)
@@ -361,8 +362,9 @@ accounting should distinguish requests attempted, normalized evidence, and faile
 normalization; no shared-service change was made here.
 
 Production DB bytes/hashes, candidates, coverage, training and live caches remained
-unchanged. Full tests: 363 passed. Recommendation and all denominator/cost limits:
-[proof-completeness audit](../reports/FORK_PROOF_COMPLETENESS_AUDIT.md).
+unchanged. Full tests: 363 passed. The
+[Fork proof-completeness summary](MISSED_FORK_V3.md#read-only-proof-completeness-audit-2026-09-08)
+records the tested dimensions, costs and conservative recommendation.
 
 ## Retained proof and factual endpoint boundary (2026-09-08)
 
@@ -396,7 +398,8 @@ SQLite, engine lifecycle and frontend navigation.
 
 Validation: 40 pure-window proposals, five stable controls, 11 resolved no-hits,
 82 scratch searches, zero live DB changes, identical cache-only reruns. Default
-settings/registration remain unchanged. See [full report](../reports/FORK_SETTLEMENT_VALIDATION.md).
+settings/registration remain unchanged. See the
+[proof lifetime and settlement summary](PROOF_ESCALATION.md#proof-lifetime-and-attempt-disposition-2026-09-08-cleanup).
 
 ## Selective continuation extension boundary
 
@@ -422,7 +425,8 @@ probe and cannot generate evidence on a miss. Breadth identity is unaffected.
 The feature is production-ready for an explicitly selected future Fork profile,
 but remains disabled pending approval. No historical candidate reconciliation,
 coverage update, live cache write or other analyzer migration occurred. Eligibility,
-settings and measured replay results: [selective policy report](../reports/FORK_SELECTIVE_SETTLEMENT_POLICY.md).
+settings and measured replay results are summarized in the
+[selective settlement contract](PROOF_ESCALATION.md#selective-settlement-policy-implemented-not-activated).
 
 ## Factual position/range layer
 

@@ -77,8 +77,8 @@ The completed controlled audit and human review below do not establish populatio
 ## Frozen V1 checkpoint — 2026-09-10
 
 The implementation checkpoint passed **617 tests** at the time of checker delivery.
-That historical count is separate from the expanded current UI/full-suite count
-recorded in [the freeze checkpoint](../reports/BLUNDER_V1_FREEZE_CHECKPOINT.md).
+That historical count is separate from the current public suite; use the
+[test workflow](DEVELOPMENT.md#tests) to validate the checkout being reviewed.
 No checker code, thresholds, settlement window or acceptance policy changed in
 the status-clarity task.
 
@@ -92,8 +92,10 @@ the status-clarity task.
 - Unresolved cases remain conservative. Stored judgments stay unchanged.
   No production activation or additional cohort is authorized by this freeze.
 
-Evidence: [historical audit](../reports/MAJOR_MATERIAL_BLUNDER_V1_HISTORICAL_AUDIT.md)
-and [19-case reconciliation](../reports/MAJOR_MATERIAL_BLUNDER_V1_HUMAN_REVIEW.md).
+These aggregates summarize the historical audit and 19-case reconciliation;
+per-game receipts and human notes remain private. See the
+[review-status contract](HUMAN_ANALYZER_REVIEWS.md#original-audit-status-separate-from-human-verdict)
+for the distinction between a checker result and a human verdict.
 
 ### Discovered Attack Analyzer — future candidate
 

@@ -100,7 +100,10 @@ Game access uses SQLite URI `mode=ro`, `query_only=ON` and one transaction; the 
 
 Each call reloads selected book content; there is no persistent summary cache. Result identity incorporates matching scope, owner/side, book provenance, interpretation policy, game identity/context and actual numeric/missing evidence. Relevant authoring or evidence changes require a fresh result. Raw engine cache identity remains the shared Move Quality request; interpretation-only settings never create duplicate searches.
 
-Legal full-game validation dominates history discovery. Measurements cover cold-ish whole history, recent subsets, a full matching-set rerun and pure aggregation; they are observations, not a promised latency SLA. No persistent opening index is introduced before results justify one. See [audit and performance](../reports/OPENING_ANALYSIS_ENGINE_V1.md).
+Legal full-game validation dominates history discovery. Measurements cover cold-ish whole history, recent subsets, a full matching-set rerun and pure aggregation; they are observations, not a promised latency SLA. No persistent opening index is introduced before results justify one. Exact owner-history timing receipts remain private. Public readers can review
+[matching and transient scope](#matching-and-transient-scope) and the
+[workspace performance contract](GAME_REVIEW_OPENING_WORKSPACE.md#existing-measurements-and-background-work)
+without that dataset.
 
 ## Next analysis-control pass
 

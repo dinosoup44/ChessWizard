@@ -237,6 +237,6 @@ scope. Legacy `none` for terminal status means no automatic ending, while the
 toolkit also reports claimability and missing-history information.
 
 The frozen 55-case / 263-range audit found zero unexplained factual contradictions.
-Full taxonomy, independent replay, tests, and limitations:
-[parity report](../reports/POSITION_RANGE_EVIDENCE_PARITY_V1.md). No analyzer adoption
-or semantic-settlement policy change followed this audit.
+The comparison rules above and [validation scope](#performance-and-validation)
+summarize the public factual contract; exact historical case receipts remain
+private. No analyzer adoption or semantic-settlement policy change followed this audit.

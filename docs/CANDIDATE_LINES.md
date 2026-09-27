@@ -148,8 +148,9 @@ The bounded rollout script `reports/validate_live_candidate_line_cache.py` requi
 migration operation, not a general analyzer launcher. The completed live test used
 five fixed positions/eight requests, inserted eight rows, and proved an identical
 rerun had eight hits, zero writes/searches and a byte-identical database. All prior
-tables, candidate IDs and training links matched. See
-[the live validation report](../reports/CANDIDATE_LINE_CACHE_LIVE_VALIDATION.md).
+tables, candidate IDs and training links matched. This is the public summary of
+that bounded validation; exact requests and local backup receipts are private.
+See [growth and maintenance](#growth-and-future-maintenance) for measured allocation.
 
 ### Identity and settings
 

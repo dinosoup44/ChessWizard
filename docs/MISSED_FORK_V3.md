@@ -214,8 +214,10 @@ An ambiguous proposal does not inherit an optimistic legacy solution line or
 describe one branch's captured piece as a guaranteed win. Nothing is applied to
 Game Review or persisted candidates in this task.
 
-See [the validation report](../reports/FORK_V3_MULTILINE_PREVIEW.md) for Qxb7,
-classification transitions and storage measurements. The earlier single-line run
+See the [Qxb7 discussion](#manual-qxb7-case) and
+[candidate-line growth measurements](CANDIDATE_LINES.md#growth-and-future-maintenance)
+for the public interpretation and storage summary. Per-candidate transition
+receipts remain private. The earlier single-line run
 used depth 18 and a different objective policy; changes in classification cannot
 be attributed to MultiPV alone or treated as measured accuracy improvements.
 
@@ -242,8 +244,9 @@ under Normal's gate with zero escalation.
 `preview_proof_escalation.py --analysis missed_fork
 --allow-candidate-line-cache-inserts` selects only the saved existing-candidate
 scope, verifies a fresh backup and enforces cache-insert-only SQLite access. It
-refuses to overwrite prior preview output. See the
-[V3.1 report](../reports/FORK_V31_ESCALATION_PREVIEW.md) for outcome/cost comparison.
+refuses to overwrite prior preview output. The
+[shared escalation contract](PROOF_ESCALATION.md#fork-v31-adoption) documents the
+adoption boundary; exact historical outcome/cost receipts remain private.
 
 ## Backbone reference implementation
 
@@ -257,8 +260,8 @@ All 458 saved results were reproduced from exact cached evidence with zero engin
 searches and no database writes. Every previous detail, candidate payload and
 TacticalOpportunity matched, apart from the newly added provenance. Qxb7 remains
 gate-rejected with no escalation. See the
-[consolidation report](../reports/ANALYSIS_BACKBONE_V1.md) and
-[shared contract](ANALYSIS_BACKBONE.md). No live reconciliation is enabled.
+[backbone validation summary](ANALYSIS_BACKBONE.md#fork-reference-and-validation)
+and [shared contract](ANALYSIS_BACKBONE.md). No live reconciliation is enabled.
 
 ## Explicit V3.1 new-discovery experiment
 
@@ -291,8 +294,9 @@ once in exact caches and referenced by the audit.
 The second cohort is saved by source/game identity, dates and target coverage,
 not inferred from an ID range. It contains 500 real imports dated June 1 through
 September 4, 2026, 15,170 user moves and 30,310 plies, with zero original-cohort
-overlap. Frozen settings and final experimental findings belong in
-[the second-cohort report](../reports/FORK_SECOND_500_MULTILINE_VALIDATION.md).
+overlap. Aggregate findings are recorded in the
+[second-cohort summary](#second-cohort-validation-result--2026-09-08);
+the exact scope and per-position receipts remain private.
 No live Pin activation, other-analyzer migration or Game Review change is included.
 
 
@@ -341,10 +345,10 @@ V3.1 new-discovery experiment. Its 6 changed-payoff hits and 52 ambiguities cann
 be treated as comparable discovery rates. A small approved matched review and
 an audit separating unsettled proof from the three settled disagreements are
 better next experiments than a third broad cohort or immediate threshold tuning.
-Default Fork routing and live Pin activation remain unchanged. See the
-[full report](../reports/FORK_SECOND_500_MULTILINE_VALIDATION.md),
-[exact scope](../reports/fork_second_500_scope.json), and
-[structured summary](../reports/fork_second_500_summary.json).
+Default Fork routing and live Pin activation remain unchanged. This section
+summarizes the historical validation; exact game IDs, per-position evidence and
+machine-readable audit receipts remain private. See the
+[public source boundaries](PUBLIC_SOURCE.md) for what is distributed.
 
 
 ## Read-only proof-completeness audit (2026-09-08)
@@ -375,7 +379,9 @@ the longer settlement setting. This small purposive sample is not a cohort forec
 Recommendation 5: validate a targeted settlement extension and clarify evidence/
 terminal semantics before any production change. No global depth increase,
 conservative-common-payoff admission, or live activation was performed. Full suite:
-363 tests passed. See [audit report](../reports/FORK_PROOF_COMPLETENESS_AUDIT.md).
+363 tests passed. See the
+[shared proof-audit findings](PROOF_ESCALATION.md#proof-completeness-audit-findings-2026-09-08)
+for the evidence-lifetime distinction behind this recommendation.
 
 ## Proof-state cleanup and selective settlement validation (2026-09-08)
 
@@ -406,8 +412,9 @@ All five controls retained their proof/material/outcome, including 1849. Identic
 Recommendation awaiting approval: keep 8 generally; selectively extend pure-window
 cases to 12. The live profile, admission policy, default registration, candidate
 IDs, caches and all DB bytes are unchanged. No historical scan or live activation
-was performed. Detailed case explanations and future evidence-toolkit limits:
-[settlement validation](../reports/FORK_SETTLEMENT_VALIDATION.md).
+was performed. The [shared settlement summary](PROOF_ESCALATION.md#proof-lifetime-and-attempt-disposition-2026-09-08-cleanup)
+and [factual toolkit boundary](POSITION_RANGE_EVIDENCE.md#architecture-and-future-adoption)
+explain the public contracts; detailed per-case audit receipts remain private.
 
 ## Selective 12-ply settlement implementation
 
@@ -439,4 +446,4 @@ The identical replay is deterministic and writes nothing.
 Exact 8/12 request namespaces are separate, with a narrow read-only compatibility
 adapter for the original unscoped cache. Source identities remain explicit. Full
 eligibility, settings, cache semantics and activation recommendation:
-[selective policy report](../reports/FORK_SELECTIVE_SETTLEMENT_POLICY.md).
+[selective settlement contract](PROOF_ESCALATION.md#selective-settlement-policy-implemented-not-activated).

@@ -285,9 +285,8 @@ facets, fresh core imports without database/engine/Tkinter, and an exclusively
 No production migration, played persistence, historical backfill, cache write,
 engine search, analyzer rule, Game Review/filter, training or grade change is part
 of this task. Played Fork Assessment V1 is frozen after its ten-case human review;
-see [PLAYED_FORK_ASSESSMENTS.md](PLAYED_FORK_ASSESSMENTS.md). Run results and exact
-safety evidence are in
-[TACTIC_OCCURRENCE_STORAGE_CONTRACT_V1.md](../reports/TACTIC_OCCURRENCE_STORAGE_CONTRACT_V1.md).
+see [PLAYED_FORK_ASSESSMENTS.md](PLAYED_FORK_ASSESSMENTS.md). The rehearsal sections
+below summarize later validation; exact owner-data safety receipts remain private.
 
 
 ## Temporary-copy rehearsal #1 (historical checkpoint)
@@ -319,16 +318,18 @@ production database remained unchanged. The temporary database was discarded.
 Recommendation: **needs contract correction**, then repeat the rehearsal before
 production migration. Source-lineage allocation must also be persisted explicitly
 at any future approved live migration; this rehearsal's UUID belongs only to its
-temporary lineage manifest. See
-[TACTIC_OCCURRENCE_TEMP_MIGRATION_REHEARSAL.md](../reports/TACTIC_OCCURRENCE_TEMP_MIGRATION_REHEARSAL.md)
-for complete counts, the eight unresolved occurrence joins, safety and tests.
+temporary lineage manifest. The
+[second rehearsal](#legacy-developer-source-correction-and-rehearsal-2)
+records how the eight unresolved joins were addressed. Detailed temporary-copy
+receipts remain private.
 
 
 ## Legacy developer source correction and rehearsal #2
 
 Current recommendation: technically ready for an explicitly approved additive
 production schema migration. Rehearsal #2 resolves the prior gap; production is
-still unchanged. See [the second rehearsal report](../reports/TACTIC_OCCURRENCE_TEMP_MIGRATION_REHEARSAL_V2.md).
+still unchanged at this checkpoint. The correction, counts and rerun guarantees
+are summarized below; exact owner-data rehearsal receipts remain private.
 
 `-1` is a real persisted **synthetic developer rook-fork puzzle**, not a missing
 candidate marker. `seed_dev_test_puzzle.py` explicitly creates game/move/candidate

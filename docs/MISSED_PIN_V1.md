@@ -159,8 +159,9 @@ and uses temporary memory storage for new scout evidence:
 ```
 
 The generic CLI permits tactic filters in saved-scope negative previews only;
-saved-scope write-mode filter restrictions remain intact. Preview results are
-in [missed_pin_preview_500.json](../reports/missed_pin_preview_500.json).
+saved-scope write-mode filter restrictions remain intact. Aggregate preview results
+appear in the [saved-500 summary](#saved-500-game-preview-result--september-6-2026);
+exact game IDs and per-position receipts are private.
 Do not run heavy validation modes yet: those modes dispatch all registered
 specialists, including this newly registered pin analyzer. Heavy rollout and
 all-games expansion require separate authorization.
@@ -185,7 +186,7 @@ No heavy calculations, negative writes, or candidate/coverage writes ran.
 Live candidate count remained **929**, training attempts **11**, and coverage
 rows **28,128**. Protected rows and sequences were unchanged, `quick_check` was
 `ok`, and the foreign-key check passed. The entire live database SHA-256 matched
-before and after; see [integrity record](../reports/missed_pin_preview_500_integrity.json).
+before and after. The exact database hash and local integrity receipt remain private.
 Existing candidate IDs, fork/mate coverage, and training history remain intact.
 The 3,358 proposed checks are unvalidated hypotheses, not confirmed pin hits.
 ## V2 status

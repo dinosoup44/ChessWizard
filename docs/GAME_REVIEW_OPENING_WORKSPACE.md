@@ -147,4 +147,7 @@ by selecting a grid row. Stockfish Lines remains a separate explicit Studio acti
 Analyze Games Recent 50/100 still means newest actionable legal games, using existing
 readiness/deferred checks before the limit. No analyzer, formula, production schema,
 owner Opening, cache, training or candidate changes accompany this pass. No packaging.
-See [drill-down acceptance report](../reports/OPENING_REVIEW_DRILLDOWN_POLISH_V1.md).
+The public acceptance contract is the [daily workflow](#daily-workflow) and
+[exact event identity](#exact-event-identity-and-combined-tags): drill-down changes
+selection without borrowing another game's evidence. Detailed owner-session receipts
+remain private.

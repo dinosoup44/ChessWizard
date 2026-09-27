@@ -120,10 +120,11 @@ The feature does not modify an already-running Game Review process. Finish the
 current review session normally, then restart Game Review to load the controls.
 
 
-Game 2771's saved new-deferral target is move 30 Black, move ID 169882,
-proposed move `a5a3`. The separate human observation around move 2 is preserved
-in [Game 2771 presentation feedback](../reviews/GAME_2771_PRESENTATION_FEEDBACK.md).
-It is not attributed to the move-30 audit target or treated as verified analysis.
+A historical review distinguished an early-game presentation observation from a
+later audit target in the same game. Keep such observations tied to their own
+position or explicitly labeled game-level context; do not attribute them to a
+different move or treat them as verified analysis. The exact owner notes remain
+private. See the [human-facing context boundary](GAME_REVIEW_TACTICS.md#human-facing-audit-language-and-context-boundary).
 
 
 Human-facing reason wording is generated from stable codes by

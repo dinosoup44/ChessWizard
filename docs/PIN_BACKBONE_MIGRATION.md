@@ -156,14 +156,14 @@ add an explicit candidate-verifier factory; bind shared profiles/evidence/proof;
 prove recorded equivalence first; validate curated exact evidence in scratch;
 review differences before any live authorization.
 
-Full evidence: [Pin backbone audit](../reports/PIN_BACKBONE_VALIDATION.md),
-[strict JSON](../reports/pin_backbone_equivalence.json),
-[curated summary](../reports/pin_backbone_multiline.json),
-[every branch/proposal](../reports/pin_backbone_multiline_results.jsonl).
+The [strict equivalence](#strict-equivalence-3939) and
+[curated proposal](#curated-proposal-validation) sections summarize the public
+findings. Exact case identities, request receipts and branch/proposal exports remain
+private; they are not dependencies of the public test suite.
 
 ## Follow-up difference audit: activation recommendation 2
 
-The [read-only difference audit](../reports/PIN_BACKBONE_DIFFERENCE_AUDIT.md)
+The read-only difference audit summarized below
 compares all 33 explicit move/tactic pairs, using current recorded V2 evidence for
 the seven live rows and the frozen gold snapshot otherwise. It replays exact saved
 requests only. No policy/profile, production source, database, or cache changed.
@@ -265,9 +265,9 @@ preserved. No live activation, other analyzer migration, historical scan or UI c
 
 This checkpoint supersedes the preceding activation recommendation, while retaining
 its historical evidence. **Recommendation 1: ready for separately approved live
-activation.** No activation or persistence change was made. See the complete
-[33-case policy revalidation](../reports/PIN_POLICY_REVALIDATION.md), with every
-case, branch evidence, exact request identities and the safety/rerun record.
+activation.** No activation or persistence change was made. This section summarizes
+the 33-case revalidation and its policy changes. Per-case branch evidence, exact
+request identities and local safety/rerun receipts remain private.
 
 `PinBackbonePolicy` now separates primary causality consensus from secondary motif
 variance. Every branch must independently verify the same primary Pin relationship
@@ -305,7 +305,7 @@ secondary/context pin is clearer for 1836. No stored interpretation was rewritte
 
 Settings are exported through shared `SettingDefinition` metadata, including ID,
 label, default, range/options, description, basic/advanced level and identity impact.
-See [the complete settings schema](../reports/pin_policy_settings_schema.json).
+See [the shared Pin settings definitions](../pin_analysis_settings.py).
 `pin_backbone.motif_consensus` defaults to `primary_causality` (`all_motifs` is the
 explicit old diagnostic policy). `boundary.enabled=true`, `margin_cp=15` (0–100),
 `max_requests=64` (3–256, including hits), and `policy_version=1` affect interpretation

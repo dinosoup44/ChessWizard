@@ -61,4 +61,4 @@ A future repertoire-gap workflow can supply one saved anchor to this service and
 
 ## Validation
 
-See [implementation/acceptance report](../reports/OPENING_STUDIO_STOCKFISH_V1.md). Automated Tk tests cover navigation, modal content/confirmation and layout bounds at 100/125/150% equivalent Tk scaling. Real Stockfish acceptance used only copied books and isolated caches. Native owner visual review remains required; the Windows interaction tool was unavailable during this pass.
+Automated Tk tests cover navigation, modal content/confirmation and layout bounds at 100/125/150% equivalent Tk scaling. Real Stockfish acceptance used only copied books and isolated caches. Native owner visual review remains required; the Windows interaction tool was unavailable during this pass. Detailed owner-session receipts remain private; use the [public test workflow](DEVELOPMENT.md#tests) for self-contained regressions.

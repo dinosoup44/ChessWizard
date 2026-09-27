@@ -10,5 +10,5 @@ A valid one-move game is kept. Re-import preserves provider-identity deduplicati
 Existing empty rows are excluded from analysis but are not silently deleted.
 
 The maintained architecture, import/re-import, rollback and provider contract is in
-[GAME_IMPORT.md](GAME_IMPORT.md). The implementation/audit for this hygiene rule is in
-[the robustness report](../reports/ANALYSIS_ERROR_ZERO_MOVE_BATCHING_FIX.md).
+[GAME_IMPORT.md](GAME_IMPORT.md). The related analysis-side behavior is documented
+under [progressive batching and recoverable failures](ANALYZE_GAMES.md#progressive-batching-and-recoverable-failures).

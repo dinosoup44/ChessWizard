@@ -132,8 +132,10 @@ payload and verify none appear in the report.
 Each export is a separate explicit file; there is no periodic log/export generation,
 retention or automatic deletion. Current full exports are roughly 254 KiB, mostly
 the five existing typed-profile schemas. Services and UI add only Python source;
-no dependencies, assets or binaries are bundled. Exact task footprint and test
-results are in [ADMIN_CONSOLE_V1.md](../reports/ADMIN_CONSOLE_V1.md).
+no dependencies, assets or binaries are bundled. These are historical footprint
+measurements, not an export-size limit. Public validation uses the
+[self-contained test suite](DEVELOPMENT.md#tests); owner-specific diagnostic
+exports and detailed task receipts are not distributed.
 
 ## V1 boundaries
 

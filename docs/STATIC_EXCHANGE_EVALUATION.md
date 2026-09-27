@@ -144,7 +144,10 @@ The new calculation matches every pre-existing field for all 53 applicable cases
 
 The freeze report records full-suite results, bounded performance and production integrity. Maturity is **Validated** for this advisory local-exchange contract, not Robust across arbitrary chess situations and never an authoritative tactical classifier. New use in an analyzer requires separate approval. Any future consumer settings must remain in shared typed profiles; no setting may promote SEE into a hard filter. This task performs no occurrence migration or analyzer adoption.
 
-See [SEE_TOOLKIT_V1_FREEZE.md](../reports/SEE_TOOLKIT_V1_FREEZE.md) and the historical [SEE feasibility audit](../reports/SEE_FEASIBILITY_AUDIT.md).
+See the [regression corpus](#regression-corpus-and-compatibility) and
+[limitations](#what-it-cannot-prove) for the public validation boundary. Exact
+freeze and feasibility receipts remain private; they do not extend this advisory
+contract into tactical proof.
 
 ## Authorship
 

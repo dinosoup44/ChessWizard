@@ -185,6 +185,7 @@ Played Fork set is ready from this pilot. Any targeted evidence completion needs
 separate approval; do not broaden the cohort or relax proof rules.
 
 Complete missed-Fork outputs for 52 recorded/synthetic cases matched before/after.
-See [pilot report](../reports/FORK_PLAYED_TACTICS_PILOT.md) for source/line roles,
-costs, exact scope, tests and safety. Existing registry/UI/training and persistence
+See [actual versus counterfactual evidence](#actual-versus-counterfactual-evidence)
+for source/line roles and [played-Fork assessments](PLAYED_FORK_ASSESSMENTS.md#validation-workflow)
+for validation boundaries. Exact cohort and cost receipts remain private. Existing registry/UI/training and persistence
 remain unchanged; no PlayedForkAnalyzer framework was introduced.

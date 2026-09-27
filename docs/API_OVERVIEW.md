@@ -1,7 +1,7 @@
 # Reusable API overview
 
-Begin here, then use the generated [pydoc index](../build/pydoc/index.html) after running
-`tools/build_pydoc.py`. The approved list is [tools/public_api.json](../tools/public_api.json).
+Begin here, then follow the [API documentation instructions](DEVELOPMENT.md#api-documentation)
+to generate the local `build/pydoc/index.html` with `tools/build_pydoc.py`. The approved list is [tools/public_api.json](../tools/public_api.json).
 Generated pages are intentionally absent from Git. Read [ARCHITECTURE.md](ARCHITECTURE.md)
 for deeper contracts; rendering documentation does not activate any service.
 

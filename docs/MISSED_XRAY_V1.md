@@ -3,7 +3,7 @@
 X-ray V1 is implemented as `missed_xray`, using screener, scout and analyzer
 versions **1**. Its rollout boundary is **implementation, synthetic gold,
 regression tests and read-only saved-500 preview**. No historical heavy X-ray
-checks or live writes have run. See [validation results](../reports/XRAY_V1_VALIDATION.md).
+checks or live writes have run. See [gold, preview and limitations](#gold-preview-and-limitations).
 
 ## Definition and ownership
 
@@ -212,4 +212,6 @@ approved all-alternatives predicates retain those three. No broader filter was
 added. Preflight made zero engine searches; the database remained byte-identical.
 All eight synthetic positive gold contracts survive. These results do not
 establish engine-confirmed positive candidates or authorize a live rollout.
-See [the complete validation report](../reports/XRAY_V1_PREFLIGHT_VALIDATION.md).
+The [generic preflight extension contract](ADDING_ANALYZERS.md) explains how this
+planning stage stays separate from coverage and heavy proof. Exact saved-scope
+receipts remain private.

@@ -113,9 +113,10 @@ inputs before a receipt can be written. No heavy analysis is needed for the vali
 or heavy work unexpectedly becomes necessary.
 
 The repository stores full preflight provenance plus compact dependency hashes.
-Growth depends on the number of alternatives and evidence references; measured size
-for the 145-row rehearsal is reported in
-[the copy validation report](../reports/DEFERRED_LEDGER_COPY_VALIDATION.md).
+Growth depends on the number of alternatives and evidence references. The isolated
+rehearsal covered 145 stable checks; its detailed storage receipt is private, so no
+universal bytes-per-row estimate is claimed. Measure file and payload growth on an
+explicitly scoped copy before approving a larger migration.
 Future retention must delete only stale/orphaned ledger bookkeeping with an approved
 policy, never candidates, training or shared engine evidence. There is no automatic
 cleanup or evidence promotion.

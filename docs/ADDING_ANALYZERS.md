@@ -273,7 +273,7 @@ and ownership changes, no fallback, no DB writes, and every positive gold case.
 Run the full regression suite and compare an exact saved-scope read-only preview
 with its prior queue. Geometry, proof behavior, and other analyzers remain outside
 the scope of enabling a preflight hook. See
-[the X-ray preflight validation](../reports/XRAY_V1_PREFLIGHT_VALIDATION.md).
+[the X-ray preflight checkpoint](MISSED_XRAY_V1.md#existing-evidence-preflight-checkpoint).
 ## Optional candidate-line adoption
 
 New work can opt into the shared [CandidateLineSet pipeline](CANDIDATE_LINES.md).
@@ -438,7 +438,7 @@ without Tkinter or persistence. Do not implement the future settlement stage by
 quietly making an audit fact an admission predicate. Window/profile changes alter
 result currentness while identical raw engine requests retain their cache identity.
 See [proof escalation](PROOF_ESCALATION.md) and
-[settlement validation](../reports/FORK_SETTLEMENT_VALIDATION.md).
+[proof lifetime and settlement validation](PROOF_ESCALATION.md#proof-lifetime-and-attempt-disposition-2026-09-08-cleanup).
 
 ## Opting into selective settlement
 

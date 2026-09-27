@@ -75,7 +75,11 @@ Every game result retains library UUID, book ID/name/version/revision, content/m
 | Window or quality policy | Result identity changes; exact raw engine evidence remains reusable when its request is unchanged. |
 | Missing compatible evidence becomes available | Recompute numeric coverage; no inferred score before it exists. |
 
-No schema changes, production writes or duplicated engine evidence. Timings and trust limitations are in [the V1 report](../reports/OPENING_ACCURACY_V1.md) and [trust audit](../reports/OPENING_ACCURACY_TRUST_AUDIT.md). Owner review is the next step.
+No schema changes, production writes or duplicated engine evidence. The public
+[score and denominator contract](#scores-and-denominators) explains trust limits:
+missing evidence is not a perfect score, and repertoire membership is not engine
+quality. Owner-derived timing and trust-audit receipts remain private. Owner review
+is the next step.
 
 
 ## Opening Analysis foundation extension
@@ -90,7 +94,9 @@ The primary aggregate is the arithmetic mean over scored eligible **user moves**
 
 Full-game variation distribution and opening-window variation accuracy retain separate contexts, preventing late transpositions from renaming an expired scoring window. Nested paths and equal-name/different-anchor identities are retained. Departure groups expose frequencies, distinct affected games, cp mean/median, raw accuracy values, authored preference and engine best separately. No harmless/damaging labels are derived.
 
-See [Opening Analysis Engine](OPENING_ANALYSIS_ENGINE.md), [current real-data report](../reports/OPENING_ANALYSIS_ENGINE_V1.md) and [27-case trust sample](../reports/OPENING_ANALYSIS_TRUST_SAMPLE.md). The new foundation does not change Game Review or add a final analysis screen. Earlier UI/audit sections above describe existing behavior, not newly shipped UI in this pass.
+See [Opening Analysis Engine](OPENING_ANALYSIS_ENGINE.md) and its
+[accuracy and aggregation contract](OPENING_ANALYSIS_ENGINE.md#accuracy-and-descriptive-aggregation).
+The 27-case owner-derived trust sample and real-data receipts are private. The new foundation does not change Game Review or add a final analysis screen. Earlier UI/audit sections above describe existing behavior, not newly shipped UI in this pass.
 
 
 ## Game Review Opening Workspace V2

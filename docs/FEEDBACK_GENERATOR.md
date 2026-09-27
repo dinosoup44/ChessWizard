@@ -177,9 +177,11 @@ current tactics, attribution, four styles, determinism, missing/conflicting data
 provider/adapter extension, template validation and no engine/DB/network access.
 Existing widget tests exercise filters, jumping, proof expansion and episode behavior.
 
-`python reports/build_feedback_examples.py` opens the live DB read-only/query-only,
-blocks engine/network calls, checks IDs/counts/hash/integrity and writes reports only.
-See [real examples](../reports/FEEDBACK_GENERATOR_EXAMPLES.md).
+The local historical example audit opened the database read-only/query-only,
+blocked engine/network calls, and checked IDs, counts, hashes and integrity.
+Its owner-derived examples and helper are not distributed. Public readers can use
+[the wording contract](#deterministic-wording) and
+[structured opportunity examples](TACTICAL_OPPORTUNITY_EXAMPLES.md) without owner data.
 
 Limits: no LLM, translation engine, importer, analyzer execution, arbitrary notes
 parsing or proof revalidation. Legacy schemas are explicit. Modern feedback can

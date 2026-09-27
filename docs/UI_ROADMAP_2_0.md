@@ -210,7 +210,9 @@ not implemented in this pass. See [Opening UX](OPENING_INTELLIGENCE.md#game-revi
 
 ## Opening Accuracy V1 — ready for owner review
 
-Opening Summary now separates engine Accuracy from Opening Adherence, including evidence coverage and numeric first-user-deviation facts. Branch View shows the selected actual move's evidence without annotating every row. Accepted session selection/navigation remain intact. Typed variation/deviation/query APIs prepare future Explorer and Professor work; Lessons, new Explorer controls and publishing remain deferred. The preceding milestone descriptions describe their original scope; Opening Accuracy is implemented in this milestone. See [definition](OPENING_ACCURACY.md), [V1 report](../reports/OPENING_ACCURACY_V1.md) and [trust audit](../reports/OPENING_ACCURACY_TRUST_AUDIT.md).
+Opening Summary now separates engine Accuracy from Opening Adherence, including evidence coverage and numeric first-user-deviation facts. Branch View shows the selected actual move's evidence without annotating every row. Accepted session selection/navigation remain intact. Typed variation/deviation/query APIs prepare future Explorer and Professor work; Lessons, new Explorer controls and publishing remain deferred. The preceding milestone descriptions describe their original scope; Opening Accuracy is implemented in this milestone. See the [definition](OPENING_ACCURACY.md) and
+[score/coverage limits](OPENING_ACCURACY.md#scores-and-denominators).
+Owner-derived trust-audit receipts remain private.
 
 ## Opening Studio V1.3 — ready for owner authoring acceptance
 
@@ -243,8 +245,9 @@ are covered. Training stays unchanged, with an interactive grading regression.
 
 Source testing and isolated profiling precede owner acceptance. No packaging,
 production reanalysis, new analyzer or weaker proof policy is part of this pass.
-See [results](../reports/ANALYSIS_RESPONSIVENESS_PERFORMANCE_PASS.md) for measured
-scope latency, remaining global validation cost and safety evidence.
+See [progress, cancellation and errors](ANALYZE_GAMES.md#progress-cancellation-and-errors)
+for the public behavior and safety contract. Owner-history latency measurements
+remain private and are not a performance guarantee.
 
 
 ## Testing week: progressive recent-game analysis
@@ -258,14 +261,18 @@ the unfinished stage. Import skips empty records with an explicit count.
 
 No production empty-game cleanup, evidence-policy change, scheduler or frozen release
 is included. Native owner review of the new scope/progress wording remains a source
-acceptance step. See [report](../reports/ANALYSIS_ERROR_ZERO_MOVE_BATCHING_FIX.md).
+acceptance step. See
+[progressive batching and recoverable failures](ANALYZE_GAMES.md#progressive-batching-and-recoverable-failures).
 
 
 ## Opening Analysis data foundation — inspect before UI design
 
 Opening Analysis Engine V1 now offers explicit book-side intent, transient matching sets, full-path variation groups, transparent user adherence, first/common user/opponent departures, neutral repeated-gap candidates, re-entry and descriptive context. Existing Accuracy V1 supplies separately labeled user engine scores and partial/unresolved coverage. Pure accessors/query hooks prepare Game Review, Explorer, Save as Collection and The Professor.
 
-No final Opening Analysis screen or Lessons UI is implemented. First inspect [real French results](../reports/OPENING_ANALYSIS_ENGINE_V1.md) and [trust samples](../reports/OPENING_ANALYSIS_TRUST_SAMPLE.md). A future design should make side, sample sizes, adherence numerator/denominator, score coverage, known-leaf departures, alternatives and source game/move navigation visible. Do not turn descriptive variation scores into rankings by default. Owner books remain unconfigured/unchanged by this development audit.
+No final Opening Analysis screen or Lessons UI is implemented. First review the public
+[analysis model](OPENING_ANALYSIS_ENGINE.md) and
+[aggregation contract](OPENING_ANALYSIS_ENGINE.md#accuracy-and-descriptive-aggregation).
+Owner-derived book results and trust samples remain private. A future design should make side, sample sizes, adherence numerator/denominator, score coverage, known-leaf departures, alternatives and source game/move navigation visible. Do not turn descriptive variation scores into rankings by default. Owner books remain unconfigured/unchanged by this development audit.
 
 ## Next analysis-control pass: actionable Recent 50 / Recent 100
 
@@ -278,7 +285,8 @@ This is a documented next-pass change only. The current task does not alter Anal
 
 Implemented **Stockfish Lines** between Branch Browser and How To: saved anchor, Analyze/Stop, existing Quick/Normal/Deep levels, White-POV MultiPV/SAN table, isolated preview arrows/Return, optional deeper/refresh requests and confirmed Add as Variation. Whole-line merge preserves existing theory and author-controlled weights/preferences. The advice tab uses the right pane while author controls remain available on Branch Browser.
 
-Automated acceptance and isolated real-engine checks are documented in [report](../reports/OPENING_STUDIO_STOCKFISH_V1.md). Native owner visual/authoring review is the next acceptance step. No packaging, final Opening Analysis UI, automatic gap repair or Lessons work is included.
+Automated acceptance and isolated real-engine checks are summarized in the
+[Studio advisory validation](OPENING_STUDIO_STOCKFISH.md#validation). Native owner visual/authoring review is the next acceptance step. No packaging, final Opening Analysis UI, automatic gap repair or Lessons work is included.
 
 
 ## Game Review Opening Workspace V2
@@ -300,10 +308,10 @@ share a balanced draggable splitter above moments. Position details are collapse
 default behind a compact evaluation strip. Background progress and the resize safety
 guard remain. Matching, scores, analyzers, Recent 50/100 and persistence are unchanged.
 
-See [workspace guide](GAME_REVIEW_OPENING_WORKSPACE.md) and
-[drill-down report](../reports/OPENING_REVIEW_DRILLDOWN_POLISH_V1.md). Automated isolated
-acceptance includes nine repeated 5...Bd7 deviations, exact games 1066/1671, read-only
-safety and 100/125/150% layout tests. Native owner visual acceptance is next. No packaging.
+See the [workspace guide](GAME_REVIEW_OPENING_WORKSPACE.md) and
+[exact event identity contract](GAME_REVIEW_OPENING_WORKSPACE.md#exact-event-identity-and-combined-tags).
+Automated isolated acceptance covers repeated deviations, exact game selection,
+read-only safety and 100/125/150% layout tests; owner-case receipts remain private. Native owner visual acceptance is next. No packaging.
 
 ## Automatic resize safety
 

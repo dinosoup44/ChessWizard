@@ -279,7 +279,9 @@ that python-chess retains earlier bound flags in its aggregate dictionary despit
 later unbounded score packet. This pass does not strip flags or change evidence
 aggregation. Those aggregate objects are conservatively deferred. An adapter-level
 score-packet provenance correction, if desired, needs separate truth/parity review.
-See [audit and validation](../reports/ANALYSIS_ERROR_ZERO_MOVE_BATCHING_FIX.md).
+For the related empty-record import boundary, see [import hygiene](IMPORT_GAMES.md).
+Detailed production audit receipts are private; the behavior and limits are
+summarized in this section.
 
 
 ## Completion diagnostics and run progress (2026-09-26)
@@ -307,8 +309,9 @@ queue. Do not store them in settings or application_metadata as a schema workaro
 
 The proposed deferred ledger and its exact evidence/policy/ownership invalidation
 contract need migration approval and temporary-copy acceptance before production
-reconciliation. No schema or currentness change has been applied. See
-[the exact audit and migration plan](../reports/ANALYZER_COMPLETION_DEFERRAL_AUDIT.md).
+reconciliation. No schema or currentness change was applied at this audit
+checkpoint. The subsequent [deferred-outcome contract](DEFERRED_ANALYSIS_OUTCOMES.md)
+documents the additive schema, invalidation rules and approval boundary.
 
 
 ## Deferred ledger on explicitly migrated profiles

@@ -128,8 +128,9 @@ retain their compatibility behavior.
 
 The mandatory Qxb7 regression must fail current Normal root admission without a
 verification search. Its separate manual/depth-18 evidence remains auditable but
-cannot bypass the configured gate. See the completed
-[preview report](../reports/FORK_V31_ESCALATION_PREVIEW.md) for measurements.
+cannot bypass the configured gate. See the
+[Fork V3.1 adoption summary](MISSED_FORK_V3.md#v31-targeted-escalation-candidate-only-preview)
+for the frozen bounds; exact preview measurements remain in private audit receipts.
 
 ## Reuse and portability
 
@@ -219,7 +220,7 @@ Target-fate/local-exchange semantics deserve tests before relaxing settlement.
 The six-user-move trial used an isolated research window: production typed settings
 still cap four and cannot enable that experiment without a contract extension.
 All settings and implementation remain unchanged. See
-[proof-completeness audit](../reports/FORK_PROOF_COMPLETENESS_AUDIT.md).
+[the Fork proof-completeness summary](MISSED_FORK_V3.md#read-only-proof-completeness-audit-2026-09-08).
 
 ## Proof lifetime and attempt disposition (2026-09-08 cleanup)
 
@@ -253,7 +254,9 @@ searches; 29 stayed ambiguous, and five controls were unchanged. Verification
 settlement remains **8 in production**. Recommendation awaiting approval: extend
 to 12 selectively for pure-window cases. Raw request identity is unchanged by the
 settlement window; result-currentness identity changes, and only newly requested
-FENs need new evidence. Full data: [settlement validation](../reports/FORK_SETTLEMENT_VALIDATION.md).
+FENs need new evidence. See the
+[Fork settlement summary](MISSED_FORK_V3.md#proof-state-cleanup-and-selective-settlement-validation-2026-09-08);
+per-case evidence and request receipts remain private.
 
 ## Selective settlement policy (implemented, not activated)
 
@@ -306,7 +309,9 @@ backbone provenance now includes approved evidence from extension stages.
 Validation: all 40 sample outcomes reproduced (11 rejected, 29 ambiguous), five
 controls unchanged, zero engine searches/writes, 52 extended branches and 78
 additional cached verification requests. Maximum candidate request usage was 16/24.
-No production profile was enabled. See [selective policy report](../reports/FORK_SELECTIVE_SETTLEMENT_POLICY.md).
+No production profile was enabled. The
+[backbone extension boundary](ANALYSIS_BACKBONE.md#selective-continuation-extension-boundary)
+documents integration and provenance; detailed replay receipts remain private.
 
 ### Settlement summary provenance
 

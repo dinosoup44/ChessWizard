@@ -1,7 +1,8 @@
 # Time classes and light scout preview
 
-Implemented September 6, 2026. The original product handoff is saved in
-[PROJECT_HANDOFF.md](PROJECT_HANDOFF.md).
+Implemented September 6, 2026. For the maintained public system overview, see
+[the architecture checkpoint](ARCHITECTURE.md). The original product handoff is
+private and is not required to use this guide.
 
 ## Time classes
 

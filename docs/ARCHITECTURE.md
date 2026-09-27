@@ -5,9 +5,11 @@ This document describes implemented behavior, including rollout limitations.
 See [ADDING_ANALYZERS.md](ADDING_ANALYZERS.md) for the specialist contract.
 
 Skewer V1 completed its saved-500 live rollout: five new candidates, no errors,
-and a byte-identical zero-work rerun. See [its rollout](../reports/SKEWER_V1_LIVE500_ROLLOUT.md).
+and a byte-identical zero-work rerun. See the
+[Skewer specialist contracts](MISSED_SKEWER_V1.md#modules-and-contracts).
 Pin V2's saved-500 no-hit refresh is complete with five new candidates and
-protected V1 IDs; see [its rollout audit](../reports/PIN_V2_LIVE500_ROLLOUT.md).
+protected V1 IDs; see the
+[controlled no-hit refresh contract](MISSED_PIN_V2.md#controlled-stale-no-hit-rollout).
 X-ray V1 is registered through the same contracts, with 176 passing tests,
 20 synthetic gold cases and a read-only saved-500 preview. Existing-evidence
 preflight reduces its 3,489-check queue to 2,213 without changing geometry or
@@ -66,8 +68,10 @@ Raw cache identity includes exact FEN, engine/generator settings and normalized
 root restrictions. Gate/Scale/proof settings affect result-currentness without
 duplicating raw evidence. Row/payload schema versions fail closed. A future Admin
 Console uses the same typed settings schema; core cache/models have no UI imports.
-See [the migration and cache report](../reports/CANDIDATE_LINE_CACHE_LIVE_VALIDATION.md)
-for exact schema, backup, source hashes and growth (24 KiB for this tiny rollout).
+See [live storage and migration](CANDIDATE_LINES.md#live-storage-and-migration)
+for the schema, backup procedure and validation summary, and
+[growth measurements](CANDIDATE_LINES.md#growth-and-future-maintenance) for the
+24 KiB allocated by this tiny rollout. Exact local backup/source receipts remain private.
 Cleanup/retention requires a separate cache-maintenance policy; reads never update
 timestamps and no automatic eviction or table rebuild is enabled.
 
@@ -381,22 +385,21 @@ Pin V1's original separate preview covered the same 13,679 user moves: 0 current
 4,511 static negatives, 9,168 scout inputs, 5,810 scout negatives, and 3,358
 proposed heavy checks; 0 errors, 63.91 seconds. All 89 tests passed beforehand.
 At that preview checkpoint, no live writes or pin heavy calculations ran, and the live database SHA-256
-was unchanged. See [pin preview](../reports/missed_pin_preview_500.json).
+was unchanged. See the
+[Pin preview summary](MISSED_PIN_V1.md#saved-500-game-preview-result--september-6-2026).
 
 Subsequent Pin V1 heavy validation yielded two candidates (1835/1836) and 3,363
 no-hits across the saved scope. The [Pin V2 implementation](MISSED_PIN_V2.md)
 preserves those rows and V1 source, changes only the heavy analyzer version to
 `2`, and introduces bounded proof/attribution helpers and shared opportunities.
-Its initial gold validation and [500-game proposal](../reports/PIN_V2_VALIDATION.md)
-were read-only. The subsequent [saved-500 refresh](../reports/PIN_V2_LIVE500_ROLLOUT.md)
-is complete. Stale heavy refresh still requires explicit scope/version selection;
+Its initial [gold validation and preview](MISSED_PIN_V2.md#gold-set-and-limitations)
+were read-only. The subsequent saved-500 refresh is complete and follows the
+[controlled stale no-hit rollout contract](MISSED_PIN_V2.md#controlled-stale-no-hit-rollout). Stale heavy refresh still requires explicit scope/version selection;
 registration does not automatically activate it.
 
-Evidence: [preflight](../reports/heavy_write_500_preflight.json),
-[run report](../reports/heavy_write_500.json), and
-[rerun report](../reports/heavy_write_500_rerun.json).
-Safety backup: `merlin_before_heavy_analysis_20260906_115031_097026.db` in the
-project root. Heavy execution remains limited to the saved 10- and 500-game
+The counts above summarize the historical preflight, run and rerun receipts.
+Exact scope IDs, database snapshots and backup receipts are private and are not
+required to run the [public regression suite](DEVELOPMENT.md#tests). Heavy execution remains limited to the saved 10- and 500-game
 validation modes. Expansion to all games is not enabled or validated.
 
 ## Stored tactics in Game Review
@@ -716,7 +719,7 @@ for inspection findings, storage limitations and the next separately approved
 Fork Played-Tactics Pilot's required guard/proof separation.
 
 
-The subsequent [Fork played-tactics pilot](../reports/FORK_PLAYED_TACTICS_PILOT.md)
+The subsequent [Fork played-tactics pilot](TACTICAL_EVENT_RELATIONSHIPS.md#played-fork-pilot-checkpoint--2026-09-11)
 adds a neutral `evaluate_fork_move` entry to the existing multiline/V3.1 pipeline.
 Both legacy missed discovery and explicit actual-root discovery share one proof
 body; only the former enforces the unplayed guard. `fork_occurrence_adapter` keeps
@@ -1145,8 +1148,9 @@ Completed stages remain durable, with stable candidate IDs. Cancelled engine
 output never crosses the evidence boundary. Normal request arguments stay unchanged.
 OS-held locks release on crashes; Review is not an exclusive writer.
 
-See [Analyze Games](ANALYZE_GAMES.md) for exact cancellation, preview and startup
-detection contracts, and the [measured pass](../reports/ANALYSIS_RESPONSIVENESS_PERFORMANCE_PASS.md).
+See [Analyze Games](ANALYZE_GAMES.md#progress-cancellation-and-errors) for
+cancellation, preview and startup detection contracts, including the distinction
+between operational progress and completed analysis.
 New/materially changed reusable APIs use explicit types and Google-style PEP 257
 docstrings; no repository-wide documentation rewrite was performed.
 
@@ -1169,7 +1173,8 @@ navigation. No scheduler, analyzer activation, storage migration or cleanup is i
 Importer empty-record skipping uses the same factual legal-move concept. Production
 cleanup remains a separately approved Data Management transaction with collection
 protection and a fresh verified full backup. See [analysis](ANALYZE_GAMES.md),
-[imports](IMPORT_GAMES.md) and [validation](../reports/ANALYSIS_ERROR_ZERO_MOVE_BATCHING_FIX.md).
+[imports](IMPORT_GAMES.md) and
+[progressive batching and recoverable failures](ANALYZE_GAMES.md#progressive-batching-and-recoverable-failures).
 
 
 ## Obligation completion versus run progress
@@ -1188,7 +1193,7 @@ canonical-ownership currentness checks. This pass changes reporting only; existi
 coverage/currentness and every analyzer policy remain unchanged. The audit records
 why X-ray's deliberate planning stops currently requeue and proposes an additive
 ledger without rebuilding owner tables. See
-[completion audit](../reports/ANALYZER_COMPLETION_DEFERRAL_AUDIT.md).
+[completion diagnostics](ANALYZE_GAMES.md#completion-diagnostics-and-run-progress-2026-09-26).
 
 
 ## Optional durable conservative outcomes — copy rollout
@@ -1201,8 +1206,9 @@ rechecks complete preflight predicates before writes and never changes tactic tr
 
 This is enabled only on explicitly migrated databases; bootstrap does not create the
 ledger automatically. Production remains unmigrated. See the
-[portable contract](DEFERRED_ANALYSIS_OUTCOMES.md) and
-[copy validation](../reports/DEFERRED_LEDGER_COPY_VALIDATION.md).
+[portable contract](DEFERRED_ANALYSIS_OUTCOMES.md) and its
+[schema and migration safeguards](DEFERRED_ANALYSIS_OUTCOMES.md#schema-and-lifecycle).
+Detailed copy-validation receipts remain private.
 
 
 ## Opening Analysis Engine and repertoire-side foundation
@@ -1213,7 +1219,8 @@ ledger automatically. Production remains unmigrated. See the
 
 The transient matching set retains scope, owner, book/version/provenance and exclusions. Full-game known-position user adherence is explicitly distinct from bounded-window engine Accuracy and legacy Review's window adherence. Common departures group by canonical FEN; repeated unanswered opponent moves are neutral gap candidates. Nested variation IDs remain stable and late re-entry does not rename an expired accuracy window.
 
-All new core modules import without Tkinter. A future mobile frontend can use the same service/model contracts; no analysis/business policy is added to desktop callbacks. Final Opening Analysis UI, Lessons and scheduling are deferred. See [contracts](OPENING_ANALYSIS_ENGINE.md) and [audit](../reports/OPENING_ANALYSIS_ENGINE_V1.md).
+All new core modules import without Tkinter. A future mobile frontend can use the same service/model contracts; no analysis/business policy is added to desktop callbacks. Final Opening Analysis UI, Lessons and scheduling are deferred. See [contracts](OPENING_ANALYSIS_ENGINE.md) and
+[safety, currentness and cost](OPENING_ANALYSIS_ENGINE.md#safety-currentness-and-cost).
 
 
 ## Opening Studio advisory service (2.5)

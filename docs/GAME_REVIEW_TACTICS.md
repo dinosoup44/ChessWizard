@@ -130,8 +130,9 @@ visibility, legacy and opportunity presentation, future tactic discovery,
 filters, Candidate Viewer selection, actual Tk selection events, exact FEN
 jumps, orientation/highlighting/navigation, and read-only enforcement.
 
-See [V1 validation report](../reports/GAME_REVIEW_TACTICS_V1.md) for the saved-500
-audit and read-only checks against live stored games.
+A historical saved-500 audit also checked read-only behavior against stored games.
+Its per-game receipts are private; the [public test workflow](DEVELOPMENT.md#tests)
+uses self-contained fixtures and requires no owner database.
 
 
 ## Built-in human review sets
@@ -166,9 +167,11 @@ candidates (four in Questionable). The other 21 are audit-only/hidden proposals:
 their actual moves are reachable through normal game navigation, but no Tactical
 Moment or playable proof is fabricated. Game 3115's visible move-24 fork is not
 the shortlisted move-11 incomplete case. Games 320 and 486 have no stored active
-tactics despite their scratch-audit acceptance labels. Consult the case index in
-[the review-set report](../reports/GAME_REVIEW_SETS_V1.md) for move numbers and
-availability. Existing stored candidates always retain their original details.
+tactics despite their scratch-audit acceptance labels. The exact historical case
+index is private and is not bundled with public source. The
+[human-review identity contract](HUMAN_ANALYZER_REVIEWS.md) explains how stored
+candidates and audit-only targets remain separate. Existing stored candidates
+always retain their original details.
 
 User-created sets, editing, sharing and collection persistence are future 2.0
 work. No schema, candidate, coverage, training, cache or analyzer-policy changes
@@ -207,9 +210,10 @@ notes. A missing real move uses an explicitly labeled game-level QA anchor,
 never an invented chess move. No new logger migration is needed.
 
 Critical Moment Context V1 is **report-only**. It neither adds another UI panel
-nor filters/ranks production moments. Read
-[the context validation report](../reports/CRITICAL_MOMENT_CONTEXT_V1.md) for the
-27 exact human-review notes, available facts and unresolved interpretations.
+nor filters/ranks production moments. The
+[context contract](CRITICAL_MOMENT_CONTEXT.md) documents available facts and
+conservative gates. The 27 historical human-review notes remain private and are
+not evidence supplied by the public distribution.
 Tactic truth, The Scale and presentation importance remain separate. A real
 material gain does not imply a winning final position; low importance does not
 make a motif false. No Opening/Tempo/time-pressure analyzer or automatic

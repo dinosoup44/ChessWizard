@@ -115,8 +115,10 @@ to several roles may occupy several role files. No cross-snapshot deduplication
 or cleanup policy was introduced.
 
 Tests generate temporary PNG/ZIP/settings/database fixtures. The frozen example
-manifest is test-only and never installed as a runtime theme. Runtime assets and
-source growth are measured in [the V1 report](../reports/THEME_EDITOR_V1.md).
+manifest is test-only and never installed as a runtime theme. This public
+footprint summary does not include owner theme exports or local measurement
+receipts. See the [shared renderer contract](#existing-renderer-and-fallback)
+for the reuse boundary.
 No distribution builder for ChessWizard was added or changed.
 
 The public Art Tester checkout/build is untouched. Safest future synchronization:
