@@ -1,0 +1,146 @@
+{
+  "notice": "Synthetic legal continuations and injected scores test contracts, not engine best-defense accuracy.",
+  "cases": [
+    {
+      "case_id": "rook_exchanged_blocker_rear_queen",
+      "fen": "q6k/6pp/8/8/8/B7/6PP/1R5K w - - 0 1",
+      "played_uci": "h2h3",
+      "prefix": "Ra1 Qxa3 Rxa3",
+      "expected": "candidate"
+    },
+    {
+      "case_id": "bishop_exchanged_blocker",
+      "fen": "k7/p5qp/8/8/3B4/8/P6P/2B4K w - - 0 1",
+      "played_uci": "h2h3",
+      "prefix": "Bcb2 Qxd4 Bxd4",
+      "expected": "candidate"
+    },
+    {
+      "case_id": "queen_exchanged_blocker",
+      "fen": "q6k/6pp/8/8/8/B7/6PP/1Q5K w - - 0 1",
+      "played_uci": "h2h3",
+      "prefix": "Qa1 Qxa3 Qxa3",
+      "expected": "candidate"
+    },
+    {
+      "case_id": "removed_blocker_rear_rook",
+      "fen": "r6k/6pp/8/8/8/n7/1B4PP/1R5K w - - 0 1",
+      "played_uci": "h2h3",
+      "prefix": "Ra1 h6 Bxa3 h5 Bb2 h4 Rxa8+ Kh7",
+      "expected": "candidate"
+    },
+    {
+      "case_id": "pinned_blocker_penetration",
+      "fen": "k7/p5rp/8/8/3n4/8/P6P/2B4K w - - 0 1",
+      "played_uci": "h2h3",
+      "prefix": "Bb2 h6 Bxd4 h5 Bxg7 h4",
+      "expected": "candidate"
+    },
+    {
+      "case_id": "rear_escapes",
+      "fen": "q6k/6pp/8/8/8/B7/6PP/1R5K w - - 0 1",
+      "played_uci": "h2h3",
+      "prefix": "Ra1 Qb8 Bb4",
+      "expected": "analyzed_no_hit"
+    },
+    {
+      "case_id": "quiet_blocker_displacement",
+      "fen": "q6k/6pp/8/8/8/B7/6PP/1R5K w - - 0 1",
+      "played_uci": "h2h3",
+      "prefix": "Ra1 h6 Bb4 h5 Rxa8+ Kh7",
+      "expected": "analyzed_no_hit"
+    },
+    {
+      "case_id": "unrelated_gain",
+      "fen": "q6k/6pp/8/8/8/B7/6PP/1R1r1B1K w - - 0 1",
+      "played_uci": "h2h3",
+      "prefix": "Ra1 h6 Rxd1",
+      "expected": "analyzed_no_hit"
+    },
+    {
+      "case_id": "rear_recaptured",
+      "fen": "r6k/6pp/8/8/1p6/B7/6PP/1R5K w - - 0 1",
+      "played_uci": "h2h3",
+      "prefix": "Ra1 Rxa3 Rxa3 bxa3",
+      "expected": "analyzed_no_hit"
+    },
+    {
+      "case_id": "mate_owned",
+      "fen": "q6k/6pp/8/8/8/B7/6PP/1R5K w - - 0 1",
+      "played_uci": "h2h3",
+      "prefix": "Ra1",
+      "mate_score": 3,
+      "expected": "analyzed_no_hit"
+    },
+    {
+      "case_id": "pure_skewer",
+      "fen": "7k/7p/8/4r3/3q4/8/7P/2B4K w - - 0 1",
+      "tactic_uci": "c1b2",
+      "geometry_only": true,
+      "expected_created": false
+    },
+    {
+      "case_id": "absolute_pin",
+      "fen": "8/7p/8/4k3/3n4/8/7P/2B4K w - - 0 1",
+      "tactic_uci": "c1b2",
+      "geometry_only": true,
+      "expected_created": false
+    },
+    {
+      "case_id": "three_contacts_not_skipped",
+      "fen": "7k/6pp/8/8/q7/P7/P5PP/1R5K w - - 0 1",
+      "tactic_uci": "b1a1",
+      "geometry_only": true,
+      "expected_created": false
+    },
+    {
+      "case_id": "rank_geometry",
+      "fen": "7k/6pp/8/8/2B4q/8/6PP/R6K w - - 0 1",
+      "tactic_uci": "a1a4",
+      "geometry_only": true,
+      "expected_created": true
+    },
+    {
+      "case_id": "attacker_exchange_retained",
+      "fen": "q6k/6pp/8/8/1p6/P7/6PP/1R5K w - - 0 1",
+      "played_uci": "h2h3",
+      "prefix": "Ra1 Qxa3 Rxa3 bxa3",
+      "expected": "candidate"
+    },
+    {
+      "case_id": "forcing_blocker_capture",
+      "fen": "q6k/6pp/8/8/1r6/B7/6PP/1R5K w - - 0 1",
+      "played_uci": "h2h3",
+      "prefix": "Ra1 h6 Bxb4 h5 Rxa8+ Kh7",
+      "expected": "candidate"
+    },
+    {
+      "case_id": "enemy_quiet_displacement",
+      "fen": "k7/p5rp/8/8/3n4/8/P6P/2B4K w - - 0 1",
+      "played_uci": "h2h3",
+      "prefix": "Bb2 Nc2 Bxg7",
+      "expected": "analyzed_no_hit"
+    },
+    {
+      "case_id": "payoff_beyond_window",
+      "fen": "k7/p5rp/8/8/3n4/8/P6P/2B4K w - - 0 1",
+      "played_uci": "h2h3",
+      "prefix": "Bb2 h6 Bxd4 h5 h3 h4 a3 a6 a4 a5 Bxg7",
+      "expected": "analyzed_no_hit"
+    },
+    {
+      "case_id": "rear_escapes_after_removal",
+      "fen": "k7/p5rp/8/8/3n4/8/P6P/2B4K w - - 0 1",
+      "played_uci": "h2h3",
+      "prefix": "Bb2 h6 Bxd4 Rg8",
+      "expected": "analyzed_no_hit"
+    },
+    {
+      "case_id": "black_exchanged_blocker",
+      "fen": "1r5k/6pp/b7/8/8/8/6PP/Q6K b - - 0 1",
+      "played_uci": "h7h6",
+      "prefix": "Ra8 Qxa6 Rxa6",
+      "expected": "candidate"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Provisional ChessWizard feedback pack V1: trusted data only",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "pack_id", "name", "templates", "styles", "outcome_labels", "motif_labels", "tactic_labels"],
+  "properties": {
+    "schema_version": {"const": 1, "type": "integer"},
+    "pack_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+    "name": {"type": "string", "minLength": 1},
+    "templates": {
+      "description": "Keys and exact simple placeholder sets also require DataTemplateProvider V1 contract validation.",
+      "type": "object", "additionalProperties": {"type": "string", "maxLength": 4000}
+    },
+    "styles": {"type": "object", "minProperties": 1, "additionalProperties": {"$ref": "#/$defs/style"}},
+    "outcome_labels": {"$ref": "#/$defs/labels"},
+    "motif_labels": {"$ref": "#/$defs/labels"},
+    "tactic_labels": {"$ref": "#/$defs/labels"}
+  },
+  "$defs": {
+    "labels": {"type": "object", "additionalProperties": {"type": "string", "maxLength": 200, "pattern": "^[^{}]*$"}},
+    "style": {
+      "type": "object", "additionalProperties": false,
+      "required": ["summary_template", "detail_level", "include_evidence", "include_teaching_note"],
+      "properties": {
+        "summary_template": {"enum": ["explanation", "alert", "summary"]},
+        "detail_level": {"type": "string"},
+        "include_evidence": {"type": "boolean"},
+        "include_teaching_note": {"type": "boolean"}
+      }
+    }
+  }
+}

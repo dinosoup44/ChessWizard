@@ -1,0 +1,7 @@
+# Pinned upstream bytes and hashed evidence must survive a Windows checkout.
+* -text
+*.cwbook binary
+*.bin binary
+*.gz binary
+*.png binary
+*.ico binary

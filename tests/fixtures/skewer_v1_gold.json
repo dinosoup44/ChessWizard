@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "notice": "Scripted scores/PVs test contracts and accounting, not real best defense. Engine cross-checks are separately reported; ambiguous outcomes are not forced positives.",
+  "cases": [
+    {
+      "case_id": "king_rook_diagonal",
+      "fen": "8/p7/8/4r3/3k4/8/6P1/2B4K w - - 0 1",
+      "played_uci": "h1g1",
+      "prefix": "Bb2+ Kc4 Bxe5",
+      "expected": "candidate"
+    },
+    {
+      "case_id": "king_queen_rank",
+      "fen": "8/p7/8/8/3k1q2/8/6P1/R6K w - - 0 1",
+      "played_uci": "h1g1",
+      "prefix": "Ra4+ Kd5 Rxf4",
+      "expected": "candidate"
+    },
+    {
+      "case_id": "queen_rook_diagonal",
+      "fen": "7k/p7/8/4r3/3q4/8/6P1/2B4K w - - 0 1",
+      "played_uci": "h1h2",
+      "prefix": "Bb2 Qd8 Bxe5+ Kg8",
+      "expected": "candidate"
+    },
+    {
+      "case_id": "queen_rook_rank",
+      "fen": "7k/p7/8/8/3q1r2/8/6P1/R6K w - - 0 1",
+      "played_uci": "h1h2",
+      "prefix": "Ra4 Qd7 Rxf4",
+      "expected": "candidate"
+    },
+    {
+      "case_id": "queen_attacker",
+      "fen": "8/p6p/8/4r3/3k4/8/6P1/2Q4K w - - 0 1",
+      "played_uci": "h1g1",
+      "prefix": "Qb2+ Kc4 Qxe5",
+      "expected": "candidate"
+    },
+    {
+      "case_id": "delayed_rear",
+      "fen": "8/p7/8/4r3/3k4/8/6P1/2B4K w - - 0 1",
+      "played_uci": "h1g1",
+      "prefix": "Bb2+ Kc4 Kh2 a6 Bxe5",
+      "expected": "candidate"
+    },
+    {
+      "case_id": "front_captured",
+      "fen": "7k/p7/8/4r3/3q4/8/6P1/2B4K w - - 0 1",
+      "played_uci": "h1h2",
+      "prefix": "Bb2 a6 Bxd4 a5 Bxe5+ Kg8",
+      "expected": "candidate"
+    },
+    {
+      "case_id": "attacker_exchange",
+      "fen": "7k/p7/8/4b3/3q4/8/6P1/2BR3K w - - 0 1",
+      "played_uci": "g2g3",
+      "prefix": "Bb2 a6 Bxd4 Bxd4 Rxd4",
+      "expected": "candidate"
+    },
+    {
+      "case_id": "rear_recaptured",
+      "fen": "8/p7/5b2/4r3/3k4/8/6P1/2Q4K w - - 0 1",
+      "played_uci": "h1g1",
+      "prefix": "Qb2+ Kc4 Qxe5 Bxe5",
+      "expected": "analyzed_no_hit"
+    },
+    {
+      "case_id": "front_escapes_rear_safe",
+      "fen": "8/p7/8/4r3/3k4/8/6P1/2Q4K w - - 0 1",
+      "played_uci": "h1g1",
+      "prefix": "Qb2+ Kd5 Qa2+ Kd6",
+      "expected": "analyzed_no_hit"
+    },
+    {
+      "case_id": "unrelated_gain",
+      "fen": "8/p7/8/4r3/3k4/7r/6PP/K1Q3N1 w - - 0 1",
+      "played_uci": "g1f3",
+      "prefix": "Qb2+ Kc4 Nxh3",
+      "expected": "analyzed_no_hit"
+    },
+    {
+      "case_id": "king_queen_file",
+      "fen": "8/p2q4/8/8/3k4/8/6P1/R6K w - - 0 1",
+      "played_uci": "h1g1",
+      "prefix": "Rd1+ Kc4 Rxd7",
+      "expected": "candidate"
+    },
+    {
+      "case_id": "front_not_compelled",
+      "fen": "7k/p6p/8/4b3/3r4/8/6P1/2Q4K w - - 0 1",
+      "played_uci": "g2g3",
+      "prefix": "Qb2 Rd8 Qxe5+ Kg8",
+      "expected": "analyzed_no_hit"
+    },
+    {
+      "case_id": "front_takes_attacker",
+      "fen": "7k/p6p/8/4r3/3q4/8/6P1/Q1B4K w - - 0 1",
+      "played_uci": "g2g3",
+      "prefix": "Bb2 Qxb2 Qxb2",
+      "expected": "analyzed_no_hit"
+    },
+    {
+      "case_id": "late_payoff",
+      "fen": "8/p7/8/4r3/3k4/8/6P1/2B4K w - - 0 1",
+      "played_uci": "h1g1",
+      "prefix": "Bb2+ Kc4 Kh2 a6 Kh3 a5 Kh4 a4 Kg3 a3 Bxe5",
+      "expected": "analyzed_no_hit"
+    },
+    {
+      "case_id": "mate_ownership",
+      "fen": "8/p7/8/4r3/3k4/8/6P1/2B4K w - - 0 1",
+      "played_uci": "h1g1",
+      "prefix": "Bb2+ Kc4 Bxe5",
+      "expected": "analyzed_no_hit",
+      "mate_score": 3
+    },
+    {
+      "case_id": "friendly_blocker",
+      "fen": "8/p7/8/4r3/3k4/2N5/6P1/2B4K w - - 0 1",
+      "played_uci": "h1g1",
+      "tactic_uci": "c1b2",
+      "geometry_only": true,
+      "expected_created": false
+    },
+    {
+      "case_id": "two_blockers",
+      "fen": "8/p7/8/4r3/3k4/2p5/6P1/2B4K w - - 0 1",
+      "played_uci": "h1g1",
+      "tactic_uci": "c1b2",
+      "geometry_only": true,
+      "expected_created": false
+    },
+    {
+      "case_id": "distant_king_rook",
+      "fen": "8/p7/5r2/8/3k4/8/P5P1/2B4K w - - 0 1",
+      "played_uci": "h1g1",
+      "prefix": "Bb2+ Kc4 Bxf6",
+      "expected": "candidate"
+    },
+    {
+      "case_id": "protected_relative_skewer",
+      "fen": "7k/p7/5r2/8/3q4/8/6P1/K1B5 w - - 0 1",
+      "played_uci": "a1a2",
+      "prefix": "Bb2 Qd8 Bxf6+ Kg8",
+      "expected": "candidate"
+    }
+  ]
+}

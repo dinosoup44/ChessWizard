@@ -1,0 +1,38 @@
+{
+  "theme_id": "qa-transparency-sample-66b77a6a2ec1",
+  "name": "QA transparency sample",
+  "author": "",
+  "description": "",
+  "version": 1,
+  "colors": {
+    "light_square": "#d8c7a6",
+    "dark_square": "#7d6b58",
+    "frame": "#302b35",
+    "coordinate": "#ffffff"
+  },
+  "pieces": {
+    "white_king": "pieces/white_king.png",
+    "white_queen": "pieces/white_queen.png",
+    "white_rook": "pieces/white_rook.png",
+    "white_bishop": "pieces/white_bishop.png",
+    "white_knight": "pieces/white_knight.png",
+    "white_pawn": "pieces/white_pawn.png",
+    "black_king": "pieces/black_king.png",
+    "black_queen": "pieces/black_queen.png",
+    "black_rook": "pieces/black_rook.png",
+    "black_bishop": "pieces/black_bishop.png",
+    "black_knight": "pieces/black_knight.png",
+    "black_pawn": "pieces/black_pawn.png"
+  },
+  "decorations": {
+    "corner_top_left": "board/corner_top_left.png",
+    "corner_top_right": "board/corner_top_right.png",
+    "corner_bottom_left": "board/corner_bottom_left.png",
+    "corner_bottom_right": "board/corner_bottom_right.png",
+    "border_top": "board/border_top.png",
+    "border_bottom": "board/border_bottom.png",
+    "border_left": "board/border_left.png",
+    "border_right": "board/border_right.png",
+    "center_emblem": "board/center_emblem.png"
+  }
+}

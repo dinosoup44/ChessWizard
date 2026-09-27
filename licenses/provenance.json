@@ -1,0 +1,121 @@
+[
+  {
+    "path": "LICENSE",
+    "source": "chess 1.11.2 installed LICENSE.txt; complete GNU GPL version 3 text",
+    "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+    "bytes": 35147,
+    "checked": "2026-09-15"
+  },
+  {
+    "path": "licenses/python-chess/LICENSE.txt",
+    "source": "site_packages/chess-1.11.2.dist-info/licenses/LICENSE.txt",
+    "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+    "bytes": 35147,
+    "checked": "2026-09-15"
+  },
+  {
+    "path": "licenses/pillow/LICENSE.txt",
+    "source": "site_packages/pillow-12.3.0.dist-info/licenses/LICENSE (complete combined native-library notices)",
+    "sha256": "4f7866a74802c6326f81faff59a56546b6aec2b10b91973e0e9308de95e79857",
+    "bytes": 78016,
+    "checked": "2026-09-15"
+  },
+  {
+    "path": "licenses/python/LICENSE.txt",
+    "source": "python_base/LICENSE.txt (CPython 3.14.7 Windows build)",
+    "sha256": "935cf13e19f8c31b497d20b05d73623431a226b230c3599bc30fa3348979bc68",
+    "bytes": 35407,
+    "checked": "2026-09-15"
+  },
+  {
+    "path": "licenses/python/INCORPORATED_SOFTWARE.rst.txt",
+    "source": "python_base/Doc/html/_sources/license.rst.txt (3.14.7 documentation)",
+    "sha256": "cd6f471c0bfdb099efefc25ddff9b3df8bf62e10428987f1f05e6f2f9e35d563",
+    "bytes": 60039,
+    "checked": "2026-09-15"
+  },
+  {
+    "path": "licenses/stockfish/Copying.txt",
+    "source": "Stockfish official sf_18 AVX2 archive: stockfish/Copying.txt",
+    "sha256": "230184f60bae2feaf244f10a8bac053c8ff33a183bcc365b4d8b876d2b7f4809",
+    "bytes": 35823,
+    "checked": "2026-09-15"
+  },
+  {
+    "path": "licenses/stockfish/AUTHORS",
+    "source": "Stockfish official sf_18 AVX2 archive: stockfish/AUTHORS",
+    "sha256": "7e4dd912577605545b2062bd95f30c99f5f8839065d4e60ff7cd2c39f1880716",
+    "bytes": 6665,
+    "checked": "2026-09-15"
+  },
+  {
+    "path": "licenses/stockfish/README.md",
+    "source": "Stockfish official sf_18 AVX2 archive: stockfish/README.md",
+    "sha256": "5200ed551c7fd134e6884aa2ac16c1f7d4afe2903e22201e2c6e60ef53948e95",
+    "bytes": 7933,
+    "checked": "2026-09-15"
+  },
+  {
+    "path": "licenses/python/tcl_library-license.terms",
+    "source": "python_base/DLLs/tcl90.dll!/tcl_library/license.terms",
+    "sha256": "41613eabfc08921a7da9c4bfd7f3ce5d5406f55214b253d89f392ed86eebeb8f",
+    "bytes": 2295,
+    "checked": "2026-09-15"
+  },
+  {
+    "path": "licenses/python/tk_library-license.terms",
+    "source": "python_base/DLLs/tcl9tk90.dll!/tk_library/license.terms",
+    "sha256": "0d1e4405f6273f091732764ed89b57066be63ce64869be6c71ea337dc4f2f9b5",
+    "bytes": 2307,
+    "checked": "2026-09-15"
+  },
+  {
+    "path": "licenses/python/TK_IMAGES_README.txt",
+    "source": "python_base/DLLs/tcl9tk90.dll!/tk_library/images/README",
+    "sha256": "c6db098ebd8a622164d37d4ab0a8c205db1a83ac3065d5cde3cb5fb61925d283",
+    "bytes": 329,
+    "checked": "2026-09-15"
+  },
+  {
+    "path": "licenses/python/LIBTOMMATH_LICENSE.txt",
+    "source": "https://raw.githubusercontent.com/python/cpython-source-deps/tcl-9.0.4.0/libtommath/LICENSE",
+    "sha256": "2fa64b163659f41965c9815882a8296d3d03ff546b76153e11445f9bdecf955a",
+    "bytes": 1257,
+    "checked": "2026-09-15"
+  },
+  {
+    "path": "licenses/python/ZLIB_NG_LICENSE.txt",
+    "source": "https://raw.githubusercontent.com/python/cpython-source-deps/zlib-ng-2.2.4/LICENSE.md",
+    "sha256": "6c9f0d975b41afaa34d22f55bb8986ce69e5cb7ad327cb2b28820cd425edf5ee",
+    "bytes": 867,
+    "checked": "2026-09-15"
+  },
+  {
+    "path": "licenses/python/MPL-2.0.txt",
+    "source": "https://www.mozilla.org/media/MPL/2.0/index.txt",
+    "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+    "bytes": 16726,
+    "checked": "2026-09-15"
+  },
+  {
+    "path": "licenses/stockfish/CC0-1.0.txt",
+    "source": "https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt",
+    "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "bytes": 7048,
+    "checked": "2026-09-15"
+  },
+  {
+    "path": "licenses/python/ZSTD_LICENSE.txt",
+    "source": "https://raw.githubusercontent.com/python/cpython-source-deps/zstd-1.5.7/LICENSE",
+    "sha256": "7055266497633c9025b777c78eb7235af13922117480ed5c674677adc381c9d8",
+    "bytes": 1549,
+    "checked": "2026-09-15"
+  },
+  {
+    "path": "licenses/python/XZ_COPYING.txt",
+    "source": "https://raw.githubusercontent.com/python/cpython-source-deps/xz-5.2.5/COPYING",
+    "sha256": "bcb02973ef6e87ea73d331b3a80df7748407f17efdb784b61b47e0e610d3bb5c",
+    "bytes": 2775,
+    "checked": "2026-09-15"
+  }
+]

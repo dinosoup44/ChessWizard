@@ -1,0 +1,137 @@
+[
+  {
+    "root": "project",
+    "path": "COPYING.md",
+    "sha256": "9476ce5ffe4492696409c70eb23b3f3c9e901de88b255c159d3bf100e8e49fe7"
+  },
+  {
+    "root": "project",
+    "path": "LICENSE",
+    "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+  },
+  {
+    "root": "project",
+    "path": "licenses/pillow/LICENSE.txt",
+    "sha256": "4f7866a74802c6326f81faff59a56546b6aec2b10b91973e0e9308de95e79857"
+  },
+  {
+    "root": "project",
+    "path": "licenses/provenance.json",
+    "sha256": "26fd356ca883bb3766f4fbb736e041ea48508ea66868c22919b4e0d1682309ae"
+  },
+  {
+    "root": "project",
+    "path": "licenses/python/INCORPORATED_SOFTWARE.rst.txt",
+    "sha256": "cd6f471c0bfdb099efefc25ddff9b3df8bf62e10428987f1f05e6f2f9e35d563"
+  },
+  {
+    "root": "project",
+    "path": "licenses/python/LIBTOMMATH_LICENSE.txt",
+    "sha256": "2fa64b163659f41965c9815882a8296d3d03ff546b76153e11445f9bdecf955a"
+  },
+  {
+    "root": "project",
+    "path": "licenses/python/LICENSE.txt",
+    "sha256": "935cf13e19f8c31b497d20b05d73623431a226b230c3599bc30fa3348979bc68"
+  },
+  {
+    "root": "project",
+    "path": "licenses/python/MPL-2.0.txt",
+    "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04"
+  },
+  {
+    "root": "project",
+    "path": "licenses/python/tcl_library-license.terms",
+    "sha256": "41613eabfc08921a7da9c4bfd7f3ce5d5406f55214b253d89f392ed86eebeb8f"
+  },
+  {
+    "root": "project",
+    "path": "licenses/python/TK_IMAGES_README.txt",
+    "sha256": "c6db098ebd8a622164d37d4ab0a8c205db1a83ac3065d5cde3cb5fb61925d283"
+  },
+  {
+    "root": "project",
+    "path": "licenses/python/tk_library-license.terms",
+    "sha256": "0d1e4405f6273f091732764ed89b57066be63ce64869be6c71ea337dc4f2f9b5"
+  },
+  {
+    "root": "project",
+    "path": "licenses/python/XZ_COPYING.txt",
+    "sha256": "bcb02973ef6e87ea73d331b3a80df7748407f17efdb784b61b47e0e610d3bb5c"
+  },
+  {
+    "root": "project",
+    "path": "licenses/python/ZLIB_NG_LICENSE.txt",
+    "sha256": "6c9f0d975b41afaa34d22f55bb8986ce69e5cb7ad327cb2b28820cd425edf5ee"
+  },
+  {
+    "root": "project",
+    "path": "licenses/python/ZSTD_LICENSE.txt",
+    "sha256": "7055266497633c9025b777c78eb7235af13922117480ed5c674677adc381c9d8"
+  },
+  {
+    "root": "project",
+    "path": "licenses/python-chess/LICENSE.txt",
+    "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+  },
+  {
+    "root": "project",
+    "path": "licenses/README.md",
+    "sha256": "f520ece9c1efbea6a81620c52110c08ef4dd406216ee128decf5114ef89b040e"
+  },
+  {
+    "root": "project",
+    "path": "licenses/stockfish/AUTHORS",
+    "sha256": "7e4dd912577605545b2062bd95f30c99f5f8839065d4e60ff7cd2c39f1880716"
+  },
+  {
+    "root": "project",
+    "path": "licenses/stockfish/CC0-1.0.txt",
+    "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+  },
+  {
+    "root": "project",
+    "path": "licenses/stockfish/Copying.txt",
+    "sha256": "230184f60bae2feaf244f10a8bac053c8ff33a183bcc365b4d8b876d2b7f4809"
+  },
+  {
+    "root": "project",
+    "path": "licenses/stockfish/README.md",
+    "sha256": "5200ed551c7fd134e6884aa2ac16c1f7d4afe2903e22201e2c6e60ef53948e95"
+  },
+  {
+    "root": "project",
+    "path": "README_RELEASE.md",
+    "sha256": "d8b158a43001ca41b7c757f978d02ef8f7249879236a515f65be81b6254849df"
+  },
+  {
+    "root": "project",
+    "path": "source_info/runtime_inputs.json",
+    "sha256": "8bba22af47fc591285ea85d9d1e920ccaeab34e6cc58a265ce33e725f283137c"
+  },
+  {
+    "root": "project",
+    "path": "source_info/SOURCE.md",
+    "sha256": "1d442f16ac05e6b759254dc2784d7ef18af6e92027425d042e02df3e2f4d3a41"
+  },
+  {
+    "root": "project",
+    "path": "source_info/stockfish_identity.json",
+    "sha256": "4f71cb11817d20650858fd0ec1b6f6868cf925fbc6b7f2ba05645a25dc593c20"
+  },
+  {
+    "root": "project",
+    "path": "source_info/tcl_psl_identity.json",
+    "sha256": "8f87e8585d09c74d2bfa556941f30e8dbac042213240c40ae21bcdd8169ee07f"
+  },
+  {
+    "root": "project",
+    "path": "THIRD_PARTY_NOTICES.md",
+    "sha256": "b642776adac20ca6d22e8c5ba1edd80fc1d81514d92dfafd60aae2d106bcace6"
+  },
+  {
+    "root": "project",
+    "path": "licenses/pyinstaller/COPYING.txt",
+    "sha256": "0598064c7d2718e38d7914a7d08343b2fa008e3bea9ebba2aa7a6ffa5900dd64"
+  }
+]

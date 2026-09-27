@@ -1,0 +1,23 @@
+{
+  "archive_url": "https://github.com/official-stockfish/Stockfish/releases/download/sf_18/stockfish-windows-x86-64-avx2.zip",
+  "archive_sha256": "6f6c272ebd6ea594377715235c8a7326f75940ef4f4f856f45106028fe6ae900",
+  "binary_sha256": "c86215fa1977d53b82ed854540a4c7b025be4cd042276c85ba3de53fb9118911",
+  "binary_byte_identical_to_official": true,
+  "source_commit": "cb3d4ee9b47d0c5aae855b12379378ea1439675c",
+  "different_files": [],
+  "archive_neural_networks": [],
+  "temporary_archive_retained": false,
+  "nnue_repository_commit": "010b123b69a46018ab83ac4ce99273b727a542ab",
+  "networks": [
+    {
+      "name": "nn-c288c895ea92.nnue",
+      "sha256": "c288c895ea924429ea9092e3f36b2b3c1f00f2a3a4c759ff7e57e79e3b43e4a7",
+      "source_url": "https://media.githubusercontent.com/media/official-stockfish/networks/010b123b69a46018ab83ac4ce99273b727a542ab/nn-c288c895ea92.nnue"
+    },
+    {
+      "name": "nn-37f18f62d772.nnue",
+      "git_blob_sha1": "b8e0f13311c67bcc2997947ed528ca09419e947f",
+      "source_url": "https://raw.githubusercontent.com/official-stockfish/networks/010b123b69a46018ab83ac4ce99273b727a542ab/nn-37f18f62d772.nnue"
+    }
+  ]
+}

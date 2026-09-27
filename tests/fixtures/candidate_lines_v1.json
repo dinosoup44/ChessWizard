@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "notice": "Deterministic policy fixtures with synthetic evaluations and legal moves. These scores are not Stockfish claims. Real engine observations are reported separately.",
+  "cases": [
+    {
+      "name": "clearly_winning",
+      "scores": [
+        800,
+        760,
+        550
+      ],
+      "lines": [
+        "e4 e5 Nf3",
+        "d4 d5 c4",
+        "Nf3 d5 g3"
+      ]
+    },
+    {
+      "name": "equal_reject_weak",
+      "scores": [
+        20,
+        -20,
+        -180
+      ],
+      "lines": [
+        "e4 e5",
+        "d4 d5",
+        "Nh3 e5"
+      ]
+    },
+    {
+      "name": "losing_defensive_resources",
+      "scores": [
+        -200,
+        -220,
+        -600
+      ],
+      "lines": [
+        "e4 e5",
+        "d4 d5",
+        "Nh3 e5"
+      ],
+      "context": "Synthetic reference -500 cp, played -600 cp; best realistic resources remain negative."
+    },
+    {
+      "name": "forced_deterioration",
+      "scores": [
+        -200,
+        -220,
+        -600
+      ],
+      "lines": [
+        "e4 e5",
+        "d4 d5",
+        "Nh3 e5"
+      ],
+      "quality_gate": {
+        "maximum_deterioration_cp": 50,
+        "least_bad_line_count": 2
+      },
+      "reference_cp": 0
+    },
+    {
+      "name": "mate_semantics",
+      "scores": [
+        {
+          "mate_score": 2
+        },
+        {
+          "mate_score": 4
+        },
+        {
+          "mate_score": -2
+        }
+      ],
+      "lines": [
+        "e4 e5",
+        "d4 d5",
+        "Nh3 e5"
+      ]
+    },
+    {
+      "name": "acceptable_queen_investment",
+      "fen": "5r1k/5Qpp/7N/8/8/8/8/6K1 w - - 0 1",
+      "scores": [
+        200,
+        178
+      ],
+      "lines": [
+        "Kh2",
+        "Qg8+ Rxg8 Nf7#"
+      ]
+    },
+    {
+      "name": "quiet_best_tactical_alternative",
+      "fen": "r3k3/8/8/3N4/8/8/8/4K3 w - - 0 1",
+      "scores": [
+        450,
+        425
+      ],
+      "lines": [
+        "Kf1",
+        "Nc7+ Kf7 Nxa8"
+      ]
+    },
+    {
+      "name": "fixed_root_requires_child_request",
+      "fen": "r3k3/8/8/3N4/8/8/8/4K3 w - - 0 1",
+      "scores": [
+        400
+      ],
+      "lines": [
+        "Nc7+ Kd7 Nxa8"
+      ],
+      "context": "Hand-authored knight fork. Alternative replies belong in a child line set, never duplicate root moves."
+    }
+  ]
+}

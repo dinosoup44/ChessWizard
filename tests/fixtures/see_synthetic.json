@@ -1,0 +1,363 @@
+[
+  {
+    "name": "pawn trade",
+    "fen": "7k/p7/5p2/4p3/3P4/8/P7/K7 w - - 0 1",
+    "move": "d4e5",
+    "reference_line": [
+      "d4e5",
+      "f6e5"
+    ],
+    "expected_reference_cp": 0,
+    "expected_see_cp": 0,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "minor survives",
+    "fen": "7k/p7/8/4p3/8/5N2/P7/K7 w - - 0 1",
+    "move": "f3e5",
+    "reference_line": [
+      "f3e5"
+    ],
+    "expected_reference_cp": 100,
+    "expected_see_cp": 100,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "rook takes defended pawn",
+    "fen": "7k/p7/5p2/4p3/8/8/P7/K3R3 w - - 0 1",
+    "move": "e1e5",
+    "reference_line": [
+      "e1e5",
+      "f6e5"
+    ],
+    "expected_reference_cp": -400,
+    "expected_see_cp": -400,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "poisoned queen capture",
+    "fen": "7k/p7/5p2/4p3/8/8/P7/K3Q3 w - - 0 1",
+    "move": "e1e5",
+    "reference_line": [
+      "e1e5",
+      "f6e5"
+    ],
+    "expected_reference_cp": -800,
+    "expected_see_cp": -800,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "equal bishop trade",
+    "fen": "7k/p7/5p2/4b3/3B4/8/P7/K7 w - - 0 1",
+    "move": "d4e5",
+    "reference_line": [
+      "d4e5",
+      "f6e5"
+    ],
+    "expected_reference_cp": 0,
+    "expected_see_cp": 0,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "pawn minor rook chain",
+    "fen": "4r2k/p4n2/8/4p3/3P4/5N2/P7/K3R3 w - - 0 1",
+    "move": "d4e5",
+    "reference_line": [
+      "d4e5"
+    ],
+    "expected_reference_cp": 100,
+    "expected_see_cp": 100,
+    "limitation": false,
+    "note": "Five-ply LVA chain is generated, but opponent may stop after root rather than lose 500."
+  },
+  {
+    "name": "different-cost recapturers",
+    "fen": "4r2k/p4n2/5p2/4p3/3P4/8/P7/K7 w - - 0 1",
+    "move": "d4e5",
+    "reference_line": [
+      "d4e5",
+      "f6e5"
+    ],
+    "expected_reference_cp": 0,
+    "expected_see_cp": 0,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "different-cost reattackers",
+    "fen": "7k/p7/5p2/4p3/3P4/5N2/P7/K3R3 w - - 0 1",
+    "move": "d4e5",
+    "reference_line": [
+      "d4e5",
+      "f6e5",
+      "f3e5"
+    ],
+    "expected_reference_cp": 100,
+    "expected_see_cp": 100,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "rook xray revealed",
+    "fen": "7k/p7/5p2/4p3/8/8/P3R3/K3R3 w - - 0 1",
+    "move": "e2e5",
+    "reference_line": [
+      "e2e5",
+      "f6e5",
+      "e1e5"
+    ],
+    "expected_reference_cp": -300,
+    "expected_see_cp": -300,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "absolute pinned pawn",
+    "fen": "5k2/p7/5p2/4p3/8/3N4/P7/K4R2 w - - 0 1",
+    "move": "d3e5",
+    "reference_line": [
+      "d3e5"
+    ],
+    "expected_reference_cp": 100,
+    "expected_see_cp": 100,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "absolute pinned knight",
+    "fen": "5k2/p4n2/8/4p3/3P4/8/P7/K4R2 w - - 0 1",
+    "move": "d4e5",
+    "reference_line": [
+      "d4e5"
+    ],
+    "expected_reference_cp": 100,
+    "expected_see_cp": 100,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "illegal king recapture",
+    "fen": "8/p7/5k2/4p3/8/3N4/P7/K3R3 w - - 0 1",
+    "move": "d3e5",
+    "reference_line": [
+      "d3e5"
+    ],
+    "expected_reference_cp": 100,
+    "expected_see_cp": 100,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "legal king recapture",
+    "fen": "8/p7/5k2/4p3/8/3N4/P7/K7 w - - 0 1",
+    "move": "d3e5",
+    "reference_line": [
+      "d3e5",
+      "f6e5"
+    ],
+    "expected_reference_cp": -200,
+    "expected_see_cp": -200,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "relative pin permits capture",
+    "fen": "5q1k/p7/5p2/4p3/8/3N4/P7/K4R2 w - - 0 1",
+    "move": "d3e5",
+    "reference_line": [
+      "d3e5",
+      "f6e5"
+    ],
+    "expected_reference_cp": -200,
+    "expected_see_cp": -200,
+    "limitation": false,
+    "note": "Pawn may expose queen on f8; legal is not strategically sound. Off-target Rxf8 is omitted."
+  },
+  {
+    "name": "bishop discovery",
+    "fen": "6k1/p7/5p2/4p3/3B4/2B5/P7/K7 w - - 0 1",
+    "move": "d4e5",
+    "reference_line": [
+      "d4e5",
+      "f6e5",
+      "c3e5"
+    ],
+    "expected_reference_cp": -100,
+    "expected_see_cp": -100,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "promotion capture",
+    "fen": "7r/p5P1/8/5k2/8/8/P7/K7 w - - 0 1",
+    "move": "g7h8q",
+    "reference_line": [
+      "g7h8q"
+    ],
+    "expected_reference_cp": 1300,
+    "expected_see_cp": 1300,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "underpromotion capture",
+    "fen": "7r/p5P1/8/5k2/8/8/P7/K7 w - - 0 1",
+    "move": "g7h8n",
+    "reference_line": [
+      "g7h8n"
+    ],
+    "expected_reference_cp": 700,
+    "expected_see_cp": 700,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "recapture promotion",
+    "fen": "7k/p7/8/8/8/7K/PpN5/b7 w - - 0 1",
+    "move": "c2a1",
+    "reference_line": [
+      "c2a1",
+      "b2a1q"
+    ],
+    "expected_reference_cp": -800,
+    "expected_see_cp": -800,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "en passant occupancy xray",
+    "fen": "3r3k/p7/8/3pP3/8/8/P7/K2R4 w - d6 0 1",
+    "move": "e5d6",
+    "reference_line": [
+      "e5d6",
+      "d8d6",
+      "d1d6"
+    ],
+    "expected_reference_cp": 500,
+    "expected_see_cp": 100,
+    "limitation": false,
+    "note": "LVA can stop at root; EP victim d5 disappears, opening the d-file."
+  },
+  {
+    "name": "check needs off-square evasion",
+    "fen": "8/p4k2/8/4p3/8/3N4/P7/K7 w - - 0 1",
+    "move": "d3e5",
+    "reference_line": [
+      "d3e5"
+    ],
+    "expected_reference_cp": 100,
+    "expected_see_cp": null,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "same-value defenders",
+    "fen": "7k/p7/3p1p2/4p3/3P4/8/P7/K7 w - - 0 1",
+    "move": "d4e5",
+    "reference_line": [
+      "d4e5",
+      "d6e5"
+    ],
+    "expected_reference_cp": 0,
+    "expected_see_cp": 0,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "queen trade",
+    "fen": "7k/p7/5p2/4q3/8/8/P7/K3Q3 w - - 0 1",
+    "move": "e1e5",
+    "reference_line": [
+      "e1e5",
+      "f6e5"
+    ],
+    "expected_reference_cp": 0,
+    "expected_see_cp": 0,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "rook for minor",
+    "fen": "7k/p7/5p2/4n3/8/8/P7/K3R3 w - - 0 1",
+    "move": "e1e5",
+    "reference_line": [
+      "e1e5",
+      "f6e5"
+    ],
+    "expected_reference_cp": -200,
+    "expected_see_cp": -200,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "favorable local capture loses mate",
+    "fen": "4r2k/p7/8/2p5/8/1N6/P4PPP/6K1 w - - 0 1",
+    "move": "b3c5",
+    "reference_line": [
+      "b3c5",
+      "e8e1"
+    ],
+    "expected_reference_cp": 100,
+    "expected_see_cp": 100,
+    "limitation": true,
+    "note": "Nxc5 is locally +100; supplied Re1# refutes any global good-move claim."
+  },
+  {
+    "name": "intermezzo before recapture",
+    "fen": "7k/p7/5p2/4p3/1b6/8/P2R4/2K1Q3 w - - 0 1",
+    "move": "e1e5",
+    "reference_line": [
+      "e1e5",
+      "b4d2",
+      "c1b1",
+      "f6e5"
+    ],
+    "expected_reference_cp": -1300,
+    "expected_see_cp": -800,
+    "limitation": true,
+    "note": "Black inserts Bxd2+ before fxe5. The exchange-only chain omits a rook loss."
+  },
+  {
+    "name": "compensation away from target",
+    "fen": "1q6/p5k1/5p2/4p3/8/8/P7/KR2R3 w - - 0 1",
+    "move": "e1e5",
+    "reference_line": [
+      "e1e5",
+      "f6e5",
+      "b1b8"
+    ],
+    "expected_reference_cp": 500,
+    "expected_see_cp": -400,
+    "limitation": true,
+    "note": "Rxe5 fxe5 Rxb8 gains 500 on the supplied line despite negative local SEE."
+  },
+  {
+    "name": "capture checkmate",
+    "fen": "7k/p4Qp1/5K2/8/8/8/P7/8 w - - 0 1",
+    "move": "f7g7",
+    "reference_line": [
+      "f7g7"
+    ],
+    "expected_reference_cp": 100,
+    "expected_see_cp": null,
+    "limitation": false,
+    "note": ""
+  },
+  {
+    "name": "unprotected queen",
+    "fen": "7k/p7/8/4q3/8/5N2/P7/K7 w - - 0 1",
+    "move": "f3e5",
+    "reference_line": [
+      "f3e5"
+    ],
+    "expected_reference_cp": 900,
+    "expected_see_cp": 900,
+    "limitation": false,
+    "note": ""
+  }
+]

@@ -1,0 +1,58 @@
+{
+  "source": {
+    "repository": "https://github.com/lichess-org/chess-openings",
+    "commit": "c67912be581f0793dbaa776be5ccf111e01f88d9",
+    "commit_date": "2026-09-20T07:53:39Z",
+    "retrieved_utc": "2026-09-27T11:47:31.943013+00:00",
+    "license": "CC0-1.0",
+    "files": {
+      "a.tsv": {
+        "bytes": 66338,
+        "sha256": "41722fa3d44f294357326fe2ca1b956d9e56490b30efcfa68db61114c9df7e10"
+      },
+      "b.tsv": {
+        "bytes": 77372,
+        "sha256": "310f0997d5a26ac6c9abfabac028e47e78f24356a6ba322cfffbf8f5a3f88d25"
+      },
+      "c.tsv": {
+        "bytes": 132306,
+        "sha256": "b2e64f32e42e6418b327d03a55af65f3a18e762f7cbc0efffc7e9d1ed3aa7343"
+      },
+      "d.tsv": {
+        "bytes": 69199,
+        "sha256": "58cad40b886bd499717eabcce281d4bfcf00eeadbdc00552f42042cf4aac50d2"
+      },
+      "e.tsv": {
+        "bytes": 43453,
+        "sha256": "2787c571c16758343352be5a3e1272cb79af9ad32f20884ea6af982026efbe13"
+      },
+      "COPYING.txt": {
+        "bytes": 7048,
+        "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+      },
+      "README.md": {
+        "bytes": 2661,
+        "sha256": "c0bedd93a117f318a3bd087a3af640652f4369ca461429d4dfbeee4614dc5eae"
+      },
+      "bin/gen.py": {
+        "bytes": 4847,
+        "sha256": "323c90e60501f2ae55c7e28d76995036242421a921c67335d503c85d2fecf5e8"
+      },
+      "Makefile": {
+        "bytes": 324,
+        "sha256": "7dcc9c7d4c65994067f7cd276f492681222566ea079f31631abae1f2ab52bc54"
+      }
+    }
+  },
+  "curation_sha256": "01de2041cb51e16641d906bc5569c98e959d22dc801505b6ceeacea3d549af5c",
+  "cwbook_sha256": "792142900a3dc472cd24a20863ba91d65a677d6fec8bedf98106088bff0f4ab9",
+  "families": 96,
+  "variations": 472,
+  "positions": 1387,
+  "entry_positions": 819,
+  "polyglot": {
+    "entries": 1409,
+    "bytes": 22544,
+    "sha256": "71cc8f9db271f7ef66615f656ea17aa84a239175179e56629303a74a2ed7449e"
+  }
+}

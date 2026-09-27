@@ -1,0 +1,1032 @@
+{
+  "version": 1,
+  "neutral_weight": 50,
+  "max_plies": 14,
+  "major_max_plies": 18,
+  "subvariation_max_plies": 22,
+  "same_name_extension_plies": 4,
+  "families": {
+    "Sicilian Defense": {
+      "side": "black",
+      "major_variations": [
+        "Alapin Variation",
+        "Closed",
+        "Grand Prix Attack",
+        "Open",
+        "Najdorf Variation",
+        "Dragon Variation",
+        "Accelerated Dragon",
+        "Hyperaccelerated Dragon",
+        "Scheveningen Variation",
+        "Taimanov Variation",
+        "Kan Variation",
+        "Lasker-Pelikan Variation",
+        "Kalashnikov Variation",
+        "Classical Variation",
+        "Richter-Rauzer Variation",
+        "Sozin Attack",
+        "Nyezhmetdinov-Rossolimo Attack",
+        "Moscow Variation",
+        "Smith-Morra Gambit",
+        "Smith-Morra Gambit Accepted",
+        "Smith-Morra Gambit Deferred",
+        "Wing Gambit",
+        "O'Kelly Variation",
+        "Four Knights Variation",
+        "Chekhover Variation",
+        "Prins Variation",
+        "Boleslavsky Variation",
+        "Old Sicilian",
+        "French Variation",
+        "Modern Variations",
+        "Bowdler Attack"
+      ]
+    },
+    "French Defense": {
+      "side": "black",
+      "major_variations": [
+        "Advance Variation",
+        "Exchange Variation",
+        "Tarrasch Variation",
+        "Winawer Variation",
+        "Classical Variation",
+        "Rubinstein Variation",
+        "McCutcheon Variation",
+        "Steinitz Variation",
+        "Paulsen Variation",
+        "Normal Variation",
+        "Two Knights Variation",
+        "King's Indian Attack",
+        "Chigorin Variation"
+      ]
+    },
+    "Caro-Kann Defense": {
+      "side": "black",
+      "major_variations": [
+        "Advance Variation",
+        "Exchange Variation",
+        "Panov Attack",
+        "Classical Variation",
+        "Two Knights Attack",
+        "Modern Variation",
+        "Fantasy Variation",
+        "Accelerated Panov Attack",
+        "Breyer Variation",
+        "Hillbilly Attack",
+        "Maróczy Variation",
+        "Tartakower Variation",
+        "Bronstein-Larsen Variation",
+        "Karpov Variation"
+      ]
+    },
+    "Pirc Defense": {
+      "side": "black",
+      "major_variations": [
+        "Classical Variation",
+        "Austrian Attack",
+        "150 Attack",
+        "Byrne Variation",
+        "Kholmov System",
+        "Sveshnikov System",
+        "Bayonet Attack"
+      ],
+      "minimum_anchor_plies": 6
+    },
+    "Scandinavian Defense": {
+      "side": "black",
+      "major_variations": [
+        "Mieses-Kotroc Variation",
+        "Modern Variation",
+        "Main Line",
+        "Classical Variation",
+        "Portuguese Gambit",
+        "Icelandic-Palme Gambit",
+        "Gubinsky-Melts Defense",
+        "Marshall Variation",
+        "Bronstein Variation"
+      ]
+    },
+    "King's Indian Defense": {
+      "side": "black",
+      "major_variations": [
+        "Normal Variation",
+        "Fianchetto Variation",
+        "Sämisch Variation",
+        "Orthodox Variation",
+        "Averbakh Variation",
+        "Semi-Averbakh System",
+        "Four Pawns Attack",
+        "Petrosian Variation",
+        "Makogonov Variation",
+        "Exchange Variation",
+        "Smyslov Variation",
+        "Accelerated Averbakh Variation"
+      ],
+      "minimum_anchor_plies": 7
+    },
+    "Nimzo-Indian Defense": {
+      "side": "black",
+      "major_variations": [
+        "Classical Variation",
+        "Sämisch Variation",
+        "Leningrad Variation",
+        "Normal Variation",
+        "Three Knights Variation",
+        "Fischer Variation",
+        "Fianchetto Variation",
+        "Kmoch Variation",
+        "Romanishin Variation",
+        "Spielmann Variation",
+        "Hübner Variation",
+        "Ragozin Variation"
+      ]
+    },
+    "Queen's Indian Defense": {
+      "side": "black",
+      "major_variations": [
+        "Fianchetto Variation",
+        "Classical Variation",
+        "Petrosian Variation",
+        "Kasparov-Petrosian Variation",
+        "Kasparov Variation",
+        "Spassky System",
+        "with e3"
+      ]
+    },
+    "Bogo-Indian Defense": {
+      "side": "black",
+      "major_variations": [
+        "Exchange Variation",
+        "Nimzowitsch Variation",
+        "Wade-Smyslov Variation",
+        "Retreat Variation"
+      ]
+    },
+    "Grünfeld Defense": {
+      "side": "black",
+      "major_variations": [
+        "Exchange Variation",
+        "Russian Variation",
+        "Three Knights Variation",
+        "Brinckmann Attack",
+        "Stockholm Variation",
+        "Flohr Variation",
+        "Smyslov Defense"
+      ]
+    },
+    "Neo-Grünfeld Defense": {
+      "side": "black"
+    },
+    "Benoni Defense": {
+      "side": "black",
+      "major_variations": [
+        "Modern Variation",
+        "Czech Benoni Defense",
+        "Old Benoni",
+        "Classical Variation",
+        "Fianchetto Variation",
+        "Four Pawns Attack",
+        "Pawn Storm Variation",
+        "Hromádka System",
+        "Knight's Tour Variation"
+      ]
+    },
+    "Benko Gambit": {
+      "side": "black"
+    },
+    "Dutch Defense": {
+      "side": "black",
+      "major_variations": [
+        "Classical Variation",
+        "Leningrad Variation",
+        "Stonewall Variation",
+        "Staunton Gambit",
+        "Staunton Gambit Accepted",
+        "Normal Variation",
+        "Fianchetto Variation",
+        "Fianchetto Attack",
+        "Hopton Attack",
+        "Rubinstein Variation"
+      ]
+    },
+    "Slav Defense": {
+      "side": "black",
+      "major_variations": [
+        "Exchange Variation",
+        "Czech Variation",
+        "Chebanenko Variation",
+        "Modern Line",
+        "Quiet Variation",
+        "Schlechter Variation",
+        "Geller Gambit",
+        "Three Knights Variation",
+        "Two Knights Attack"
+      ]
+    },
+    "Semi-Slav Defense": {
+      "side": "black",
+      "major_variations": [
+        "Meran Variation",
+        "Semi-Meran Variation",
+        "Botvinnik Variation",
+        "Moscow Variation",
+        "Anti-Moscow Gambit",
+        "Noteboom Variation",
+        "Quiet Variation",
+        "Normal Variation",
+        "Main Line",
+        "Marshall Gambit",
+        "Accelerated Move Order"
+      ]
+    },
+    "Tarrasch Defense": {
+      "side": "black",
+      "major_variations": [
+        "Symmetrical Variation",
+        "Rubinstein System",
+        "Prague Variation",
+        "Two Knights Variation",
+        "Schara Gambit",
+        "Swedish Variation"
+      ]
+    },
+    "Alekhine Defense": {
+      "side": "black",
+      "major_variations": [
+        "Exchange Variation",
+        "Four Pawns Attack",
+        "Modern Variation",
+        "Two Pawns Attack",
+        "Normal Variation",
+        "Scandinavian Variation",
+        "Chase Variation"
+      ]
+    },
+    "Petrov's Defense": {
+      "side": "black",
+      "major_variations": [
+        "Classical Attack",
+        "Modern Attack",
+        "Nimzowitsch Attack",
+        "Three Knights Game",
+        "Cochrane Gambit",
+        "Stafford Gambit",
+        "Stafford Gambit Accepted"
+      ]
+    },
+    "Philidor Defense": {
+      "side": "black",
+      "major_variations": [
+        "Exchange Variation",
+        "Hanham Variation",
+        "Lion Variation",
+        "Nimzowitsch Variation",
+        "Philidor Countergambit",
+        "Larsen Variation"
+      ]
+    },
+    "Nimzowitsch Defense": {
+      "side": "black",
+      "major_variations": [
+        "Kennedy Variation",
+        "Scandinavian Variation",
+        "Mikenas Variation",
+        "Colorado Countergambit",
+        "Colorado Countergambit Accepted",
+        "Declined Variation",
+        "French Connection"
+      ]
+    },
+    "Modern Defense": {
+      "side": "black",
+      "major_variations": [
+        "Standard Defense",
+        "Standard Line",
+        "Averbakh System",
+        "Gurgenidze Defense",
+        "Two Knights Variation",
+        "Three Pawns Attack",
+        "Pseudo-Austrian Attack",
+        "Fianchetto Gambit"
+      ]
+    },
+    "Old Indian Defense": {
+      "side": "black",
+      "major_variations": [
+        "Normal Variation",
+        "Janowski Variation",
+        "Two Knights Variation"
+      ]
+    },
+    "Owen Defense": {
+      "side": "black",
+      "major_variations": []
+    },
+    "English Defense": {
+      "side": "black",
+      "major_variations": []
+    },
+    "Englund Gambit": {
+      "side": "black",
+      "major_variations": [
+        "Declined",
+        "Main Line",
+        "Stockholm Variation",
+        "Soller Gambit",
+        "Hartlaub-Charlick Gambit"
+      ]
+    },
+    "Latvian Gambit": {
+      "side": "black",
+      "major_variations": [
+        "Accepted",
+        "Mayet Attack",
+        "Greco Variation",
+        "Fraser Defense"
+      ]
+    },
+    "Elephant Gambit": {
+      "side": "black"
+    },
+    "Lion Defense": {
+      "side": "black"
+    },
+    "Czech Defense": {
+      "side": "black"
+    },
+    "St. George Defense": {
+      "side": "black"
+    },
+    "Mikenas Defense": {
+      "side": "black",
+      "major_variations": [
+        "Lithuanian Variation"
+      ]
+    },
+    "Mexican Defense": {
+      "side": "black"
+    },
+    "Polish Defense": {
+      "side": "black"
+    },
+    "Horwitz Defense": {
+      "side": "black",
+      "major_variations": []
+    },
+    "Kangaroo Defense": {
+      "side": "black"
+    },
+    "Robatsch Defense": {
+      "side": "black"
+    },
+    "Wade Defense": {
+      "side": "black"
+    },
+    "Budapest Gambit": {
+      "side": "black"
+    },
+    "Albin Countergambit": {
+      "side": "black",
+      "major_variations": [
+        "Normal Line",
+        "Modern Line",
+        "Fianchetto Variation",
+        "Lasker Trap"
+      ]
+    },
+    "Chigorin Defense": {
+      "side": "black"
+    },
+    "Baltic Defense": {
+      "side": "black",
+      "major_variations": [
+        "Pseudo-Slav",
+        "Queen Attack",
+        "Pseudo-Chigorin"
+      ]
+    },
+    "Semi-Tarrasch Defense": {
+      "side": "black"
+    },
+    "Blumenfeld Countergambit": {
+      "side": "black"
+    },
+    "Ruy Lopez": {
+      "side": "white",
+      "major_variations": [
+        "Morphy Defense",
+        "Berlin Defense",
+        "Schliemann Defense",
+        "Classical Defense",
+        "Steinitz Defense",
+        "Bird Variation",
+        "Exchange Variation",
+        "Open",
+        "Closed",
+        "Marshall Attack",
+        "Cozio Defense"
+      ]
+    },
+    "Italian Game": {
+      "side": "white",
+      "major_variations": [
+        "Giuoco Piano",
+        "Giuoco Pianissimo",
+        "Two Knights Defense",
+        "Evans Gambit",
+        "Evans Gambit Accepted",
+        "Evans Gambit Declined",
+        "Classical Variation",
+        "Hungarian Defense",
+        "Scotch Gambit",
+        "Deutz Gambit"
+      ]
+    },
+    "Scotch Game": {
+      "side": "white",
+      "major_variations": [
+        "Classical Variation",
+        "Mieses Variation",
+        "Schmidt Variation",
+        "Scotch Gambit",
+        "Göring Gambit",
+        "Steinitz Variation",
+        "Four Knights Variation",
+        "Paulsen Attack"
+      ]
+    },
+    "Four Knights Game": {
+      "side": "white",
+      "major_variations": [
+        "Spanish Variation",
+        "Scotch Variation",
+        "Scotch Variation Accepted",
+        "Italian Variation",
+        "Glek System",
+        "Halloween Gambit"
+      ]
+    },
+    "Bishop's Opening": {
+      "side": "white",
+      "major_variations": [
+        "Berlin Defense",
+        "Vienna Hybrid",
+        "Urusov Gambit",
+        "Boden-Kieseritzky Gambit",
+        "Philidor Variation",
+        "Calabrese Countergambit"
+      ]
+    },
+    "Vienna Game": {
+      "side": "white",
+      "major_variations": [
+        "Vienna Gambit",
+        "Falkbeer Variation",
+        "Stanley Variation",
+        "Mieses Variation",
+        "Paulsen Variation",
+        "Anderssen Defense"
+      ]
+    },
+    "King's Gambit": {
+      "side": "white"
+    },
+    "Center Game": {
+      "side": "white",
+      "major_variations": [
+        "Accepted",
+        "Normal Variation",
+        "Paulsen Attack Variation"
+      ]
+    },
+    "Danish Gambit": {
+      "side": "white"
+    },
+    "Ponziani Opening": {
+      "side": "white",
+      "major_variations": [
+        "Jaenisch Counterattack",
+        "Ponziani Countergambit",
+        "Steinitz Variation",
+        "Spanish Variation"
+      ]
+    },
+    "English Opening": {
+      "side": "white",
+      "major_variations": [
+        "Symmetrical Variation",
+        "Anglo-Indian Defense",
+        "Anglo-Slav Variation",
+        "Anglo-Dutch Defense",
+        "Anglo-Scandinavian Defense",
+        "Anglo-Lithuanian Variation",
+        "Agincourt Defense",
+        "King's English Variation",
+        "Four Knights System",
+        "Mikenas-Carls Variation",
+        "Botvinnik System"
+      ]
+    },
+    "Réti Opening": {
+      "side": "white",
+      "major_variations": [
+        "Advance Variation",
+        "Anglo-Slav Variation",
+        "Réti Accepted"
+      ]
+    },
+    "Zukertort Opening": {
+      "side": "white",
+      "major_variations": [
+        "Kingside Fianchetto",
+        "Queenside Fianchetto Variation",
+        "Double Fianchetto Attack",
+        "Nimzo-Larsen Variation",
+        "Quiet System",
+        "Reversed Grünfeld",
+        "Lisitsyn Gambit",
+        "Tennison Gambit",
+        "Slav Invitation",
+        "Sicilian Invitation",
+        "Dutch Variation"
+      ]
+    },
+    "Catalan Opening": {
+      "side": "white"
+    },
+    "London System": {
+      "side": "white",
+      "major_variations": [
+        "Accelerated London System",
+        "Poisoned Pawn Variation",
+        "with Bd3",
+        "with Be2",
+        "with e6"
+      ]
+    },
+    "Colle System": {
+      "side": "white",
+      "major_variations": [
+        "Traditional Colle",
+        "Anti-Colle",
+        "Grünfeld Formation"
+      ]
+    },
+    "Torre Attack": {
+      "side": "white",
+      "major_variations": [
+        "Classical Defense",
+        "Fianchetto Defense",
+        "Grünfeld Variation"
+      ]
+    },
+    "Trompowsky Attack": {
+      "side": "white",
+      "major_variations": [
+        "Classical Defense",
+        "Raptor Variation",
+        "Poisoned Pawn Variation"
+      ]
+    },
+    "Richter-Veresov Attack": {
+      "side": "white",
+      "major_variations": [
+        "Richter Variation",
+        "Two Knights System",
+        "Veresov Variation"
+      ]
+    },
+    "Rapport-Jobava System": {
+      "side": "white"
+    },
+    "King's Indian Attack": {
+      "side": "white",
+      "major_variations": [
+        "French Variation",
+        "Sicilian Variation",
+        "Symmetrical Defense",
+        "Double Fianchetto",
+        "Keres Variation",
+        "with e6",
+        "with Bf5"
+      ]
+    },
+    "Nimzo-Larsen Attack": {
+      "side": "white",
+      "major_variations": [
+        "Classical Variation",
+        "Modern Variation",
+        "Indian Variation",
+        "Symmetrical Variation",
+        "English Variation",
+        "Dutch Variation"
+      ]
+    },
+    "Bird Opening": {
+      "side": "white",
+      "major_variations": [
+        "From's Gambit",
+        "Dutch Variation",
+        "Leningrad Variation",
+        "Classical Variation"
+      ]
+    },
+    "Polish Opening": {
+      "side": "white",
+      "major_variations": [
+        "Symmetrical Variation",
+        "Outflank Variation",
+        "Tartakower Gambit",
+        "King's Indian Variation",
+        "Czech Defense",
+        "with d5"
+      ]
+    },
+    "Hungarian Opening": {
+      "side": "white",
+      "major_variations": [
+        "Catalan Formation",
+        "Symmetrical Variation",
+        "Indian Defense",
+        "Reversed Modern Defense",
+        "Dutch Defense"
+      ]
+    },
+    "Van Geet Opening": {
+      "side": "white",
+      "major_variations": [
+        "Reversed Nimzowitsch",
+        "Reversed Scandinavian",
+        "Sicilian Two Knights",
+        "Grünfeld Defense"
+      ]
+    },
+    "Blackmar-Diemer Gambit": {
+      "side": "white",
+      "major_variations": [
+        "Accepted",
+        "Blackmar Gambit",
+        "Lemberger Countergambit",
+        "von Popiel Gambit"
+      ]
+    },
+    "Three Knights Opening": {
+      "side": "white"
+    },
+    "Rubinstein Opening": {
+      "side": "white"
+    },
+    "Yusupov-Rubinstein System": {
+      "side": "white"
+    },
+    "Stonewall Attack": {
+      "side": "white"
+    },
+    "Barry Attack": {
+      "side": "white"
+    },
+    "Levitsky Attack": {
+      "side": "white"
+    },
+    "Grob Opening": {
+      "side": "white",
+      "major_variations": [
+        "Grob Gambit",
+        "Grob Gambit Declined",
+        "Spike Attack"
+      ]
+    },
+    "Van't Kruijs Opening": {
+      "side": "white",
+      "major_variations": []
+    },
+    "Mieses Opening": {
+      "side": "white",
+      "major_variations": []
+    },
+    "Saragossa Opening": {
+      "side": "white"
+    },
+    "Portuguese Opening": {
+      "side": "white",
+      "major_variations": [
+        "Portuguese Gambit"
+      ]
+    },
+    "King's Knight Opening": {
+      "side": "white"
+    },
+    "Marienbad System": {
+      "side": "white"
+    },
+    "Queen's Gambit": {
+      "side": "both"
+    },
+    "Queen's Gambit Accepted": {
+      "side": "both",
+      "major_variations": [
+        "Classical Defense",
+        "Normal Variation",
+        "Old Variation",
+        "Modern Variation",
+        "Alekhine Defense",
+        "Janowski-Larsen Variation",
+        "Mannheim Variation"
+      ]
+    },
+    "Queen's Gambit Declined": {
+      "side": "both",
+      "major_variations": [
+        "Exchange Variation",
+        "Orthodox Defense",
+        "Tartakower Defense",
+        "Lasker Defense",
+        "Cambridge Springs Defense",
+        "Ragozin Defense",
+        "Vienna Variation",
+        "Harrwitz Attack",
+        "Three Knights Variation",
+        "Normal Defense",
+        "Tarrasch Defense",
+        "Janowski Variation"
+      ]
+    },
+    "Queen's Pawn Game": {
+      "side": "both",
+      "major_variations": [
+        "Chigorin Variation",
+        "Symmetrical Variation",
+        "Zukertort Variation",
+        "Modern Defense",
+        "Rossolimo Variation"
+      ]
+    },
+    "King's Pawn Game": {
+      "side": "both",
+      "major_variations": [
+        "Wayward Queen Attack",
+        "Napoleon Attack",
+        "Damiano Defense",
+        "B3 System",
+        "Alapin Opening"
+      ]
+    },
+    "Indian Defense": {
+      "side": "both",
+      "major_variations": [
+        "Normal Variation",
+        "Knights Variation",
+        "Anti-Nimzo-Indian",
+        "West Indian Defense",
+        "East Indian Defense"
+      ]
+    },
+    "Pseudo Queen's Indian Defense": {
+      "side": "both"
+    },
+    "Queen's Indian Accelerated": {
+      "side": "both"
+    },
+    "East Indian Defense": {
+      "side": "both"
+    },
+    "Slav Indian": {
+      "side": "both",
+      "major_variations": []
+    },
+    "Pterodactyl Defense": {
+      "side": "both"
+    },
+    "Rat Defense": {
+      "side": "both",
+      "major_variations": [
+        "Small Center Defense",
+        "Balogh Defense",
+        "English Rat"
+      ]
+    }
+  },
+  "aliases": {
+    "King's Gambit Accepted": [
+      "King's Gambit",
+      "Accepted"
+    ],
+    "King's Gambit Declined": [
+      "King's Gambit",
+      "Declined"
+    ],
+    "Benko Gambit Accepted": [
+      "Benko Gambit",
+      "Accepted"
+    ],
+    "Benko Gambit Declined": [
+      "Benko Gambit",
+      "Declined"
+    ],
+    "Blackmar-Diemer Gambit Accepted": [
+      "Blackmar-Diemer Gambit",
+      "Accepted"
+    ],
+    "Blackmar-Diemer Gambit Declined": [
+      "Blackmar-Diemer Gambit",
+      "Declined"
+    ],
+    "Danish Gambit Accepted": [
+      "Danish Gambit",
+      "Accepted"
+    ],
+    "Danish Gambit Declined": [
+      "Danish Gambit",
+      "Declined"
+    ],
+    "Englund Gambit Declined": [
+      "Englund Gambit",
+      "Declined"
+    ],
+    "Latvian Gambit Accepted": [
+      "Latvian Gambit",
+      "Accepted"
+    ],
+    "Center Game Accepted": [
+      "Center Game",
+      "Accepted"
+    ],
+    "Blumenfeld Countergambit Accepted": [
+      "Blumenfeld Countergambit",
+      "Accepted"
+    ],
+    "Semi-Slav Defense Accepted": [
+      "Semi-Slav Defense",
+      "Accepted"
+    ],
+    "Vienna Gambit, with Max Lange Defense": [
+      "Vienna Game",
+      "Vienna Gambit",
+      "Max Lange Defense"
+    ],
+    "King's Pawn Opening": [
+      "King's Pawn Game",
+      "B3 System"
+    ],
+    "Queen's Indian Defense, with e3": [
+      "Queen's Indian Defense",
+      "with e3"
+    ],
+    "Queen's Indian Defense, with e3, Bb4+ Line": [
+      "Queen's Indian Defense",
+      "with e3",
+      "Bb4+ Line"
+    ],
+    "King's Indian Attack, with e6": [
+      "King's Indian Attack",
+      "with e6"
+    ],
+    "King's Indian Attack, with Bf5": [
+      "King's Indian Attack",
+      "with Bf5"
+    ],
+    "London System, with Be2": [
+      "London System",
+      "with Be2"
+    ],
+    "London System, with Bd3": [
+      "London System",
+      "with Bd3"
+    ],
+    "Rapport-Jobava System, with e6": [
+      "Rapport-Jobava System",
+      "with e6"
+    ],
+    "Polish Opening, with d5": [
+      "Polish Opening",
+      "with d5"
+    ]
+  },
+  "promotions": {
+    "Queen's Pawn Game: London System": [
+      "London System"
+    ],
+    "Queen's Pawn Game: Colle System": [
+      "Colle System"
+    ],
+    "Queen's Pawn Game: Torre Attack": [
+      "Torre Attack"
+    ],
+    "Queen's Pawn Game: Stonewall Attack": [
+      "Stonewall Attack"
+    ],
+    "Queen's Pawn Game: Barry Attack": [
+      "Barry Attack"
+    ],
+    "Queen's Pawn Game: Levitsky Attack": [
+      "Levitsky Attack"
+    ],
+    "Queen's Pawn Game: Accelerated London System": [
+      "London System",
+      "Accelerated London System"
+    ],
+    "Queen's Gambit Declined: Albin Countergambit": [
+      "Albin Countergambit"
+    ],
+    "Queen's Gambit Declined: Chigorin Defense": [
+      "Chigorin Defense"
+    ],
+    "Queen's Gambit Declined: Baltic Defense": [
+      "Baltic Defense"
+    ],
+    "Queen's Gambit Declined: Semi-Tarrasch Defense": [
+      "Semi-Tarrasch Defense"
+    ],
+    "Indian Defense: Budapest Gambit": [
+      "Budapest Gambit"
+    ],
+    "Indian Defense: Budapest Gambit Accepted": [
+      "Budapest Gambit",
+      "Accepted"
+    ],
+    "Indian Defense: London System": [
+      "London System"
+    ],
+    "Indian Defense: Accelerated London System": [
+      "London System",
+      "Accelerated London System"
+    ]
+  },
+  "subvariations": {
+    "Sicilian Defense": [
+      "Najdorf Variation, English Attack",
+      "Dragon Variation, Yugoslav Attack",
+      "Scheveningen Variation, Keres Attack",
+      "Lasker-Pelikan Variation, Sveshnikov Variation",
+      "Accelerated Dragon, Maróczy Bind"
+    ],
+    "French Defense": [
+      "Advance Variation, Milner-Barry Gambit",
+      "Winawer Variation, Poisoned Pawn Variation",
+      "Tarrasch Variation, Open System",
+      "Tarrasch Variation, Closed Variation",
+      "Classical Variation, Burn Variation"
+    ],
+    "Italian Game": [
+      "Two Knights Defense, Fried Liver Attack",
+      "Two Knights Defense, Traxler Counterattack",
+      "Giuoco Pianissimo, Italian Four Knights Variation"
+    ],
+    "Ruy Lopez": [
+      "Closed, Breyer Defense",
+      "Closed, Chigorin Defense",
+      "Closed, Zaitsev System",
+      "Morphy Defense, Modern Steinitz Defense",
+      "Berlin Defense, Berlin Wall"
+    ],
+    "King's Indian Defense": [
+      "Orthodox Variation, Mar del Plata Variation",
+      "Fianchetto Variation, Yugoslav Variation"
+    ],
+    "Pirc Defense": [
+      "Classical Variation, Quiet System"
+    ],
+    "King's Gambit": [
+      "Accepted, King's Knight's Gambit",
+      "Accepted, Bishop's Gambit",
+      "Accepted, Kieseritzky Gambit",
+      "Accepted, Fischer Defense",
+      "Accepted, Modern Defense",
+      "Declined, Classical Variation",
+      "Declined, Falkbeer Countergambit"
+    ],
+    "Blackmar-Diemer Gambit": [
+      "Accepted, Euwe Defense",
+      "Accepted, Teichmann Defense",
+      "Accepted, Bogoljubow Defense"
+    ],
+    "Budapest Gambit": [
+      "Accepted, Adler Variation",
+      "Accepted, Rubinstein Variation",
+      "Accepted, Alekhine Variation"
+    ],
+    "Benko Gambit": [
+      "Accepted, Modern Variation",
+      "Accepted, Fully Accepted Variation"
+    ],
+    "Danish Gambit": [
+      "Accepted, Schlechter Defense"
+    ],
+    "English Opening": [
+      "King's English Variation, Reversed Sicilian",
+      "Symmetrical Variation, Four Knights Variation",
+      "Symmetrical Variation, Hedgehog Defense"
+    ],
+    "Caro-Kann Defense": [
+      "Advance Variation, Short Variation",
+      "Advance Variation, Tal Variation",
+      "Advance Variation, Botvinnik-Carls Defense",
+      "Panov Attack, Fianchetto Defense"
+    ]
+  },
+  "method": "Explicit semantic/ECO coverage curation; not a measured popularity ranking. Major established families plus limited reference sidelines; no row-order selection.",
+  "excluded_note": "Unselected families, non-reviewed suffixes below major curated families, deeper than bounds, and unapproved nested subvariations are excluded.",
+  "minimum_name_plies": {
+    "Sicilian Defense: Smith-Morra Gambit": 5
+  }
+}

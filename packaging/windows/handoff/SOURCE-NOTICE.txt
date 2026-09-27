@@ -1,0 +1,20 @@
+CHESSWIZARD SOURCE AND LICENSE NOTICE
+
+ChessWizard and chess/Stockfish are GPL-3.0-or-later. Other components retain
+their own licenses; see LICENSES and the installed _internal notices.
+
+The exact companion for this beta is:
+ChessWizard-1.0.0-beta-Corresponding-Source.zip
+
+It is included inside ChessWizard_CURRENT_INSTALL.zip beside Setup.
+For the versioned Windows tester ZIP, supply it alongside that ZIP. It contains matching application
+sources, build instructions, approved icon sources, notices, exact chess/Stockfish
+sources, both Stockfish networks, CPython/Pillow sources and Tcl MPL-covered data.
+SHA256SUMS.txt identifies the local artifacts. No public source URL is claimed.
+
+Give recipients BOTH the Windows ZIP and this source companion when copying the
+beta offline. The source archive is not installed or needed to run the application.
+No owner database, library, settings, reviews or training history is included.
+
+The installer uses Inno Setup 6.7.3, copyright Jordan Russell and Martijn Laan.
+https://jrsoftware.org/  See LICENSES/inno-setup/LICENSE.txt.

@@ -1,0 +1,121 @@
+# Environments, interpreter caches and editor state
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage*
+htmlcov/
+.vscode/
+.idea/
+.vs/
+*.code-workspace
+.DS_Store
+Thumbs.db
+
+# Generated builds, installers, reports and local recovery data
+/build/
+/dist/
+/backups/
+/reports/
+/Engines/
+/ChessWizard_Beta_Distribution/
+*.exe
+*.dll
+*.msi
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.log
+*.trace
+*.prof
+*.pstats
+*.tmp
+*.bak
+*.old
+*.swp
+*.swo
+~$*
+
+# Private runtime state; never commit a profile or SQLite sidecar
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.sqlite3-*
+*-wal
+*-shm
+*-journal
+*.activity-lock
+*.analysis-lock
+*.cwbook
+*.bin
+*.pgn
+*.jsonl
+/reviews/
+/review_data/
+/opening_books/
+/cache/
+/AppData/
+/local_data/
+/settings.json
+/analysis_settings.json
+/occurrence_storage_lineage.json
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*.kdbx
+*.credentials.json
+
+# Personal themes and temporary visual captures
+/themes/*
+!/themes/README.md
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.ico
+*.svg
+*.wav
+*.ogg
+*.mp3
+
+# Exact owner-provided project icon assets are CC0-1.0; other artwork stays excluded
+!/packaging/windows/assets/ChessWizard.png
+!/packaging/windows/assets/ChessWizard.ico
+
+# Exact public defaults are reproducible assets, not user libraries
+!/assets/openings/ChessWizard Default Openings.cwbook
+!/assets/openings/ChessWizard Default Openings.bin
+
+# Local handoff notes and historical game fixtures await privacy review.
+# Keep synthetic fixtures and pinned default-opening source inputs visible.
+/docs/PROJECT_HANDOFF.md
+/tests/fixtures/fork_first_500_qh4_incomplete.json
+/tests/fixtures/fork_pass_2.json
+/tests/fixtures/fork_proof_audit_terminal.json
+/tests/fixtures/fork_selective_cache.json.gz
+/tests/fixtures/fork_settlement_1849.json
+/tests/fixtures/fork_v3_qxb7_gold.json
+/tests/fixtures/occurrence_rehearsal_legacy.json.gz
+/tests/fixtures/occurrence_v1_identity_baseline.json
+/tests/fixtures/pin_backbone_differences.json
+/tests/fixtures/pin_policy_live_evidence.jsonl
+/tests/fixtures/pin_v2_gold.json
+/tests/fixtures/played_fork_assessments.json
+/tests/fixtures/position_range_facts.json
+/tests/fixtures/static_exchange_gold.json
+
+# Exact private historical assertions remain runnable locally, never public.
+/tests/local_history/
+
+# Local distribution privacy rules may contain personal identifiers.
+*.privacy.json
