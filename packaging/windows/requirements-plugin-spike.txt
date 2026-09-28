@@ -1,0 +1,4 @@
+# Optional Phase 1 host dependencies; core application dependencies stay unchanged.
+-r requirements-build.txt
+installer==0.7.0
+packaging==26.3

@@ -6,3 +6,7 @@ python-chess==1.999
 requests==2.34.2
 urllib3==2.7.0
 Pillow==12.3.0
+
+# Shared plugin host tooling (plugins themselves may depend only on the public SDK).
+installer==0.7.0
+packaging==26.3

@@ -1,11 +1,17 @@
 """Generic packaging privacy rules use synthetic identities and temporary files."""
 from pathlib import Path
 import json
+import importlib.util
 import tempfile
 import unittest
 from tools.package_privacy import PrivacyPolicy, content_findings, load_privacy_policy, validate_package_path
 from tools.package_manifest import validate_member
-from packaging.windows.assemble_beta import validate_sources
+# This script directory is not the third-party PyPA packaging distribution.
+_assembly_path = Path(__file__).resolve().parents[1] / "packaging/windows/assemble_beta.py"
+_assembly_spec = importlib.util.spec_from_file_location("chesswizard_assembly_test", _assembly_path)
+_assembly = importlib.util.module_from_spec(_assembly_spec)
+_assembly_spec.loader.exec_module(_assembly)
+validate_sources = _assembly.validate_sources
 
 
 class PackagePrivacyTests(unittest.TestCase):

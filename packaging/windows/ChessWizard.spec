@@ -44,7 +44,27 @@ for destination, source, kind in a.binaries:
 pyz = PYZ(a.pure)
 exe = EXE(pyz, a.scripts, [], exclude_binaries=True, name="ChessWizard", debug=False,
     bootloader_ignore_signals=False, strip=False, upx=False, console=False, icon=str(root / "packaging/windows/assets/ChessWizard.ico"))
-coll = COLLECT(exe, a.binaries, a.datas, strip=False, upx=False,
+# The optional host has its own PYZ and no external sample plugin build input.
+plugin_inputs = []
+if os.environ.get("CHESSWIZARD_BUILD_PLUGIN_SPIKE") == "1":
+    from importlib import metadata as package_metadata
+    plugin_notices = []
+    for distribution_name in ("installer", "packaging"):
+        distribution = package_metadata.distribution(distribution_name)
+        for item in distribution.files or ():
+            if "license" in item.name.lower():
+                plugin_notices.append((str(distribution.locate_file(item)),
+                    "licenses/plugin-spike/" + distribution_name))
+    host_analysis = Analysis([str(root / "plugin_host.py")], pathex=[str(root)],
+        binaries=[], datas=plugin_notices, hiddenimports=[], hookspath=[],
+        runtime_hooks=[], excludes=["tkinter", "pip", "pytest", "setuptools"], noarchive=False)
+    for destination, source, kind in host_analysis.binaries:
+        if not any(Path(source).resolve().is_relative_to(p.resolve()) for p in allowed_native_roots):
+            raise RuntimeError("Unreviewed plugin-host native input: " + destination)
+    host_exe = EXE(PYZ(host_analysis.pure), host_analysis.scripts, [], exclude_binaries=True,
+        name="ChessWizardPluginHost", debug=False, strip=False, upx=False, console=True)
+    plugin_inputs = [host_exe, host_analysis.binaries, host_analysis.datas]
+coll = COLLECT(exe, *plugin_inputs, a.binaries, a.datas, strip=False, upx=False,
     name="ChessWizard-" + version + "-" + rehearsal)
 
 # Separate internal test entry; never collected into the distributable folder.

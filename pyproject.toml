@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools==84.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chesswizard-plugin-api"
+version = "1.0.0"
+description = "ChessWizard typed factual-position plugin API"
+requires-python = ">=3.14,<3.15"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+authors = [{name = "ChessWizard contributors"}]
+readme = "docs/PLUGIN_PHASE1.md"
+
+[tool.setuptools]
+packages = ["chesswizard_plugin_api"]
+include-package-data = false

@@ -119,3 +119,7 @@ Thumbs.db
 
 # Local distribution privacy rules may contain personal identifiers.
 *.privacy.json
+
+# Python SDK wheel/build metadata
+*.egg-info/
+*.whl

@@ -113,5 +113,27 @@
     "tools.run_tests",
     "tools.check_public_copy",
     "tools.summarize_human_reviews"
+  ],
+  "Plugin lifecycle and contracts": [
+    "chesswizard_plugin_api",
+    "chesswizard_plugin_api.models",
+    "chesswizard_plugin_api.protocols",
+    "plugin_admission",
+    "plugin_compatibility",
+    "plugin_diagnostics",
+    "plugin_discovery",
+    "plugin_host",
+    "plugin_inspection",
+    "plugin_installation",
+    "plugin_locking",
+    "plugin_models",
+    "plugin_package",
+    "plugin_process",
+    "plugin_protocol",
+    "plugin_repository",
+    "plugin_result_validation",
+    "plugin_runtime",
+    "plugin_service",
+    "plugin_state"
   ]
 }
