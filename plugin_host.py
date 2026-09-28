@@ -7,6 +7,8 @@ import json
 import os
 from pathlib import Path
 import sys
+from chesswizard_version import VERSION
+from application_lifetime import retain_application_lifetime
 from chesswizard_plugin_api import API_VERSION, MaterialFacts, PositionContext
 from plugin_admission import descriptor_matches, request_is_current, selected_installation
 from plugin_discovery import discover
@@ -99,6 +101,11 @@ def main(argv: list[str] | None = None) -> int:
     Returns:
         Zero on success; one for a bounded, isolated failure.
     """
+    try:
+        retain_application_lifetime()
+    except RuntimeError as error:
+        print(json.dumps({"error": "ServicingActive", "message": str(error)}))
+        return 21
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=("worker", "info", "install", "replace", "list", "enable", "disable", "analyze", "remove", "cleanup"))
     parser.add_argument("target", nargs="?")
@@ -114,7 +121,7 @@ def main(argv: list[str] | None = None) -> int:
     service = None
     try:
         if args.action == "info":
-            result = {"frozen": bool(getattr(sys, "frozen", False)), "api_version": API_VERSION,
+            result = {"frozen": bool(getattr(sys, "frozen", False)), "api_version": API_VERSION, "application_version": VERSION,
                       "python": sys.version, "executable": sys.executable,
                       "plugin_packages_loaded": [name for name in sys.modules if name.startswith("chesswizard_plugin_") and not name.startswith("chesswizard_plugin_api")]}
         else:
