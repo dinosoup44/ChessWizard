@@ -1,4 +1,4 @@
-# ChessWizard
+# ChessWizard: Chess Analysis
 
 **Merlin, your guide through your chess history.**
 
@@ -37,16 +37,18 @@ ChessWizard does not automatically upload your chess history.
 
 ## Status and platform
 
-The centralized application label is **1.0.0-beta**. The source contains work toward
-2.x; it has not been relabeled as a stable 2.0 release. Expect UI changes and incomplete
-analysis in difficult positions. Windows 10/11 x64 is the tested desktop platform.
-The core is separated from Tkinter to support other frontends later; mobile, ARM,
-Linux and macOS application support are not currently validated.
+The centralized application label remains **1.0.0-beta**. The V1.5 installer and
+plugin foundation is under release validation; **1.5.0 has not been released**.
+New feature work is frozen while install, repair, upgrade, uninstall and plugin
+lifecycle acceptance are completed. Synthetic upgrade-test versions are not releases.
+Windows 10/11 x64 is the target; other desktop platforms and mobile remain unvalidated.
 
-**Public source is prepared for owner review before the first push.** The public
-suite uses self-contained synthetic fixtures. Exact private historical audits remain
-local, with separate working-tree validation; no personal data is needed by a clone.
-See [public-source boundaries](docs/PUBLIC_SOURCE.md) before a first commit.
+The public suite uses self-contained synthetic fixtures; private historical audits
+remain local. See [public-source boundaries](docs/PUBLIC_SOURCE.md).
+For the consumer workflow see [installation](docs/INSTALLATION.md),
+[first run](docs/FIRST_RUN.md), [Plugin Manager](docs/PLUGIN_MANAGER.md), and
+[plugin development](docs/PLUGIN_DEVELOPMENT.md). Clean-machine, human UI/DPI and
+unsigned-download acceptance must pass before an owner-approved public release.
 
 ## Run from source (Windows PowerShell)
 
@@ -65,7 +67,7 @@ Use a separate development profile to avoid touching your everyday data. First l
 creates an empty game database and installs the default opening library in that profile.
 It does not import games or launch analysis. See [development setup](docs/DEVELOPMENT.md)
 for the supported Stockfish 18 path and CPU requirements. No engine binary is in the
-proposed public source repository.
+public source repository.
 
 ## Tests and API documentation
 

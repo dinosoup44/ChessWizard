@@ -1,8 +1,9 @@
 # Plugin architecture: lifecycle and trust
 
 Phase 2 provides reusable services and an explicit-profile CLI. Phase 3 adds
-a core-owned [Plugin Manager](PLUGIN_MANAGER.md) under Tools. Installer servicing,
-a marketplace, and external tactic admission remain outside this phase. The application version and public Plugin API remain unchanged.
+a core-owned [Plugin Manager](PLUGIN_MANAGER.md) under Tools. Phase 4 adds
+installer servicing. A marketplace and external tactic admission remain out of scope.
+The public application version and Plugin API remain unchanged.
 See [Phase 2 operations and validation](PLUGIN_PHASE2.md) and the historical
 [Phase 1 runtime proof](PLUGIN_PHASE1.md).
 
@@ -200,3 +201,13 @@ Closing the manager cancels its callbacks and asynchronously closes its service
 workers without changing requested intent. The application also closes its owned
 manager after its existing activity/unsaved-data guards. The GUI does not inspect
 plugin files, parse packages, decide compatibility, validate facts or spawn workers.
+
+## V1.5 release boundary
+
+The runtime/lifecycle and Plugin Manager now participate in the per-user installer
+[servicing contract](DISTRIBUTION_ARCHITECTURE.md). Default uninstall preserves the
+entire managed profile; optional full removal is unchecked and separately confirmed.
+Compatible plugins survive upgrade; incompatible artifacts remain installed but cannot
+execute. See [plugin development](PLUGIN_DEVELOPMENT.md) for the independent build
+contract. V1.5 adds no third-party dependency resolver, marketplace, new capability or
+plugin database ownership. Clean-machine and human acceptance remain release gates.

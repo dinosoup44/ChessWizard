@@ -42,7 +42,7 @@ external directories. Reinstall after full removal creates a fresh profile.
 
 ## Unsigned builds
 
-The Phase 4 local test installer is unsigned. Windows may show publisher or
+The local release-candidate installer is unsigned. Windows may show publisher or
 reputation warnings, especially for a new or infrequently downloaded build.
 An unsigned local install is not evidence about the Internet-download/Mark of
 the Web experience. Microsoft describes reputation checks and warning behavior
@@ -52,3 +52,12 @@ installer acceptance remain explicit release-readiness decisions; this phase
 neither acquires a certificate nor publishes a release.
 
 See [upgrades and repair](UPGRADING.md) and [first run](FIRST_RUN.md).
+
+## Release acceptance status
+
+V1.5 is a validation candidate, not an approved public release. The public version
+remains unchanged until owner approval. Follow the [release checklist](FIRST_PUBLIC_RELEASE_CHECKLIST.md)
+for clean-Windows install, Plugin Manager, repair, upgrade, both uninstall paths,
+reinstall and human 100/125/150% DPI acceptance. Automated or same-host tests do not
+substitute for those observations. Test kits must be used only on a disposable clean
+Windows account; synthetic versions are not application releases.

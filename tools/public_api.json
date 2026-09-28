@@ -150,5 +150,8 @@
     "tools.servicing_fixture",
     "tools.servicing_smoke",
     "tools.validate_upgrade"
+  ],
+  "Release validation": [
+    "tools.release_acceptance"
   ]
 }

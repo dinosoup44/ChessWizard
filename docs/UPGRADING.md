@@ -61,3 +61,12 @@ requested enablement survive repair and upgrade. An incompatible plugin remains
 installed, with an explicit reason and blocked effective runtime state. It cannot
 execute. Existing conservative re-enable requirements still apply after an
 incompatibility; servicing never silently grants trust.
+
+## Release acceptance status
+
+V1.5 is a validation candidate, not an approved public release. The public version
+remains unchanged until owner approval. Follow the [release checklist](FIRST_PUBLIC_RELEASE_CHECKLIST.md)
+for clean-Windows install, Plugin Manager, repair, upgrade, both uninstall paths,
+reinstall and human 100/125/150% DPI acceptance. Automated or same-host tests do not
+substitute for those observations. Test kits must be used only on a disposable clean
+Windows account; synthetic versions are not application releases.

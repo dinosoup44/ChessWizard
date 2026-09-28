@@ -1,4 +1,4 @@
-# Plugin Manager (Phase 3)
+# Plugin Manager
 
 Open **Tools > Plugins** from Game Review or its shared desktop menu. The manager
 lists locally installed plugins; it does not download or install code on opening.
@@ -67,8 +67,8 @@ absolute user profile as the desktop. The normal profile comes from
 it. Installation and replacement start disabled and require trust. Explicit CLI
 removal deletes only the owned installation; it does not remove chess data.
 
-No wheel-picker, removal dialog, marketplace, automatic update, new capability,
-version bump or installer servicing is included in Phase 3. A packaged build must
+No wheel-picker, removal dialog, marketplace, automatic update or new capability
+is included in V1.5. Application servicing follows the [upgrade contract](UPGRADING.md). A packaged build must
 include the separate approved plugin console host; a missing host produces a
 bounded discovery failure rather than launching the GUI executable as a worker.
 Clean-machine execution of the final frozen runtime remains a mandatory V1.5

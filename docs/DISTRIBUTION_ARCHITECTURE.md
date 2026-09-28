@@ -78,3 +78,20 @@ lock deadline and polling interval. It never deletes the previous generation
 first. Persistent locks expire with an error; other failures are not retried.
 The state reader remains bounded and does not acquire the writer lock, avoiding
 a cancellation deadlock. Trust, generation checks and factual results are unchanged.
+
+## Portable consumer acceptance builds
+
+`tools.build_installer --acceptance-only` permits a synthetic build identity after
+checking the frozen console host against the ownership inventory. This uses the
+normal consumer AppId and canonical per-user paths, without `FixtureRoot` or any
+fixture-only failure/full-removal switches. Never install these on an everyday profile.
+The acceptance-build receipt binds the installer and inventory hashes to the actual
+frozen version. The ordinary build path still requires the central public version.
+
+The existing spec generates synthetic identities only for explicitly named servicing
+rehearsals. The payload inventory supplies the installer version; do not hand-edit
+packaged metadata. The final candidate uses the unchanged public version, while
+1.5.0/1.5.1 and 2.0 API1/API2 are upgrade simulations. Neither changes tracked runtime
+version sources. The portable kit contains separate installers, an independently
+built external plugin, synthetic PGN and pending manual receipt. No fixture results
+can certify consumer UI, SmartScreen or a clean machine.

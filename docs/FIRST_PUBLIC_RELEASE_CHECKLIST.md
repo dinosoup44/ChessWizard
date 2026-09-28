@@ -1,96 +1,71 @@
-# First public repository checklist
+# Release acceptance checklist
 
-These are **instructions for later**, not actions already performed. No GitHub
-repository, remote, commit, tag, push or release has been created by this readiness task.
+The source repository is public. This checklist now governs the first V1.5 installer
+release, not Git initialization. Public identity: **ChessWizard: Chess Analysis**.
+Public version stays `1.0.0-beta` until validation completes and the owner approves
+`1.5.0`. Synthetic test versions are not published releases.
 
-## Before Git commands
+## Automated preparation
 
-1. Enable [two-factor authentication](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication) on your GitHub account and save recovery codes
-   somewhere private. Never put recovery codes or tokens in the project.
-2. Create an **empty** ChessWizard repository on GitHub. Do not add a conflicting
-   GitHub-generated README, license or `.gitignore` when the local versions are ready.
-3. Review the local `reports/PUBLIC_REPOSITORY_READINESS_V1.md` and
-   [public-source boundaries](PUBLIC_SOURCE.md). **Stop while blockers remain.**
-4. Review the existing GPL-3.0-or-later code license and the owner's CC0-1.0 icon
-   dedication. Preserve the icon provenance/legal text and third-party notices.
-5. Repeat the public-copy full suite, normal working-tree suite, pydoc checks and
-   source scan. See the local `reports/PUBLIC_BLOCKER_CLEANUP_V1.md` for closure evidence.
-   Keep private historical audits and local privacy configuration outside public source.
-6. Review the exact public file manifest, notices, source provenance and ignored-file
-   behavior. Keep engines, DBs, profile libraries, caches, backups and private reports out.
-7. Establish a private sensitive-security reporting route in the GitHub repository. See the [GitHub private vulnerability reporting setup](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configure-for-a-repository).
+- Review the approved installer-servicing commit and remote SHA; use a focused
+  release-validation branch. Do not merge, tag or upload during validation.
+- Run focused plugin/servicing tests, the full guarded working-tree suite and the
+  full fresh public-copy suite. Never use owner data as a fixture.
+- Run `tools.public_source`, privacy/secret review, pydoc validation/HTML generation,
+  public Markdown link validation and the exact frozen package/license audit.
+- Build the final consumer candidate and matching source companion. Hash every
+  distributed input. Verify the separate external plugin was built afterward and
+  is absent from every frozen archive. Retain notices, default-opening provenance,
+  artwork permission and corresponding Stockfish source/networks.
+- Hash protected owner files before/after; check SQLite integrity read-only. No
+  analysis or owner migration is authorized by release validation.
 
-## Run in Windows PowerShell â€” only after review approval
+## Mandatory clean Windows acceptance
 
-Start in your checkout (example below). Replace placeholders; never include a token,
-password or credential in a URL. Git Credential Manager or SSH handles authentication.
+Use a disposable clean Windows installation/account without a source checkout,
+Python, Git or VS Code. Use normal consumer installers and canonical per-user paths,
+not fixture-root installers. Keep logs and a durable receipt outside the managed
+profile so full removal cannot erase evidence.
 
-```powershell
-Set-Location C:\Projects\ChessWizard
-.\.venv\Scripts\python.exe -B tools\check_pydoc.py
-.\.venv\Scripts\python.exe -B -m tools.public_source
-if ($LASTEXITCODE -ne 0) { throw 'Resolve source review holds before continuing.' }
-```
+1. Install with no elevation. Inspect Desktop/Start Menu/Installed Apps entries and
+   icon; launch from Finished; verify fresh profile and default opening content.
+2. Install the independently built reference wheel using the included console host.
+   Import the kit's synthetic PGN; use Plugin Manager trust and Run on Current Position.
+   Disable, restart, verify no execution; remove without touching chess data.
+3. Reinstall the reference plugin and enable it for upgrade tests. Rerun the same
+   installer as repair. Verify profile preservation, no duplicate shortcuts and UI use.
+4. With synthetic builds, test 1.5.0 -> 1.5.1 -> 2.0 API1; verify compatible plugin
+   files/state and user data preserved. Default-uninstall and reinstall; verify prior
+   data usable. Then install 2.0 API2: plugin retained, clearly incompatible, unable
+   to run. Do not implement V2 features or bypass compatibility.
+5. Default-uninstall preserves the entire profile. Explicit full removal is unchecked
+   initially and requires a second confirmation enumerating data. Verify cancellation,
+   then confirm deletion on this disposable account only. Reinstall creates fresh data.
+6. Check no plugin worker remains after disable, close, removal and uninstall.
 
-Read `build/public-source-manifest.json`. Check tests on the intended public copy, not
-just your working directory with private fixtures available. When approved, initialize
-Git **only if this folder is not already a repository**:
+## Human review is separate
 
-```powershell
-git init -b main
-git config user.name '<PUBLIC_AUTHOR_NAME>'
-git config user.email '<YOUR_VERIFIED_OR_GITHUB_NOREPLY_EMAIL>'
-git status --short --untracked-files=all
-git status --short --ignored
-```
+Observe welcome/options, install-path wording, Desktop option, progress, Finished
+launch, uninstall keep-data wording, full-removal checkbox/confirmation, cancellation,
+errors, plugin trust and Plugin Manager at **100%, 125%, 150%** Windows scaling.
+Record observations/screenshots, not just automated scaling-test results.
 
-The identity above is attached to public commits; choose a GitHub-provided noreply
-address if you do not want to publish your personal email. It is not a login credential.
-If a repository already exists, inspect its branch, remotes and history instead of
-reinitializing it. Never use `git add -f` to bypass private-data exclusions.
+Download/copy the exact unsigned candidate as a normal user. Record browser warnings,
+Mark of the Web/transfer method, exact SmartScreen prompts, whether More info/Run anyway
+was offered/needed, and Defender findings. Do not disable security. No warning on a
+local copied file proves nothing about downloaded reputation. Choose either documented
+unsigned distribution or code signing before public release; do not buy a certificate
+as part of this checklist. A private vulnerability reporting route must also be ready.
 
-Stage only the reviewed manifest paths, preserving filenames with spaces:
+## Receipt and approval
 
-```powershell
-$sourceManifest = Get-Content -Raw build/public-source-manifest.json | ConvertFrom-Json
-$publicPaths = [string[]]($sourceManifest.files | ForEach-Object { $_.path })
-$utf8NoBom = [System.Text.UTF8Encoding]::new($false)
-[System.IO.File]::WriteAllLines((Join-Path $PWD 'build/public-paths.txt'), $publicPaths, $utf8NoBom)
-git --literal-pathspecs add --pathspec-from-file=build/public-paths.txt
-git status --short
-git diff --cached --stat
-git diff --cached --name-only
-git diff --cached --check
-git diff --cached
-```
+The local portable acceptance kit contains a pending receipt and step-by-step log
+instructions. Missing observations remain pending, not PASS. Bind the receipt to the
+installer/source/wheel hashes and Windows build; distinguish clean-machine results from
+same-host fixture tests. Use `tools.release_acceptance` to check completeness after
+manual review. Failed gates require fixes and affected revalidation.
 
-Review all staged text and assets. There must be no unexpected databases, libraries,
-credentials, personal games or screenshots. To undo accidental staging before the first
-commit, use `git rm --cached -- '<path>'`; this keeps the local file. Fix the ignore rule
-and recheck. Do not use `git clean` or delete local backups to make a status screen tidy.
-
-Only after that review:
-
-```powershell
-git commit -m 'Prepare ChessWizard public source'
-git log -1 --stat
-git remote add origin '<YOUR_GITHUB_REPO_URL>'
-git remote -v
-git push -u origin main
-```
-
-Do not overwrite an existing remote and do not force-push. Verify the repository and
-account shown by GitHub before authenticating. Review the uploaded files in the browser;
-then clone into a new directory and repeat setup, tests and pydoc without local data.
-
-Tag a milestone only after that verification and a separate version decision:
-
-```powershell
-git tag -a '<APPROVED_TAG>' -m 'Reviewed source milestone'
-git push origin '<APPROVED_TAG>'
-```
-
-A source tag is optional. Create a downloadable release later if desired, after a fresh
-binary/license/source-companion audit and owner approval. Never attach an old installer
-merely because the source repository is now public. Preserve matching source access and
-third-party notices for any binary distribution.
+Only after all gates pass may the owner approve the merge, public version bump, tag,
+GitHub Release and installer upload. A changed final version/build must be re-audited;
+a candidate hash does not certify bytes built later. Keep final decisions and exact
+commits in the local owner-review report. No checklist command publishes automatically.

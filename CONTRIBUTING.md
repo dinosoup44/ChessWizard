@@ -80,7 +80,17 @@ a similarly named file under your profile is your editable private copy.
 New source data/assets need a verifiable upstream URL, license, version/commit and hashes.
 Do not assume public access implies redistribution permission. Theme packs are data and
 allowlisted assets only, with traversal/symlink/size validation; no scripts or plugins.
-Do not publish the application icon until its public reuse terms are explicitly settled.
+The project icon is owner-provided ChatGPT-generated artwork under CC0-1.0; retain
+its [provenance and permission](packaging/windows/assets/README.md).
 
 Source contributions use the existing GPL-3.0-or-later project terms. Preserve third-party
 notices. No contributor agreement or copyright transfer is invented by this guide.
+
+## V1.5 release freeze
+
+Only release blockers, installer/plugin defects, privacy/security issues and critical
+correctness fixes belong in this phase. Keep analyzer, opening, training and theme
+behavior frozen. Do not change the public version, merge, tag or upload without owner
+approval. See the [release checklist](docs/FIRST_PUBLIC_RELEASE_CHECKLIST.md).
+Independently distributed extensions use the [public SDK](docs/PLUGIN_DEVELOPMENT.md),
+not private core imports. Plugins are trusted executable code, never a sandbox.

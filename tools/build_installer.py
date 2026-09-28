@@ -10,13 +10,16 @@ from servicing_paths import FIXTURE_MARKER, validate_roots
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def build_installer(payload: Path, output: Path, fixture: Path | None = None) -> Path:
+def build_installer(payload: Path, output: Path, fixture: Path | None = None,
+                    acceptance_only: bool = False) -> Path:
     """Validate and compile one consumer or explicitly isolated test installer.
 
     Args:
         payload: Exact frozen payload containing its ownership inventory.
         output: Local output directory; no publishing occurs.
         fixture: Optional marked temporary fixture root for disposable Windows tests.
+        acceptance_only: Permit a synthetic frozen identity in a normal consumer
+            installer for clean-machine acceptance, never for publication.
 
     Returns:
         Compiled installer path.
@@ -34,8 +37,23 @@ def build_installer(payload: Path, output: Path, fixture: Path | None = None) ->
         raise ValueError("Unreviewed Inno compiler bytes")
     arguments = [str(compiler), "/Qp", "/DAppVersion=" + inventory.version,
                  "/DPayloadDir=" + str(payload), "/DOutputPath=" + str(output.resolve())]
+    if acceptance_only and fixture is not None:
+        raise ValueError("Consumer acceptance cannot use fixture paths or test switches")
+    identity = None
+    if acceptance_only:
+        result = subprocess.run([str(payload / "ChessWizardPluginHost.exe"), "info"],
+            capture_output=True, text=True, timeout=30,
+            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+        if result.returncode:
+            raise ValueError("Cannot verify frozen acceptance identity")
+        identity = json.loads(result.stdout)
+        if (identity.get("application_version") != inventory.version
+                or identity.get("frozen") is not True
+                or identity.get("plugin_packages_loaded") != []
+                or identity.get("api_version") not in {"1.0.0", "2.0.0"}):
+            raise ValueError("Frozen identity does not match the acceptance payload")
     if fixture is None:
-        if inventory.version != VERSION:
+        if not acceptance_only and inventory.version != VERSION:
             raise ValueError("Consumer installer must use the canonical application version")
     else:
         fixture = fixture.absolute()
@@ -47,7 +65,15 @@ def build_installer(payload: Path, output: Path, fixture: Path | None = None) ->
         capture_output=True, text=True, timeout=300, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
     if result.returncode:
         raise RuntimeError("Inno compiler failed: " + result.stdout + result.stderr)
-    return output / f"ChessWizard-{inventory.version}-Windows-x64-Setup.exe"
+    installer = output / f"ChessWizard-{inventory.version}-Windows-x64-Setup.exe"
+    if acceptance_only:
+        receipt = {"schema_version": 1, "purpose": "clean-windows-acceptance-only",
+                   "public_version": VERSION, "frozen_identity": identity,
+                   "consumer_paths": True, "fixture_switches": False,
+                   "inventory_sha256": file_hash(payload / INVENTORY_NAME),
+                   "installer_sha256": file_hash(installer)}
+        (output / "acceptance-build.json").write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
+    return installer
 
 
 def main() -> int:
@@ -60,8 +86,9 @@ def main() -> int:
     parser.add_argument("--payload", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--fixture", type=Path)
+    parser.add_argument("--acceptance-only", action="store_true")
     args = parser.parse_args()
-    print(build_installer(args.payload, args.output, args.fixture))
+    print(build_installer(args.payload, args.output, args.fixture, args.acceptance_only))
     return 0
 
 

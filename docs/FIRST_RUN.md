@@ -137,3 +137,12 @@ after the default uninstall retains your games, preferences, authored openings,
 and compatible plugins. Choosing and confirming full local-data removal makes
 the next launch a fresh profile instead. See [installation/removal](INSTALLATION.md)
 and [repair/upgrade](UPGRADING.md) before troubleshooting by deleting anything.
+
+## Release acceptance status
+
+V1.5 is a validation candidate, not an approved public release. The public version
+remains unchanged until owner approval. Follow the [release checklist](FIRST_PUBLIC_RELEASE_CHECKLIST.md)
+for clean-Windows install, Plugin Manager, repair, upgrade, both uninstall paths,
+reinstall and human 100/125/150% DPI acceptance. Automated or same-host tests do not
+substitute for those observations. Test kits must be used only on a disposable clean
+Windows account; synthetic versions are not application releases.
