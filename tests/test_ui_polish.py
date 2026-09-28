@@ -99,7 +99,7 @@ class PolishTests(unittest.TestCase):
         view = self.app.review
         tools = self.menu("Tools")
         self.assertEqual([tools.entrycget(i, "label") for i in range(tools.index("end")+1)],
-            ["Opening Library...", "Opening Studio...", "Game Explorer...", "Analyze Games...", "Training...", "Human Review / QA...", "Admin Console..."])
+            ["Opening Library...", "Opening Studio...", "Game Explorer...", "Analyze Games...", "Training...", "Human Review / QA...", "Plugins...", "Admin Console..."])
         self.assertIsNone(view.human_review_panel)
         self.assertIsNone(view.review_set_picker)
         tools.invoke("Training...")

@@ -1,6 +1,9 @@
 """Game replay and stored tactical moments; no engine or analysis dependencies."""
 from collections.abc import Callable, Iterable
 from pathlib import Path
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from plugin_manager_controller import DisplayedPosition
 import sqlite3
 import tkinter as tk
 from merlin_ui.notebook import MerlinNotebook
@@ -65,6 +68,9 @@ class GameReviewView:
         self.root = root
         path = resolve_database_path(database_path)
         self.database_path = path
+        self.plugin_manager = None
+        self._plugin_position_revision = 0
+        self._plugin_position_signature = None
         self.opening_book_window = None
         self.opening_facts_window = None
         self.opening_library_window = None
@@ -173,6 +179,26 @@ class GameReviewView:
         self.current_step=ply-1;self.opening_anchor_ply=ply
         self.refresh_all()
         self.shell.set_status('Opening decision position · authored Opening move arrows apply only to your departures.','normal')
+
+    def open_plugins(self) -> None:
+        """Open the core-owned plugin manager without starting discovery on Tk's thread."""
+        from merlin_ui.plugin_manager import PluginManager
+        manager = self.plugin_manager
+        if manager is not None and manager.window.winfo_exists():
+            manager.window.lift()
+            return
+        self.plugin_manager = PluginManager(self.root, self.plugin_current_position)
+
+    def plugin_current_position(self) -> "DisplayedPosition | None":
+        """Return the actual displayed board, including opening and proof playback.
+
+        Returns:
+            An immutable FEN/navigation revision, or None when no game is loaded.
+        """
+        from plugin_manager_controller import DisplayedPosition
+        if self.current_game is None:
+            return None
+        return DisplayedPosition(self.board_widget.board.fen(), self._plugin_position_revision)
 
     def open_opening_facts(self) -> None:
         """Route the existing menu action into the one Opening Review workspace."""
@@ -683,6 +709,10 @@ class GameReviewView:
         """Render the current board and role-correct tactic/book annotations."""
         board = (chess.Board(self.opening_exploration.fen) if self.opening_exploration is not None else
                  chess.Board(self.line_playback.fen) if self.line_playback is not None else self.get_board_for_current_step())
+        signature = (self.current_game["game_id"] if self.current_game is not None else None, board.fen())
+        if signature != self._plugin_position_signature:
+            self._plugin_position_signature = signature
+            self._plugin_position_revision += 1
         self.board_widget.set_position(board,orientation=self.get_orientation())
         self.board_widget.set_input_enabled(False); self.board_widget.set_show_legal_moves(False)
         arrows = []
@@ -869,6 +899,8 @@ class GameReviewView:
         if self.explorer_window is not None and self.explorer_window.winfo_exists():
             self.explorer.close()
         self.opening_workspace.close()
+        if getattr(self, "plugin_manager", None) is not None:
+            self.plugin_manager.close()
         try: self.connection.close()
         finally: self.root.destroy()
 

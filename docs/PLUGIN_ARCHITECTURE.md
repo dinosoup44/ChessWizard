@@ -1,8 +1,8 @@
 # Plugin architecture: lifecycle and trust
 
-Phase 2 provides reusable services and an explicit-profile CLI. Desktop UI,
-installer servicing, a marketplace, and external tactic admission are outside
-this phase. The application version and public Plugin API remain unchanged.
+Phase 2 provides reusable services and an explicit-profile CLI. Phase 3 adds
+a core-owned [Plugin Manager](PLUGIN_MANAGER.md) under Tools. Installer servicing,
+a marketplace, and external tactic admission remain outside this phase. The application version and public Plugin API remain unchanged.
 See [Phase 2 operations and validation](PLUGIN_PHASE2.md) and the historical
 [Phase 1 runtime proof](PLUGIN_PHASE1.md).
 
@@ -36,8 +36,10 @@ and built-ins; broader library/dependency support requires separate approval.
 | Lifecycle | `plugin_installation`, `plugin_service` | Staging, publication, enable/disable, replacement, cleanup, validated facts |
 | Worker boundary | `plugin_host`, `plugin_runtime`, `plugin_process`, `plugin_protocol` | Versioned transport, deadlines, cancellation, jobs and session failure state |
 | Diagnostics | `plugin_diagnostics` | Bounded local core-authored failure records |
+| Frontend coordination | `plugin_manager_controller`, `plugin_presentation` | Bounded background lanes, position revisions, status/trust projections |
+| Desktop presentation | `merlin_ui.plugin_manager` | Native widgets, explicit trust acknowledgement, current-board handoff |
 
-These modules are usable without Tkinter or any chess database. The separate
+All service/controller/presentation modules are usable without Tkinter or any chess database. The separate
 console host is selected explicitly in a frozen application; the desktop
 executable is never used as the worker entry point.
 
@@ -166,3 +168,35 @@ Strong isolated same-host frozen Phase 1 proof permits Phase 2 development. A
 clean Windows machine without developer tools remains a **mandatory V1.5 release
 gate**, together with validation of the final frozen runtime. Same-host evidence
 must never be described as clean-machine certification.
+
+## Phase 3 frontend contract
+
+The manager is created only on an explicit menu action. Its controller constructs
+services and performs discovery, enable, disable, diagnostics reads and invocation
+on background threads; workers remain the existing bounded separate processes.
+One control operation and one invocation may be outstanding. Disable can therefore
+cancel a hung invocation without queuing behind it. Rescan is explicit. Completion
+polling does not rediscover plugins or retry failures on render or window resize.
+A post-operation status refresh occurs once, with no retry after a failed scan.
+
+Enablement includes the artifact SHA256 shown in the acknowledgement dialog.
+`PluginService.set_enabled(expected_artifact_sha256=...)` rejects a replacement
+between review and enable, while existing CLI callers retain their contract.
+The normal locked receipt recheck still protects a replacement during admission.
+
+Game Review supplies its displayed FEN and a navigation revision, including
+opening and proof-line playback. Leaving and returning to the same FEN still
+invalidates an earlier request. Core validates returned facts; the controller
+ignores stale completions and clears already displayed facts when the board changes.
+No chess database or cache is passed to the controller or plugin. Results are
+shown as transient material inventory, never saved as analysis conclusions.
+
+Diagnostic reads are byte/count bounded and restricted to the selected artifact.
+The read API reconstructs messages from known core categories instead of trusting
+stored free text. Unknown categories retain a conservative generic explanation.
+The UI shows a bounded tail, with phase, identity and compatibility reason.
+
+Closing the manager cancels its callbacks and asynchronously closes its service
+workers without changing requested intent. The application also closes its owned
+manager after its existing activity/unsaved-data guards. The GUI does not inspect
+plugin files, parse packages, decide compatibility, validate facts or spawn workers.

@@ -160,13 +160,16 @@ class PluginService:
                  "runtime_state": view.runtime_state.value, "compatibility": view.compatibility.value,
                  "error": view.reason} for view in self.scan().plugins]
 
-    def set_enabled(self, plugin_id: str, enabled: bool, *, acknowledge_trust: bool = False) -> bool:
+    def set_enabled(self, plugin_id: str, enabled: bool, *, acknowledge_trust: bool = False,
+                    expected_artifact_sha256: str | None = None) -> bool:
         """Persist explicit intent; disable cancels and drains existing invocations.
 
         Args:
             plugin_id: Stable installed plugin identity.
             enabled: Desired requested state.
             acknowledge_trust: Explicit acknowledgement for newly encountered artifact bytes.
+            expected_artifact_sha256: Artifact shown by a frontend trust review;
+                a replacement since that review must be reviewed again.
 
         Returns:
             Whether persisted intent changed; exact no-op writes preserve timestamps.
@@ -190,6 +193,8 @@ class PluginService:
                     pass
             return changed
         receipt = selected_installation(self.repository.read(), plugin_id)
+        if expected_artifact_sha256 is not None and receipt.artifact_sha256 != expected_artifact_sha256:
+            raise ValueError("Plugin changed since review; refresh and review the new artifact")
         with self.repository.invocation(receipt.installation_id):
             try:
                 descriptor = inspect_installation(self.repository, receipt, self.supervisor, self.limits)

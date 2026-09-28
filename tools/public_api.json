@@ -134,6 +134,8 @@
     "plugin_result_validation",
     "plugin_runtime",
     "plugin_service",
-    "plugin_state"
+    "plugin_state",
+    "plugin_presentation",
+    "plugin_manager_controller"
   ]
 }

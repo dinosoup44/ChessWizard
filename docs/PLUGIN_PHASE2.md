@@ -55,8 +55,10 @@ not update that kit or certify a new frozen build.
 
 Limits are supplied through the shared typed `PluginLimits` model. Frontends must
 not invent another enabled-state store or bypass the service/admission boundary.
-Future UI can consume typed views without owning version parsing, filesystem
-ownership, trust, subprocesses, or factual validation.
+The [Phase 3 Plugin Manager](PLUGIN_MANAGER.md) consumes these typed views without
+owning version parsing, filesystem ownership, trust, subprocesses, or factual
+validation. Its enable request binds approval to the displayed artifact SHA256;
+a replacement after review requires another review. CLI behavior is unchanged.
 
 ## Regression coverage
 
@@ -100,5 +102,6 @@ source dependency.
 
 Phase 2 ends at reviewed service/CLI behavior. Do not proceed to Plugin Manager UI,
 installer servicing, version changes, other plugin capabilities, or V2 features
-without separate approval. Main is not merged as part of this checkpoint. The
+without separate approval. Phase 3 UI now has that approval; installer servicing
+and version changes do not. Main is not merged as part of these checkpoints. The
 clean-Windows release gate remains outstanding regardless of source test results.

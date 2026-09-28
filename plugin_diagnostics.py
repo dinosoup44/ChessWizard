@@ -84,3 +84,60 @@ class PluginDiagnostics:
         except (OSError, ValueError, RuntimeError):
             # Diagnostics cannot turn a bad plugin or unwritable profile into startup failure.
             return
+
+    def read(self, receipt: InstalledPlugin) -> tuple[PluginDiagnostic, ...]:
+        """Read bounded diagnostics for one artifact without trusting stored free text.
+
+        Args:
+            receipt: Selected immutable artifact/version identity.
+
+        Returns:
+            Sanitized records. Corrupt, oversized, or unrelated records are omitted.
+            Messages are reconstructed from known core categories, not stored output.
+        """
+        messages = {
+            "timeout": "The worker exceeded its time limit.",
+            "invalid_result": "The returned facts failed core validation.",
+            "invalid_facts": "The returned facts failed core validation.",
+            "validation_failed": "Core rejected plugin identity or factual evidence.",
+            "abnormal_exit": "The worker exited without a complete response.",
+            "protocol_error": "The worker returned an invalid protocol message.",
+            "exception": "The worker failed during this phase.",
+            "worker_exit": "The worker exited unexpectedly.",
+            "output_limit": "The worker exceeded its output limit.",
+            "protocol": "The worker returned an invalid protocol message.",
+        }
+        phases = {"discovery", "import", "invoke", "shutdown", "install", "remove", "lifecycle"}
+        try:
+            path = checked_path(self.root, "diagnostics/events.json")
+            maximum = self.limits.max_diagnostics * (self.limits.max_diagnostic_message + 1024)
+            if not path.is_file() or path.stat().st_size > maximum:
+                return ()
+            with path.open("rb") as stream:
+                payload = stream.read(maximum + 1)
+            if len(payload) > maximum:
+                return ()
+            rows = decode_json(payload)
+            if not isinstance(rows, list):
+                return ()
+            result = []
+            for row in rows[-self.limits.max_diagnostics:]:
+                if not isinstance(row, dict) or any(row.get(key) != getattr(receipt, key)
+                        for key in ("plugin_id", "version", "artifact_sha256")):
+                    continue
+                phase = row.get("phase")
+                phase = phase if isinstance(phase, str) and phase in phases else "lifecycle"
+                kind = row.get("error_type")
+                kind = kind if isinstance(kind, str) and kind in messages else "failure"
+                stamp = row.get("timestamp", "")
+                if not isinstance(stamp, str) or len(stamp) > 40:
+                    stamp = ""
+                try:
+                    stamp = datetime.fromisoformat(stamp).isoformat()
+                except ValueError:
+                    stamp = ""
+                result.append(PluginDiagnostic(receipt.plugin_id, receipt.version, receipt.artifact_sha256,
+                    phase, kind, stamp, messages.get(kind, "Plugin operation failed; refresh or explicitly re-enable to retry.")))
+            return tuple(result)
+        except (OSError, ValueError, RuntimeError):
+            return ()
