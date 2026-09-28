@@ -19,6 +19,56 @@ from support.plugin_wheels import FEN, GOOD_CODE, PACKAGE, PLUGIN_ID, make_wheel
 
 
 class PluginLifecycleTests(PluginFixture):
+    @unittest.skipUnless(os.name == "nt", "Windows atomic replacement sharing")
+    def test_atomic_state_waits_for_reader_without_torn_generation(self):
+        import threading
+        from plugin_repository import atomic_bytes
+        self.install()
+        path = self.repository.root / "state.json"
+        before = path.read_bytes()
+        observed, errors = threading.Event(), []
+        original = os.replace
+        def observe(source, destination):
+            try:
+                return original(source, destination)
+            finally:
+                observed.set()
+        def publish():
+            try:
+                atomic_bytes(path, b"synthetic new complete generation")
+            except Exception as error:
+                errors.append(error)
+        with patch("plugin_repository.os.replace", side_effect=observe):
+            with path.open("rb") as reader:
+                thread = threading.Thread(target=publish)
+                thread.start()
+                self.assertTrue(observed.wait(timeout=2))
+                self.assertEqual(reader.read(), before)
+                self.assertEqual(path.read_bytes(), before)
+            thread.join(timeout=2)
+        self.assertFalse(thread.is_alive())
+        self.assertEqual(errors, [])
+        self.assertEqual(path.read_bytes(), b"synthetic new complete generation")
+        path.write_bytes(before)
+        self.assertFalse(list(path.parent.glob(".atomic-*.tmp")))
+
+    @unittest.skipUnless(os.name == "nt", "Windows atomic replacement sharing")
+    def test_permanent_reader_lock_expires_without_losing_state(self):
+        import time
+        from dataclasses import replace
+        from plugin_models import PluginLimits
+        from plugin_repository import atomic_bytes
+        self.install()
+        path = self.repository.root / "state.json"
+        before = path.read_bytes()
+        limits = replace(PluginLimits(), lock_timeout_seconds=0.08, poll_seconds=0.01)
+        started = time.monotonic()
+        with path.open("rb"), self.assertRaises(PermissionError):
+            atomic_bytes(path, b"unpublished replacement", limits)
+        self.assertLess(time.monotonic()-started, 1)
+        self.assertEqual(path.read_bytes(), before)
+        self.assertFalse(list(path.parent.glob(".atomic-*.tmp")))
+
     def test_atomic_failure_preserves_prior_state(self):
         self.install()
         path = self.repository.root / "state.json"

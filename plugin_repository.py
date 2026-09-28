@@ -10,6 +10,7 @@ import re
 import shutil
 import sys
 import tempfile
+import time
 from plugin_locking import file_lease
 from plugin_models import InstalledPlugin, PluginLimits, PluginState
 from plugin_state import PluginStateError, decode_json, receipt_from_data, state_from_data, state_payload, valid_id
@@ -90,12 +91,13 @@ def inventory(root: Path, limits: PluginLimits | None = None) -> dict[str, str]:
     return dict(sorted(result.items()))
 
 
-def atomic_bytes(path: Path, payload: bytes) -> bool:
+def atomic_bytes(path: Path, payload: bytes, limits: PluginLimits | None = None) -> bool:
     """Replace a contained data file atomically, preserving exact no-op writes.
 
     Args:
         path: Checked repository-owned destination.
         payload: Validated finite bytes.
+        limits: Existing typed bounds for waiting on Windows readers.
 
     Returns:
         Whether the destination changed.
@@ -112,8 +114,20 @@ def atomic_bytes(path: Path, payload: bytes) -> bool:
     try:
         with os.fdopen(fd, "wb") as stream:
             stream.write(payload); stream.flush(); os.fsync(stream.fileno())
-        checked_path(path.parent, path.name)
-        os.replace(name, path)
+        bounds = limits or PluginLimits()
+        deadline = time.monotonic() + bounds.lock_timeout_seconds
+        while True:
+            checked_path(path.parent, path.name)
+            try:
+                os.replace(name, path)
+                break
+            except PermissionError as error:
+                # Windows readers can briefly deny replacement. Do not remove the
+                # old generation or retry other failures; permanent locks expire.
+                remaining = deadline - time.monotonic()
+                if os.name != "nt" or getattr(error, "winerror", None) not in (5, 32, 33) or remaining <= 0:
+                    raise
+                time.sleep(min(bounds.poll_seconds, remaining))
     finally:
         Path(name).unlink(missing_ok=True)
     return True
@@ -184,13 +198,18 @@ class PluginRepository:
 
         Raises:
             PluginStateError: Existing state needs explicit recovery.
+            OSError: The current state generation cannot be read.
         """
         path = checked_path(self.root, "state.json")
         if not path.exists():
             return PluginState()
         if path.stat().st_size > self.limits.max_state_bytes:
             raise PluginStateError("Plugin state exceeds byte limit")
-        return state_from_data(decode_json(path.read_bytes()), self.limits)
+        with path.open("rb") as stream:
+            payload = stream.read(self.limits.max_state_bytes + 1)
+        if len(payload) > self.limits.max_state_bytes:
+            raise PluginStateError("Plugin state exceeds byte limit")
+        return state_from_data(decode_json(payload), self.limits)
 
     def save(self, state: PluginState) -> bool:
         """Atomically save valid changed state while the caller holds exclusive().
@@ -205,7 +224,7 @@ class PluginRepository:
             PluginStateError: State violates the typed contract.
             OSError: Atomic persistence fails.
         """
-        return atomic_bytes(checked_path(self.root, "state.json"), state_payload(state, self.limits))
+        return atomic_bytes(checked_path(self.root, "state.json"), state_payload(state, self.limits), self.limits)
 
     def location(self, installation_id: str, *, staged: bool = False) -> Path:
         """Locate an opaque installation without accepting a caller-provided path.
