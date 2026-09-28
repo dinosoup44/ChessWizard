@@ -129,3 +129,11 @@ for engine evidence; Admin exposes storage counts. No pruning is automatic.
 See [ANALYZE_GAMES.md](ANALYZE_GAMES.md) for deferred/protected work semantics.
 The existing post-import rehearsal must be rebuilt before this new source workflow
 can be tested in a frozen executable; no package is built by this task.
+
+## Repair, upgrade, and reinstall
+
+The installer keeps application files separate from your profile. Reinstalling
+after the default uninstall retains your games, preferences, authored openings,
+and compatible plugins. Choosing and confirming full local-data removal makes
+the next launch a fresh profile instead. See [installation/removal](INSTALLATION.md)
+and [repair/upgrade](UPGRADING.md) before troubleshooting by deleting anything.

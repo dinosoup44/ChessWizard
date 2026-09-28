@@ -132,7 +132,8 @@ under GPL-2.0-or-later with the Bootloader Exception, and runtime hooks plus
 `_pyi_rth_utils` under Apache-2.0. Copyright PyInstaller Development Team.
 See `licenses/pyinstaller/COPYING.txt` for exact terms, exception and full license texts.
 Application and dependency GPL obligations are unchanged. Build-only hooks-contrib,
-pefile, altgraph, packaging and setuptools are not runtime dependencies.
+pefile, altgraph and setuptools are not runtime dependencies. Packaging becomes a
+runtime dependency in the plugin/servicing build described below.
 
 ## Public source preparation (2026-09-27)
 
@@ -156,3 +157,26 @@ Inno Setup's retained terms are in `licenses/inno-setup/LICENSE.txt`; the compil
 is an optional external build dependency. Before any future binary distribution,
 re-run the exact package/source/notice audit against that build. Historical notice
 hashes and receipts must not be presented as certification of changed inputs.
+
+## Plugin and servicing runtime (Phase 4)
+
+The frozen desktop, `ChessWizardPluginHost`, and `ChessWizardServicing` are
+separately inventoried GPL-3.0-or-later ChessWizard application containers.
+The public Plugin API V1 SDK is application source under the same license.
+No external sample plugin implementation is included in those containers.
+
+- **installer 0.7.0**: MIT, copyright Pradyun Gedam; the existing plugin service
+  uses its pure-Python wheel installation library. Exact upstream terms are in
+  `licenses/installer/LICENSE`. This does not include pip or resolve arbitrary dependencies.
+- **packaging 26.3**: Apache-2.0 OR BSD-2-Clause; used for plugin version/dependency
+  compatibility and installer downgrade comparison. Preserve `licenses/packaging/LICENSE`,
+  `LICENSE.APACHE`, and `LICENSE.BSD`, including their upstream copyrights.
+- **Inno Setup 6.7.3**: unchanged pinned compiler and installer runtime under its
+  retained `licenses/inno-setup/LICENSE.txt`. No new servicing dependency is added.
+
+The exact package audit inspects every collected file and every container's PYZ
+and boot scripts. Hash inventory is an ownership/integrity record, not a code
+signature or a grant of trust. Source companions must include both host entry
+points, the SDK, the servicing modules, installer scripts, and the exact reviewed
+runtime dependency sources. Existing Stockfish/network, CPython, Tcl/Tk, Pillow,
+application GPL, default-opening, and artwork obligations remain in force.

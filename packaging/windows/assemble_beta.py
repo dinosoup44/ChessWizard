@@ -9,12 +9,14 @@ import zipfile
 ROOT=Path(__file__).resolve().parents[2]
 OUTPUT=ROOT.parent/'ChessWizard_Beta_Distribution'
 REPORT=ROOT/'reports/beta_installer'
-FROZEN=ROOT/'dist/ChessWizard-1.0.0-beta-rehearsal-beta-installer'
+
 WORK=ROOT/'build/windows/pyinstaller-rehearsal-beta-installer/ChessWizard'
-VERSION='1.0.0-beta'
+
 
 import sys
 sys.path.insert(0, str(ROOT))
+from chesswizard_version import VERSION
+FROZEN=ROOT/('dist/ChessWizard-'+VERSION+'-rehearsal-beta-installer')
 from tools.package_privacy import PrivacyPolicy, content_findings, load_privacy_policy, validate_package_path
 
 def digest(path):
@@ -60,11 +62,13 @@ def build(privacy: PrivacyPolicy = PrivacyPolicy()) -> None:
     def add(path,name):
         assert name not in source and '..' not in Path(name).parts
         source[name]=Path(path)
-    for _,name,_ in ast.literal_eval((WORK/'PYZ-00.toc').read_text())[1]:
+    source_inputs = {name for toc in WORK.glob('PYZ-*.toc') for _,name,_ in ast.literal_eval(toc.read_text())[1]}
+    for name in sorted(source_inputs):
         path=Path(name).resolve()
         if path.is_relative_to(ROOT) and not path.is_relative_to(ROOT/'build'):
             add(path,'ChessWizard/'+path.relative_to(ROOT).as_posix())
-    add(ROOT/'run_chesswizard.py','ChessWizard/run_chesswizard.py')
+    for entry in ('run_chesswizard.py','plugin_host.py','servicing_host.py'):
+        if 'ChessWizard/'+entry not in source: add(ROOT/entry,'ChessWizard/'+entry)
     for entry in json.loads((ROOT/'licenses/release_files.json').read_text()):
         if 'ChessWizard/'+entry['path'] not in source:add(ROOT/entry['path'],'ChessWizard/'+entry['path'])
     for path in (ROOT/'licenses/inno-setup').glob('*'):add(path,'ChessWizard/'+path.relative_to(ROOT).as_posix())
@@ -95,7 +99,7 @@ def build(privacy: PrivacyPolicy = PrivacyPolicy()) -> None:
     setup=OUTPUT/f'ChessWizard-{VERSION}-Windows-x64-Setup.exe'
     assert digest(setup)==json.loads((REPORT/'installer_acceptance.json').read_text())['setup_sha256']
     for name in ('README-FIRST.txt', 'SOURCE-NOTICE.txt'):
-        shutil.copyfile(ROOT/'packaging/windows/handoff'/name, OUTPUT/name)
+        (OUTPUT/name).write_text((ROOT/'packaging/windows/handoff'/name).read_text(encoding='utf-8').replace('{APP_VERSION}', VERSION), encoding='utf-8')
     members=[setup,OUTPUT/'README-FIRST.txt',OUTPUT/'SOURCE-NOTICE.txt']+sorted(p for p in notices.rglob('*') if p.is_file())
     archive_path=OUTPUT/f'ChessWizard-{VERSION}-Windows-x64.zip'
     with zipfile.ZipFile(archive_path,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as archive:

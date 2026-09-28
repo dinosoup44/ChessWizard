@@ -4,7 +4,7 @@ ChessWizard and chess/Stockfish are GPL-3.0-or-later. Other components retain
 their own licenses; see LICENSES and the installed _internal notices.
 
 The exact companion for this beta is:
-ChessWizard-1.0.0-beta-Corresponding-Source.zip
+ChessWizard-{APP_VERSION}-Corresponding-Source.zip
 
 It is included inside ChessWizard_CURRENT_INSTALL.zip beside Setup.
 For the versioned Windows tester ZIP, supply it alongside that ZIP. It contains matching application

@@ -1,14 +1,18 @@
 {
   "schema_version": 1,
   "release_version": "1.0.0-beta",
-  "checked_date": "2026-09-20",
-  "scope": "Current C-drive checkout for approved 1.0.0-beta installer; exact frozen manifest and offline source companion required.",
+  "checked_date": "2026-09-28",
+  "scope": "Phase 4 plugin and installer-servicing source inputs; actual frozen package requires its own exact multi-archive audit.",
   "entry_points": [
-    "run_chesswizard"
+    "run_chesswizard",
+    "plugin_host",
+    "servicing_host"
   ],
   "expected_external_imports": {
     "chess": "chess",
-    "PIL": "pillow"
+    "PIL": "pillow",
+    "packaging": "packaging",
+    "installer": "installer"
   },
   "packages": [
     {
@@ -118,6 +122,20 @@
         "Mastodon, https://fosstodon.org/@pillow",
         "Source, https://github.com/python-pillow/Pillow"
       ]
+    },
+    {
+      "name": "installer",
+      "version": "0.7.0",
+      "license": "MIT",
+      "classification": "runtime",
+      "reason": "Restricted local wheel installation in plugin host"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3",
+      "license": "Apache-2.0 OR BSD-2-Clause",
+      "classification": "runtime",
+      "reason": "Runtime plugin compatibility and servicing version comparison"
     }
   ],
   "source_inputs": [
@@ -158,8 +176,33 @@
     },
     {
       "root": "project",
+      "path": "analysis_completion.py",
+      "sha256": "e207cc8b7dc4a9bb7f4e24ebb370c0f7357af53861f67293e3005dc6d01d81f3"
+    },
+    {
+      "root": "project",
+      "path": "analysis_control.py",
+      "sha256": "bf53056f0602d443a3e3b6071a84e4a27cbac07ca702448e7ce80b8be62949d8"
+    },
+    {
+      "root": "project",
       "path": "analysis_crawler.py",
-      "sha256": "7567f4d9f0a32374efb074a61c56a0f96cb478550e715631db591f77b2400ec6"
+      "sha256": "e8e210c5b30540a944f6adcd43352588d555fa2d028efef6f07bf7699276e446"
+    },
+    {
+      "root": "project",
+      "path": "analysis_deferred_evidence.py",
+      "sha256": "d71ae3bb4942c9284228d7d32e4b8a62582fde66e7a523b394331d0a02e3b9a2"
+    },
+    {
+      "root": "project",
+      "path": "analysis_deferred_repository.py",
+      "sha256": "a283c257ac1b8ae2be1f1b581028e5d542a87e70b5977a439f85790ad8f84cbc"
+    },
+    {
+      "root": "project",
+      "path": "analysis_deferred_schema.py",
+      "sha256": "e4df7fe921c6d08b24a6f631cb383d811a419d2fa1ccdf1bb02788ab64cfef42"
     },
     {
       "root": "project",
@@ -169,12 +212,17 @@
     {
       "root": "project",
       "path": "analysis_engine.py",
-      "sha256": "cf53a4488c2bde638b31ed32a387172d5ee15b3cf3f0de8cac00c67de849c991"
+      "sha256": "cee78571b83644079a2e7567f1aff739bdd3adc0e105c55c6b97765a028ea5d3"
+    },
+    {
+      "root": "project",
+      "path": "analysis_failures.py",
+      "sha256": "83e597b9836103016a704021ea6e78ee3411a54d8fab05a703f81dcd67797840"
     },
     {
       "root": "project",
       "path": "analysis_planner.py",
-      "sha256": "884c21de368fddc8718d06042339fd5e1830eeca12a0b2d44b9d68d1cc8d7961"
+      "sha256": "51a6cceae414cfcc637993f5bde7018f0eb844ab55f298ef2c3afc08f5f56ff8"
     },
     {
       "root": "project",
@@ -184,12 +232,17 @@
     {
       "root": "project",
       "path": "analysis_presentation.py",
-      "sha256": "b677853f90c397bc3bcc544e66dfdfc07a2758fe07900619117f1ff86534e5a3"
+      "sha256": "27df1049b4cd3e5764c39268489d639e90e7d437e50da9c8263b7b1197bc51d3"
+    },
+    {
+      "root": "project",
+      "path": "analysis_readiness.py",
+      "sha256": "110768a3086be075e0244fd76633c28a3fe0673d420c4c9464a470f1e5ba9196"
     },
     {
       "root": "project",
       "path": "analysis_registry.py",
-      "sha256": "b3d6896ad1c5bc6cd7076aab76ea8c12d898d3d20d0c9dda8f7e3ba4ae2b8668"
+      "sha256": "4010e0c8e71101e6ab045fda3145981ead90b5a24f613a4046a1b6ae1de3b0d5"
     },
     {
       "root": "project",
@@ -214,7 +267,7 @@
     {
       "root": "project",
       "path": "analysis_settings.py",
-      "sha256": "ec08c1ac3ffcb9b09558f064d0505b1ebfeb8a6c593c5428f01e4e6e87894d61"
+      "sha256": "027e7ba86de73f49ed4e5179ef62b6cafcb9e9eabad116851066fe5871d5387f"
     },
     {
       "root": "project",
@@ -273,13 +326,18 @@
     },
     {
       "root": "project",
+      "path": "application_lifetime.py",
+      "sha256": "fe2c1a3ade27da3343a2d32dd134f3160e8dc5c698e83950b004f30da000e576"
+    },
+    {
+      "root": "project",
       "path": "application_paths.py",
       "sha256": "bed21d2acbb4239f964f99e2a6c0b2344eb22efae9727b1a307066ca2dd5c67d"
     },
     {
       "root": "project",
       "path": "application_settings.py",
-      "sha256": "1585c9112a0eee4772fe56973cfb35a8a3773823042b9857b2b459775d056e82"
+      "sha256": "1f45ebfd7e44fd14c1e089611d407d608dccd3f6cd3f7f54b648ee565f50762a"
     },
     {
       "root": "project",
@@ -290,6 +348,16 @@
       "root": "project",
       "path": "backup_merlin.py",
       "sha256": "0f4d327157f374da7e7922b7a6a5fee054616804f7d8862835b00517f1e5044f"
+    },
+    {
+      "root": "project",
+      "path": "backup_recovery.py",
+      "sha256": "deb2c972cc294c30b804d33c1ab3bc3ce9d5723ad8736842b3eec0ded72b1eb5"
+    },
+    {
+      "root": "project",
+      "path": "backup_verification.py",
+      "sha256": "14cd840a9bd88c73e56cd8f8e9a12fec8db228f0011d953358140be6b4137ca7"
     },
     {
       "root": "project",
@@ -359,7 +427,7 @@
     {
       "root": "project",
       "path": "candidate_line_engine.py",
-      "sha256": "d583e2e2d84dc9f3b10dc4da64e65095474c8508474b0654beb06a6333e832a0"
+      "sha256": "62e432c28fdf33fa69a31142152daada4ef3506c6f5eff6d029c52ff103f4e76"
     },
     {
       "root": "project",
@@ -369,12 +437,12 @@
     {
       "root": "project",
       "path": "candidate_line_proof.py",
-      "sha256": "fba893dab9869571d84abc5fffe74a550e6394a9d5625ea27a02c996462bd3a9"
+      "sha256": "f722ef7e97c884ca34f5bea92e8f052dcd1f6800e521eaa152c5ac8fd86ab52d"
     },
     {
       "root": "project",
       "path": "candidate_line_repository.py",
-      "sha256": "57a06780a7b70ef9a2576656cd2e69af56305c44a5c4584bf6b7e41c0b3363cd"
+      "sha256": "f20721b478dcf85dae544eace9e5446ecaccba6f34749cc1211624e0a3425a1c"
     },
     {
       "root": "project",
@@ -423,6 +491,21 @@
     },
     {
       "root": "project",
+      "path": "chesswizard_plugin_api/__init__.py",
+      "sha256": "601b7ffa125b70aca2712eb280def61a2a784f476e9924a6c4e3f183ef34799f"
+    },
+    {
+      "root": "project",
+      "path": "chesswizard_plugin_api/models.py",
+      "sha256": "d36e77da0bc8e6231cb768e4c97fb030f167380b7c2934c678588b36fc5375a4"
+    },
+    {
+      "root": "project",
+      "path": "chesswizard_plugin_api/protocols.py",
+      "sha256": "306f54f1b4ada58c80c6da43b09c502cdaece718b3d1039ad893f6d79300b9c9"
+    },
+    {
+      "root": "project",
       "path": "chesswizard_version.py",
       "sha256": "fbbe2952ddc1d0b637c411132be6c5a6ede1eb32d0077168176ab8ee924e7533"
     },
@@ -459,7 +542,7 @@
     {
       "root": "project",
       "path": "data_activity.py",
-      "sha256": "42b6c08d4369b9189f851941730376063572ee084f1f1bf3c55076ae6c7d54e9"
+      "sha256": "2ad48d77fd240fd3aef6a1c523ffc9801137f4687ef29811a9343af0c0124ed0"
     },
     {
       "root": "project",
@@ -469,7 +552,7 @@
     {
       "root": "project",
       "path": "data_management_repository.py",
-      "sha256": "2af18a6eae79b6554273cda914dc46f52c5d54d79a8810696f3bcc34d11e2198"
+      "sha256": "5c4f3eb17de6e80550c9a5aa91b9eeab6e3f7e20d0204924a064f95daead2473"
     },
     {
       "root": "project",
@@ -485,6 +568,21 @@
       "root": "project",
       "path": "database_schema.py",
       "sha256": "cb9c010a4e4059cbd3e3b75cd7fab4ef295b034916f1c1a7b07f7ea58de35fb7"
+    },
+    {
+      "root": "project",
+      "path": "default_opening_builder.py",
+      "sha256": "1a2fa833b1679b4509b6db1102ea677fb6e69fe9c19264923f7d7eb10a718d21"
+    },
+    {
+      "root": "project",
+      "path": "default_opening_install.py",
+      "sha256": "12797ab5032c604b67ec697fde7cc0990cd0b9734d159f274d6d24939bc7d623"
+    },
+    {
+      "root": "project",
+      "path": "default_opening_source.py",
+      "sha256": "48bf2c1d015ad138d51d14aaba4ebcd03fe90eec83bd2d1d5540255ccf3b209a"
     },
     {
       "root": "project",
@@ -509,17 +607,22 @@
     {
       "root": "project",
       "path": "engine_cache.py",
-      "sha256": "5e8f6e0c31572481091f275d6ee4ded585149c1a3cbe3c19ff8ed0e8147c6448"
+      "sha256": "6e5d74d6042905bb9565518ae0f167fc561f8313e019f5db3ba89ea40312f7b6"
     },
     {
       "root": "project",
       "path": "evaluation_repository.py",
-      "sha256": "2fc2bf3b19996d66552ed16a708e6828d78067ca95dda3706e09526786d4480b"
+      "sha256": "1865709dc65dd416df5d6c979da6e4bc87fc6c7d1db8d717b6a9d5c5c369ce5c"
     },
     {
       "root": "project",
       "path": "evaluation_service.py",
-      "sha256": "e94ec53d8e5a5354039565b55685f8b4f363c8a35160d400965d08229520ce25"
+      "sha256": "3c5c7bf2104daa2ad05e55ef66e6fc85bec1a3c4a351970965eda15205cae868"
+    },
+    {
+      "root": "project",
+      "path": "evidence_errors.py",
+      "sha256": "b724055217dc709ed5b0206a1418b87be05863385a3547daae0edca25397d9b3"
     },
     {
       "root": "project",
@@ -534,7 +637,7 @@
     {
       "root": "project",
       "path": "existing_position_evidence.py",
-      "sha256": "1e6c1af08f318594aa8aa0c3ab2cff940213403c5345e8f06ca7c4f4c799735d"
+      "sha256": "113fe0187a4ca03fdc1c45f29ac75e3df538012633d6a3b9946587416339bc7e"
     },
     {
       "root": "project",
@@ -604,17 +707,22 @@
     {
       "root": "project",
       "path": "game_analysis_models.py",
-      "sha256": "3b90eae9029ac9f5b88ffadb184e7216e701da8d453231853d8ecc6207b8f1e2"
+      "sha256": "1f1caf7133c6260bb0c6d7a90ce3f2f902da381d713e5ed1180e1fcc972e57e6"
     },
     {
       "root": "project",
       "path": "game_analysis_repository.py",
-      "sha256": "5b8534f11820de25e6fc9d1bd0132bdd35c351a84e006f4a4ac4b7ed7ee675ac"
+      "sha256": "ab3f2eb4bc54979eb60b9f07ccbd8fd586f84d183f84b3b9f148bf8ac3259f70"
+    },
+    {
+      "root": "project",
+      "path": "game_analysis_selection.py",
+      "sha256": "167e6cfc207c661494de015a527ea401fd61f5a591359e76a53204ca17960240"
     },
     {
       "root": "project",
       "path": "game_analysis_service.py",
-      "sha256": "558ffe5d9470c478b060a32ff1ffe59e0d4a8370a73da139c205a545f8a11bd8"
+      "sha256": "cb7c3288976f363393b3048aaf2a9db176d146f7ede9628c168e4e05c593eeee"
     },
     {
       "root": "project",
@@ -643,18 +751,23 @@
     },
     {
       "root": "project",
+      "path": "game_hygiene.py",
+      "sha256": "39371a2cb69ba408ecdd1d28c2a4dd0a8e857e1e3fe6c010a0df06e76b49018f"
+    },
+    {
+      "root": "project",
       "path": "game_import_http.py",
       "sha256": "5ad34162ac4173484d08d0cec623932ec6cef559c2acfd6e5c76952cf15da0ce"
     },
     {
       "root": "project",
       "path": "game_import_models.py",
-      "sha256": "1bbc1b80c0776eb9714df8b5aebf636ef137256a2a91e01de1e65e0fc0ff5769"
+      "sha256": "b5ed8f915ef8e76f682a492c1c447068990402e3f748f512cbca84774c487fb5"
     },
     {
       "root": "project",
       "path": "game_import_pgn.py",
-      "sha256": "52c1b2268e25f7d0213f3ef3c17663a802b8d9f4a4caea4a1d12c77fc28c10a8"
+      "sha256": "34bcb2f31b304abfdba82e492b212bbd30b075e1ebb1b6dfaa9994cca4a5bc4d"
     },
     {
       "root": "project",
@@ -664,12 +777,12 @@
     {
       "root": "project",
       "path": "game_import_service.py",
-      "sha256": "19546abcb900c23d38c29502d9d310f72b274f8326c8667dfb22088e57b6fea5"
+      "sha256": "16a1688862eb72f6363df7e89c9122ab2d4b5ae8e49c6e4bb7f6cc8876c9465d"
     },
     {
       "root": "project",
       "path": "game_review_repository.py",
-      "sha256": "bb2c8235cdb0a4ae210c09009271a9789c51d2e2befaba3665bd286570832d8d"
+      "sha256": "e31016ced253fe1dd44f688ac4538a8467f74dc0a2a0b55c02e5812eec0e6f45"
     },
     {
       "root": "project",
@@ -709,7 +822,7 @@
     {
       "root": "project",
       "path": "heavy_repository.py",
-      "sha256": "f81d46d1f08bcd806a44a7b7d590fb96e1235a452864ae7096e78b945e19636b"
+      "sha256": "ebc3902f2c5060df5b6bce51e0f8980d07c79878fc2f0a5d3594b50b311dee46"
     },
     {
       "root": "project",
@@ -729,12 +842,12 @@
     {
       "root": "project",
       "path": "import_chesscom.py",
-      "sha256": "1f8cb34a0eb143d7a74a66b232b2bbf05e9c97d0a75c94333c52c74468636766"
+      "sha256": "a550d68e73dc7c0fdeb789e2da5d01354a83c5d852a1edd71e23abc39ea56aa7"
     },
     {
       "root": "project",
       "path": "import_games.py",
-      "sha256": "0990befa7bc350886bd52a3b81b8acc6310bd94b69381034ed9c216178578f88"
+      "sha256": "e29cfdd7e595a227da1371be02a69813c38b85f940f76e2cd13926208d4d84f7"
     },
     {
       "root": "project",
@@ -793,6 +906,11 @@
     },
     {
       "root": "project",
+      "path": "merlin_ui/action_dialog.py",
+      "sha256": "dec95f446b42420aba0e382152b38b00c8d3aa9dcd867f4293d3265989d62a40"
+    },
+    {
+      "root": "project",
       "path": "merlin_ui/actual_moves_view.py",
       "sha256": "798ffb3e4c183aba9474e9ba29cbc13db1ce9849777179a64dbec337bba01828"
     },
@@ -804,12 +922,12 @@
     {
       "root": "project",
       "path": "merlin_ui/analyze_games_dialog.py",
-      "sha256": "3f42bc50cdb7bc9f48559de5c20122f80a33aa77055e1f75fda9addc4f49cc0a"
+      "sha256": "1ef065c929501a3744a5ccc8738403778425d8f48eea5d6eee06e7700b66d46a"
     },
     {
       "root": "project",
       "path": "merlin_ui/appearance.py",
-      "sha256": "698c6435f0b4eaa7fb22074dd6decef2fceff8f8e72e8835b655a295f2699a20"
+      "sha256": "1e0beb9c75ad2ae19b175160582cdd9db533fd89b2e9174a1556e6135de28cec"
     },
     {
       "root": "project",
@@ -819,12 +937,17 @@
     {
       "root": "project",
       "path": "merlin_ui/application_menu.py",
-      "sha256": "7d2132d664bca6b727d05db76a761a027a0a0864e1bf818c501ff833117b1ecd"
+      "sha256": "706ac82c69d053ab844bb3cbe28ec86aa583c0d1165f9768459ae9e1ef775d0f"
     },
     {
       "root": "project",
       "path": "merlin_ui/art_tester.py",
       "sha256": "be158516ffce69111c265612b9803a427cbd12cae837f06e022632636f7e109f"
+    },
+    {
+      "root": "project",
+      "path": "merlin_ui/book_line_dialog.py",
+      "sha256": "5b3a08c42cd3948d64c49f00dcd5de36181c58454cd67374fead9c8d42d041b8"
     },
     {
       "root": "project",
@@ -834,7 +957,7 @@
     {
       "root": "project",
       "path": "merlin_ui/chess_board.py",
-      "sha256": "6d3caaba6b07bac006e44aa14767ea3fbaa07cbafba103a5a5384c54f4861ffe"
+      "sha256": "88c77e87cd8ce9223c71d501f5d26881d03f9619acf9b03c607320ce6e06edae"
     },
     {
       "root": "project",
@@ -859,7 +982,7 @@
     {
       "root": "project",
       "path": "merlin_ui/game_review_view.py",
-      "sha256": "c28c70b5948a1dff2ccd65907ea142073cf6cc77347aeb6a6ae8813eab764f44"
+      "sha256": "7cb26cff0d8d0c60c94b4c8cd818dd064a6fde1aa12a9073b0d9991a1b56476c"
     },
     {
       "root": "project",
@@ -880,6 +1003,11 @@
       "root": "project",
       "path": "merlin_ui/information_panel.py",
       "sha256": "5ab5405fdee25d0e80eca61445cfd49116dd74d2ee76ec997beaaf9f60291eb7"
+    },
+    {
+      "root": "project",
+      "path": "merlin_ui/layout_metrics.py",
+      "sha256": "3359d31e359c6f42d0c66a51e053a20004c488bcdf66b743dccdf393b9a9e0ef"
     },
     {
       "root": "project",
@@ -904,12 +1032,22 @@
     {
       "root": "project",
       "path": "merlin_ui/opening_book_dialogs.py",
-      "sha256": "f0c21d42dab2927ce1dde22850d3b61086db0c247cdf5e719756b1cd69849ee3"
+      "sha256": "242bb083ab53b6e9749198f8b6965ed6bed9a09b13522116bfa1f8a7acbffc66"
     },
     {
       "root": "project",
       "path": "merlin_ui/opening_book_studio.py",
-      "sha256": "0828552ccee86967fafcc720cfde1fc39a079131b6f3e1f7d9df7169b7239efa"
+      "sha256": "304e95325903d9b4d455adb0fa9d894e42d9235d3462689a6148aa8386ba3e36"
+    },
+    {
+      "root": "project",
+      "path": "merlin_ui/opening_engine_dialog.py",
+      "sha256": "2a476062c7a9bd565ba49101d00ffb26a5c261d44ea4f3407b27c80bf29fe1b1"
+    },
+    {
+      "root": "project",
+      "path": "merlin_ui/opening_engine_panel.py",
+      "sha256": "24d4f0f4576a993c3f26cf6f485f8d7a7514e0610ca9f768ed7da212b5eb0df0"
     },
     {
       "root": "project",
@@ -919,7 +1057,7 @@
     {
       "root": "project",
       "path": "merlin_ui/opening_library_events.py",
-      "sha256": "150a3382c23154f7fccc41717ccc5c45873aa6561e8d1a91d6a334cf207e649f"
+      "sha256": "e9a5b8cbee22a66d86360abcb2021d8fd25cd7fa6df09ec788f17eff5d30c939"
     },
     {
       "root": "project",
@@ -928,18 +1066,48 @@
     },
     {
       "root": "project",
+      "path": "merlin_ui/opening_occurrences.py",
+      "sha256": "c5ed869c0a06a9e94e165e54ef25936d2842b233f8f0b97cd3b4973f19d5b85b"
+    },
+    {
+      "root": "project",
       "path": "merlin_ui/opening_reference.py",
-      "sha256": "f55c6598727e8a664caf73a31bdbb4e1a6b182e2fb1621a3184a62264df1d891"
+      "sha256": "b6282686172d8a7e89c950ffd7ece74c52a36aebfc90797d6e7623feb391bb6a"
     },
     {
       "root": "project",
       "path": "merlin_ui/opening_review_panel.py",
-      "sha256": "0570625875614aa39abcdce000455b26ccd5ff61c0d03de1b49f8b0800871a34"
+      "sha256": "4bea0485e3fd94219679a6af672f0d2889a0eee23d5bb3ccdaa669510f268a36"
+    },
+    {
+      "root": "project",
+      "path": "merlin_ui/opening_studio_dialogs.py",
+      "sha256": "1408aed14be4856f0f39e6d4b1c2f376501de6b3f3c68c67e7d8e5de8baa6b60"
+    },
+    {
+      "root": "project",
+      "path": "merlin_ui/opening_studio_handoff.py",
+      "sha256": "aef6876a09a51146b587dc2544b8893291a302fa6cdc395319e52d00fa527f2d"
+    },
+    {
+      "root": "project",
+      "path": "merlin_ui/opening_studio_workflow.py",
+      "sha256": "d773da5375b4a5ef811e15e7064ae579eaa1c50b6d6d442ad81def3f9b87a703"
+    },
+    {
+      "root": "project",
+      "path": "merlin_ui/opening_workspace.py",
+      "sha256": "549aa54042f5971e38416e1e10784ac0a591f32e5b67a5972d1091789b7568c8"
     },
     {
       "root": "project",
       "path": "merlin_ui/piece_sets.py",
-      "sha256": "0d9540a182813abb932bb1e2f3f7998e12286fd5ff66e0b60413ff65ee0026b5"
+      "sha256": "57b5298b906526f04c768c82269f456687f5c63e2aa503a51ccdc660f4a1e05a"
+    },
+    {
+      "root": "project",
+      "path": "merlin_ui/plugin_manager.py",
+      "sha256": "dfe01290f3f2eb060eba03fb1e2c48c3bd39e4a4d7606279e5c1e1834342d06d"
     },
     {
       "root": "project",
@@ -949,7 +1117,7 @@
     {
       "root": "project",
       "path": "merlin_ui/review_splitter.py",
-      "sha256": "a5e5b2c7fd845eabdb1388119ce18fea15a46d982e5bb560e1b9415fb4ef195b"
+      "sha256": "8a6e237e6d29b5b89d2176f14d98049538a0d0781979d0f5c258ddce18acdf07"
     },
     {
       "root": "project",
@@ -959,7 +1127,7 @@
     {
       "root": "project",
       "path": "merlin_ui/startup.py",
-      "sha256": "6f2e079e8e50fd048a60099522c3e371bc55d821a09714e7e03a74b557a7487b"
+      "sha256": "24fbaa168ad74c69ae9c19771338b8afecfe5729f468a6ee3d73ad52d656d743"
     },
     {
       "root": "project",
@@ -974,7 +1142,7 @@
     {
       "root": "project",
       "path": "merlin_ui/theme_editor.py",
-      "sha256": "6f8e0cf599ad7b63f0b622c12d53ee10c318e898939ea8d3c759f0181ddcb8c1"
+      "sha256": "b13b78f180085078bc550c22a8abbcbece44dbbaa7bc28b6567c60b591177d7b"
     },
     {
       "root": "project",
@@ -1039,7 +1207,7 @@
     {
       "root": "project",
       "path": "migrate_multisite.py",
-      "sha256": "ad1939b450b50b81f632315a8a3758bad13968db510f0310595a048160360423"
+      "sha256": "9d65c72f4071d4ba97cbd00c20bda06eb24702723bbaf622812acac902ca6594"
     },
     {
       "root": "project",
@@ -1069,12 +1237,12 @@
     {
       "root": "project",
       "path": "move_quality_repository.py",
-      "sha256": "3ebdf8aeca2d79289ac74b0e907b816c9d5244af64a4126eda78f0af56c1a698"
+      "sha256": "bc596ce97fcb6cc70718f3e962825302829e75a556d4c8e1290d0eb68d010d3c"
     },
     {
       "root": "project",
       "path": "move_quality_service.py",
-      "sha256": "889a0dbbe8549352b1bbcb600e9e86880941a7bb4047b0c76d6415bf9bf6830f"
+      "sha256": "ea34bc441e839e5b1a62c0edf2f16b5a8a40109f4ed8f61b5930799758fd01ac"
     },
     {
       "root": "project",
@@ -1084,12 +1252,17 @@
     {
       "root": "project",
       "path": "negative_coverage.py",
-      "sha256": "4d56c540e02a911071ec6096ab68da35462a586d161fd569c22b9a867a979652"
+      "sha256": "d2bde8ec6a36dec199d8439631e1d4d268d8c64718b4045b4479c0e49eaf13e9"
     },
     {
       "root": "project",
       "path": "opening_accuracy.py",
-      "sha256": "d9d8df28e456d8b027ece2c28158b548b3cb0797f9ff198e9ffce956ee05b04c"
+      "sha256": "b074b9760cfa45bd1f6d68d13c1a022edf1cf326457bf27afcd07115fdeef698"
+    },
+    {
+      "root": "project",
+      "path": "opening_accuracy_evidence.py",
+      "sha256": "d61cdaea7ee57f11c002625c858240101fe74f922fe5c761922aa066b4040375"
     },
     {
       "root": "project",
@@ -1099,7 +1272,7 @@
     {
       "root": "project",
       "path": "opening_accuracy_presentation.py",
-      "sha256": "7e240e6f51c921e3fec856f24f650e2a5155a794825e93c2dfa7ec7b60fe3a6f"
+      "sha256": "032950119ed9477565b523b04497d6452851fc57ebf9c63e32b393f4e8e0b750"
     },
     {
       "root": "project",
@@ -1109,7 +1282,7 @@
     {
       "root": "project",
       "path": "opening_accuracy_service.py",
-      "sha256": "f7a5b8005b020a708275d6ce374fe744b355bd89e3766feb26a01df0a7bc4fee"
+      "sha256": "fdb588f453792a2638b3ad2e8720cc6b68b5dda05edc37657c3e82814d004e9a"
     },
     {
       "root": "project",
@@ -1118,8 +1291,48 @@
     },
     {
       "root": "project",
+      "path": "opening_analysis.py",
+      "sha256": "c1b87e5d168c9344b57280a6d3c381087ea76730df9a0f1905d7b63cbca77a82"
+    },
+    {
+      "root": "project",
+      "path": "opening_analysis_accessors.py",
+      "sha256": "cf164605d24a8614e6f438780eaf166e5c9089e01aacb625e25770f174eccd2e"
+    },
+    {
+      "root": "project",
+      "path": "opening_analysis_models.py",
+      "sha256": "5ed9333cffff48843db738fc34aabe715273fefd4d21ca10eca821c254fcf1af"
+    },
+    {
+      "root": "project",
+      "path": "opening_analysis_query.py",
+      "sha256": "3800fd69da036a55a6cb634811efd2086c1ac5475c7fe1073c132f09691404e8"
+    },
+    {
+      "root": "project",
+      "path": "opening_analysis_repository.py",
+      "sha256": "436ec04bf51303231846efc0adbd3592ee0f2c7192c40cd5373821210be43142"
+    },
+    {
+      "root": "project",
+      "path": "opening_analysis_service.py",
+      "sha256": "ce3b19c9ea0c786977a95f00e51711ad7791c1586d812141ef5822a8b71e539f"
+    },
+    {
+      "root": "project",
+      "path": "opening_analysis_settings.py",
+      "sha256": "18dcb772df25f2fd701b632a1acef2c4bcae63d658328d53291b230b899974f0"
+    },
+    {
+      "root": "project",
+      "path": "opening_analysis_statistics.py",
+      "sha256": "fa2c7b066ec89a4a720048dfacb24df13cc4b8c452061a7b161f954db538d55d"
+    },
+    {
+      "root": "project",
       "path": "opening_book_application.py",
-      "sha256": "adbdd0a23788fab59088891dc4b6e15921e4ad3da29cac30233ac78803d58c84"
+      "sha256": "13893c844906930b733c222d4dae5589052aea77940d39524125a3a620c6b5da"
     },
     {
       "root": "project",
@@ -1128,28 +1341,33 @@
     },
     {
       "root": "project",
+      "path": "opening_book_line.py",
+      "sha256": "47f8e882c7d0fdb83cbf4f0e673b9f2f5c7b18d6aa5ca1192ef6d0b7195d530d"
+    },
+    {
+      "root": "project",
       "path": "opening_book_models.py",
-      "sha256": "f374202c0491d51a22f7cfee5dddda471c02261282fc8de5c37aa1e154977379"
+      "sha256": "7c884f4aa69aa40da33926d859ba2eccc8a45f752cda72087f3f602392d03b94"
     },
     {
       "root": "project",
       "path": "opening_book_navigation.py",
-      "sha256": "8182cdd2f32ef86e2bb324d747f6b2d8f483a373919e43021e1514f9b51ed06d"
+      "sha256": "c9ffa568e748c915a1309536f3525342501a51053ff50c64b1d22c9969c642ee"
     },
     {
       "root": "project",
       "path": "opening_book_polyglot.py",
-      "sha256": "ad0e62bcf9b674698d1db528145f93a9813a842126ce1c74acb115b8eee52dfe"
+      "sha256": "ac9426b94e3258b43b213323a16748732dad7d9172f9f832c8c8da2c15539e06"
     },
     {
       "root": "project",
       "path": "opening_book_reader.py",
-      "sha256": "57216e8cd414d055cc9687dc9af1aa09c1ba3c97d32b569a685618938ab58573"
+      "sha256": "abe9c6682117b3fdf263c44836a8434954fe7545ecd497f987a8d0efe8703fa7"
     },
     {
       "root": "project",
       "path": "opening_book_repository.py",
-      "sha256": "bdf556fc71f9b0e9359f535e45b967c8f09a5a7d9747a0a08d9d6148b5093976"
+      "sha256": "b003a067fee294ef3bdb873c5047fb66782528f59a8bcf061eea372b3e9aa388"
     },
     {
       "root": "project",
@@ -1159,12 +1377,42 @@
     {
       "root": "project",
       "path": "opening_book_service.py",
-      "sha256": "7ec0905500e2b07a1272bef57669fb1c181e5ef079c51c2f6c5a5e126d91aef6"
+      "sha256": "0e8af1d7b77e0a8b0de8cf4b5e90e015def1a89759e5fa46149d9e56394e1bec"
     },
     {
       "root": "project",
       "path": "opening_book_session.py",
       "sha256": "6eb6e6178ee38a752357c3f1ef4c8f19f904ab777fd201eb0e00c991694032ff"
+    },
+    {
+      "root": "project",
+      "path": "opening_book_transfer.py",
+      "sha256": "b2ce4cf2a6fcb298668beb28dedb96de338e2cfd62199abcc515ff6817e7e485"
+    },
+    {
+      "root": "project",
+      "path": "opening_engine_authoring.py",
+      "sha256": "427f75a58eb8231c61a1407e84f0f7419dd235f23c693e1f09b41897d082f758"
+    },
+    {
+      "root": "project",
+      "path": "opening_engine_models.py",
+      "sha256": "cb6697c976daf854a0170c9f3d1955da2d5bda3a977db9f501d80582d26b0ffd"
+    },
+    {
+      "root": "project",
+      "path": "opening_engine_presentation.py",
+      "sha256": "cb5dd000ea7f535a1139a8caa984f72070093298c9cb2f041332fcb4d1760c17"
+    },
+    {
+      "root": "project",
+      "path": "opening_engine_service.py",
+      "sha256": "e6d84be31dc946a4e7339810a14ae2c036e4391c83ebd18dac5d0d362fc48a96"
+    },
+    {
+      "root": "project",
+      "path": "opening_entry.py",
+      "sha256": "1a48130e68d75efb01eb05f556e630a731fd10aaee350b645ca3b5a2f6a92b81"
     },
     {
       "root": "project",
@@ -1174,12 +1422,12 @@
     {
       "root": "project",
       "path": "opening_intelligence_application.py",
-      "sha256": "e5d58307381b3153c18e8ec32ab96a3012ac3cb7f1090919af809424275b0f1f"
+      "sha256": "4601134a63d58165dab0bd5aa13c708aff3c3933cb7e3fb58e51119c039d7397"
     },
     {
       "root": "project",
       "path": "opening_intelligence_lookup.py",
-      "sha256": "7e0b4d4db6d7b06a25bad85b99bf71b3c74e560a0917a780a13ba17c86f70423"
+      "sha256": "a32cb0848da5b7f37c144b0218150d4adefa9be5595974cdec5bf11b11711e85"
     },
     {
       "root": "project",
@@ -1189,7 +1437,7 @@
     {
       "root": "project",
       "path": "opening_intelligence_models.py",
-      "sha256": "7d45b322e3c23e6812ce47d9548b650a7329aa1c7839f4e83eab2bd0e98a972d"
+      "sha256": "26f58729a288b2505ff280c0674b1464187b6dfcd52ceb3743d902802d630cb8"
     },
     {
       "root": "project",
@@ -1204,7 +1452,7 @@
     {
       "root": "project",
       "path": "opening_intelligence_service.py",
-      "sha256": "32e1397be0fed8834fa39fb50419b073dcbdf6e687d3c7880effb303ca9aedc0"
+      "sha256": "41fa012a28d7da1db40dfd485410a1cccecddfdd0883f666d373b0c6a7c749d3"
     },
     {
       "root": "project",
@@ -1218,18 +1466,28 @@
     },
     {
       "root": "project",
+      "path": "opening_library_listing.py",
+      "sha256": "a8382b8569c8053316f27ea154cfd10c300e49477d9a888afca58baeb7b17fe1"
+    },
+    {
+      "root": "project",
+      "path": "opening_library_metadata.py",
+      "sha256": "c8d8d519066d45768de8a3121294762bf6472b66d4f45bddeae24eb10e9eebf5"
+    },
+    {
+      "root": "project",
       "path": "opening_library_models.py",
       "sha256": "49caf25663deec1438295d056d074f7eeef7fcfe3fc4d96bd52da7c9057cdecc"
     },
     {
       "root": "project",
       "path": "opening_library_package.py",
-      "sha256": "12fac2ad5403d3f10dd4b317043269f054c1175221cdd8e81e697274047f4535"
+      "sha256": "7b6e21d08ccc12bf56a004b2448e8ec7663e6888293fada03b323a3caa3f5f97"
     },
     {
       "root": "project",
       "path": "opening_library_reference.py",
-      "sha256": "41c4f0d55b4fdfcbac89bdf6f0941826927fef0a2782e9879ace96063d9f6af4"
+      "sha256": "207063d08038a1dc7b7117b38e9938e8ed1e9b2d3cb773db86f7d570b06eef61"
     },
     {
       "root": "project",
@@ -1239,7 +1497,37 @@
     {
       "root": "project",
       "path": "opening_library_service.py",
-      "sha256": "416269f6ea3c9974c13c1ce499e48e6924ddad9eb93e1026f38ac77f26c18e68"
+      "sha256": "d20a5b18d60472fe396e318b454ac17a9ad2f42d3bee6ae7a8f5c4e7bc79066c"
+    },
+    {
+      "root": "project",
+      "path": "opening_repertoire.py",
+      "sha256": "e9b3230605d99c8ac3cd9902060871efa07dc6cb8fdee55c93ca5f1af3486b49"
+    },
+    {
+      "root": "project",
+      "path": "opening_review_line.py",
+      "sha256": "77ac9d6b3e8bdeb3e9d57b122eaee6f045f955c0b07e718170ad3ce138c9d701"
+    },
+    {
+      "root": "project",
+      "path": "opening_review_navigation.py",
+      "sha256": "d39fc831bffa0583d3313fb4720e5d383da7e5ea802e155050f81196b8377f6e"
+    },
+    {
+      "root": "project",
+      "path": "opening_studio_handoff.py",
+      "sha256": "a9737505c225e31c77945b9716614954f8269aa9d6b6bc4ded1d693bd1156d6c"
+    },
+    {
+      "root": "project",
+      "path": "opening_studio_service.py",
+      "sha256": "f1d0553fda9ca7e3ef673f13e07899765eb73e63fd4e92c1e987ec6d79a752de"
+    },
+    {
+      "root": "project",
+      "path": "opening_workspace.py",
+      "sha256": "dadbc861b8a0ec214c483457d7a753a48cfcd4ef0cd86d8a055bb4c63a88f88e"
     },
     {
       "root": "project",
@@ -1303,8 +1591,103 @@
     },
     {
       "root": "project",
+      "path": "plugin_admission.py",
+      "sha256": "095f1549de8e66bfa33c5fe304dfa402c9a290112d8e5183d9d6b7d8fa8f45a0"
+    },
+    {
+      "root": "project",
+      "path": "plugin_compatibility.py",
+      "sha256": "28634a241a2d42d372cb85cfd3a86279ab65a5f8e73d4413b2bf5944227b0102"
+    },
+    {
+      "root": "project",
+      "path": "plugin_diagnostics.py",
+      "sha256": "100e2dbf5da4900b5dd14ffe8b8f3f8b72cbb0ba17996629dd47529e70592813"
+    },
+    {
+      "root": "project",
+      "path": "plugin_discovery.py",
+      "sha256": "b0d5242b80e67ff882718cefc63e86c5523b7b366ef37284d6c286169efc77cc"
+    },
+    {
+      "root": "project",
+      "path": "plugin_host.py",
+      "sha256": "b28bbb5d25db092bae2f5d8899eae3e2a3400c97d2b4b10d65dd90499af6d51b"
+    },
+    {
+      "root": "project",
+      "path": "plugin_inspection.py",
+      "sha256": "c05c63d4d34f7ccc317fbc1cce5ce1ef7858c69983c99356d055ba9eec08bae2"
+    },
+    {
+      "root": "project",
+      "path": "plugin_installation.py",
+      "sha256": "306f5e5ef056cb06f4e0af1ead223c309a7cedf5394bbe71f6a67e8a420e073f"
+    },
+    {
+      "root": "project",
+      "path": "plugin_locking.py",
+      "sha256": "682c39ddfa76a0c4a82336cb83d69a5cafabb3822ae53d8a0fdf84b8fddbf74d"
+    },
+    {
+      "root": "project",
+      "path": "plugin_manager_controller.py",
+      "sha256": "0fb8606c42043c316eca5b7f16656ca8201a56a88b24b277ef903a6c9baecd86"
+    },
+    {
+      "root": "project",
+      "path": "plugin_models.py",
+      "sha256": "f4c5bd13f4d6576a305f7d2baeda1773ee121140917c3a6c3cb13726b4ff3f6f"
+    },
+    {
+      "root": "project",
+      "path": "plugin_package.py",
+      "sha256": "c2fbdd07e750a138b5e0b6242f032a9edbbe6cc0fd2a7e093dd1e1e80b4bfa7a"
+    },
+    {
+      "root": "project",
+      "path": "plugin_presentation.py",
+      "sha256": "8446f8b98274d9d117ecafadec3dc2c30d1dea6582197945845b877ff3462f2d"
+    },
+    {
+      "root": "project",
+      "path": "plugin_process.py",
+      "sha256": "e300c04b3ea29e384f69e9a80a0fdf69a52a1aa30cdbb2fec27e57fb9392c7b9"
+    },
+    {
+      "root": "project",
+      "path": "plugin_protocol.py",
+      "sha256": "0e95ba5d4f87a6b4c89715293569bf9832768be51e32b0c00daf520adcb5919e"
+    },
+    {
+      "root": "project",
+      "path": "plugin_repository.py",
+      "sha256": "aa30fc0fb2c1e4b67cf55d58fb15e1e94a4f3f9bd214c0cacda0e3cf0c6a70fd"
+    },
+    {
+      "root": "project",
+      "path": "plugin_result_validation.py",
+      "sha256": "98ef95e156396d418f111cd1454776ecd6d95e3aecacb0626b8b9eef01246d5d"
+    },
+    {
+      "root": "project",
+      "path": "plugin_runtime.py",
+      "sha256": "30f688e0b61215a59b2f65aee15a64af82e6de3041549d0c4f35e50360696854"
+    },
+    {
+      "root": "project",
+      "path": "plugin_service.py",
+      "sha256": "f69667e33a980aa107d9adbbcb91cf0ee0f1126195671c5dcdb072779fa44f10"
+    },
+    {
+      "root": "project",
+      "path": "plugin_state.py",
+      "sha256": "5622b250d39b6a989250e1f83af5be3e646f8e37ab07e2675b02a886e594cece"
+    },
+    {
+      "root": "project",
       "path": "position_evaluation.py",
-      "sha256": "93adf7a77acdac7b1be9555590d3ef282f749a09a5a63b422bd7652eaeeccd77"
+      "sha256": "40d4f33286eb82e433bc63e7709c5a1bde1b8630f5ed123abbf3a306bc24ad84"
     },
     {
       "root": "project",
@@ -1404,7 +1787,7 @@
     {
       "root": "project",
       "path": "run_chesswizard.py",
-      "sha256": "fd9e30d8aab1cf40f55d574c6ca6f8f135921c638c3d8ad6704c82762103f6cf"
+      "sha256": "2cee24595c4d9670ee79c303c4d4aa582d08653c2addc0407d7e36c9c1605a80"
     },
     {
       "root": "project",
@@ -1429,7 +1812,32 @@
     {
       "root": "project",
       "path": "seed_dev_test_puzzle.py",
-      "sha256": "c9a4f9f107184aba6862147595d498a566ab73be3cfd7e8782631c9125ba94df"
+      "sha256": "ccecf5275105f88b4d7c9f8c133f3a4f191dd0b959d67dd46d427f16d790dd3b"
+    },
+    {
+      "root": "project",
+      "path": "servicing_host.py",
+      "sha256": "8c3f905bd24d20e9fed27c6f0295f8a2250a9b41deb411e2a4036404991b04d1"
+    },
+    {
+      "root": "project",
+      "path": "servicing_inventory.py",
+      "sha256": "923cc0652fa69edc8b38007168c17f6421e5f5feab961c9e80e24772a9d61715"
+    },
+    {
+      "root": "project",
+      "path": "servicing_paths.py",
+      "sha256": "f33c8f55a8b91af9b2704fa76fcbe68b333934904476025ba170c3ccbe56d2c7"
+    },
+    {
+      "root": "project",
+      "path": "servicing_profile.py",
+      "sha256": "5de3ac3b3db9b6c795abbedfcef70eea8f3c47764ca25636fa526e33a581d4a0"
+    },
+    {
+      "root": "project",
+      "path": "servicing_transaction.py",
+      "sha256": "9211fd82fbc1f1ffe623044c8729d507e2e9d60937a7170e79dceb27dc36a7b1"
     },
     {
       "root": "project",
@@ -1480,6 +1888,11 @@
       "root": "project",
       "path": "solution_ownership.py",
       "sha256": "96dc79d0c7fba300213e51e8c920a23f537d9c842e04744c752de7154ff55b23"
+    },
+    {
+      "root": "project",
+      "path": "sqlite_transaction.py",
+      "sha256": "f684b1330e8dffc243c70830f4f4fce8045767981281f314858d5622bae71a26"
     },
     {
       "root": "project",
@@ -1594,7 +2007,7 @@
     {
       "root": "project",
       "path": "theme_core/active.py",
-      "sha256": "464e5f1cf63cc0ad52a0314a296c412e3734660e5f00a7a2a202c25359817311"
+      "sha256": "ca0ac162f2d1a8580b72953422ac2d26685630db862b1ba72edb6dc663d492f8"
     },
     {
       "root": "project",
@@ -1689,7 +2102,7 @@
     {
       "root": "project",
       "path": "xray_preflight.py",
-      "sha256": "c9ec7ecbda85cc17907f1c74151ea252e2b49305d7743c28790ca6b1f3bc901a"
+      "sha256": "5acdd21d5537ed78e52d4305e919097015b8c86ba81c7affc35b996f07695a6d"
     },
     {
       "root": "project",

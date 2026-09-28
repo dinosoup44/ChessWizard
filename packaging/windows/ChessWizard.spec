@@ -12,6 +12,30 @@ if not re.fullmatch(r"rehearsal(?:-[a-z0-9]+)*", rehearsal):
     raise ValueError("Invalid rehearsal directory label")
 version = next(n.value.value for n in ast.parse((root / "chesswizard_version.py").read_text()).body
                if isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and t.id == "VERSION" for t in n.targets))
+# Synthetic versions exist only in explicitly named servicing-test builds.
+synthetic = os.environ.get("CHESSWIZARD_SYNTHETIC_VERSION", "")
+synthetic_api = os.environ.get("CHESSWIZARD_SYNTHETIC_API", "")
+identity_sources = {}
+if synthetic or synthetic_api:
+    if not rehearsal.startswith("rehearsal-servicing-test-") or not re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+", synthetic) or synthetic_api not in {"1.0.0", "2.0.0"}:
+        raise ValueError("Synthetic identity requires an explicit disposable servicing build")
+    version = synthetic
+    identity_root = root / "build/windows" / ("identity-" + rehearsal)
+    for module, relative, constant, value in (("chesswizard_version", "chesswizard_version.py", "VERSION", synthetic),
+            ("chesswizard_plugin_api.models", "chesswizard_plugin_api/models.py", "API_VERSION", synthetic_api)):
+        target = identity_root / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        text = re.sub(r'^' + constant + r' = "[^\"]+"$', constant + ' = "' + value + '"',
+                      (root / relative).read_text(encoding="utf-8"), flags=re.M)
+        target.write_text(text, encoding="utf-8")
+        identity_sources[module] = target
+
+
+def build_identity(analysis):
+    # A fresh TOC also avoids reusing modulegraph's original cached code objects.
+    if identity_sources:
+        analysis.pure = [(name, str(identity_sources.get(name, source)), kind) for name, source, kind in analysis.pure]
+
 notices = [e["path"] for e in json.loads((root / "licenses/release_files.json").read_text())
            if e["path"] not in {"source_info/runtime_inputs.json", "licenses/provenance.json"}]
 # Existing Admin introspection reads these exact resources without running analyzers.
@@ -20,7 +44,7 @@ metadata = ["analysis_registry.py", "analysis_settings.py", "application_setting
     "merlin_ui/admin_console.py", "chesswizard_version.py", "database_schema.py", "database_bootstrap.py", "application_paths.py",
     "major_material_blunders.py", "position_range_evidence/__init__.py", "board_analysis/__init__.py",
     "board_analysis/static_exchange.py", "board_analysis/static_exchange_models.py"]
-data = [(str(root / p), str(Path(p).parent)) for p in sorted(set(notices + metadata))]
+data = [(str(identity_sources.get("chesswizard_version", root / p) if p == "chesswizard_version.py" else root / p), str(Path(p).parent)) for p in sorted(set(notices + metadata))]
 # Only the public heading/status is consumed; private audit narratives are excluded.
 for name in ("MAJOR_MATERIAL_BLUNDERS.md", "POSITION_RANGE_EVIDENCE.md", "BOARD_ANALYSIS.md", "STATIC_EXCHANGE_EVALUATION.md"):
     target = root / "build/windows" / ("metadata-" + rehearsal) / "docs" / name
@@ -41,30 +65,37 @@ allowed_native_roots = [root / "Engines", Path(sys.base_prefix), Path(sys.prefix
 for destination, source, kind in a.binaries:
     if not any(Path(source).resolve().is_relative_to(p.resolve()) for p in allowed_native_roots):
         raise RuntimeError("Unreviewed native input: " + destination)
+build_identity(a)
 pyz = PYZ(a.pure)
 exe = EXE(pyz, a.scripts, [], exclude_binaries=True, name="ChessWizard", debug=False,
     bootloader_ignore_signals=False, strip=False, upx=False, console=False, icon=str(root / "packaging/windows/assets/ChessWizard.ico"))
-# The optional host has its own PYZ and no external sample plugin build input.
-plugin_inputs = []
-if os.environ.get("CHESSWIZARD_BUILD_PLUGIN_SPIKE") == "1":
-    from importlib import metadata as package_metadata
-    plugin_notices = []
-    for distribution_name in ("installer", "packaging"):
-        distribution = package_metadata.distribution(distribution_name)
-        for item in distribution.files or ():
-            if "license" in item.name.lower():
-                plugin_notices.append((str(distribution.locate_file(item)),
-                    "licenses/plugin-spike/" + distribution_name))
-    host_analysis = Analysis([str(root / "plugin_host.py")], pathex=[str(root)],
-        binaries=[], datas=plugin_notices, hiddenimports=[], hookspath=[],
-        runtime_hooks=[], excludes=["tkinter", "pip", "pytest", "setuptools"], noarchive=False)
-    for destination, source, kind in host_analysis.binaries:
-        if not any(Path(source).resolve().is_relative_to(p.resolve()) for p in allowed_native_roots):
-            raise RuntimeError("Unreviewed plugin-host native input: " + destination)
-    host_exe = EXE(PYZ(host_analysis.pure), host_analysis.scripts, [], exclude_binaries=True,
-        name="ChessWizardPluginHost", debug=False, strip=False, upx=False, console=True)
-    plugin_inputs = [host_exe, host_analysis.binaries, host_analysis.datas]
-coll = COLLECT(exe, *plugin_inputs, a.binaries, a.datas, strip=False, upx=False,
+# Hosts have separate PYZ archives and no external sample plugin input.
+from importlib import metadata as package_metadata
+plugin_notices = []
+for distribution_name in ("installer", "packaging"):
+    distribution = package_metadata.distribution(distribution_name)
+    for item in distribution.files or ():
+        if "license" in item.name.lower():
+            plugin_notices.append((str(distribution.locate_file(item)),
+                "licenses/plugin-runtime/" + distribution_name))
+host_analysis = Analysis([str(root / "plugin_host.py")], pathex=[str(root)],
+    binaries=[], datas=plugin_notices, hiddenimports=[], hookspath=[],
+    runtime_hooks=[], excludes=["tkinter", "pip", "pytest", "setuptools"], noarchive=False)
+for destination, source, kind in host_analysis.binaries:
+    if not any(Path(source).resolve().is_relative_to(p.resolve()) for p in allowed_native_roots):
+        raise RuntimeError("Unreviewed plugin-host native input: " + destination)
+build_identity(host_analysis)
+host_exe = EXE(PYZ(host_analysis.pure), host_analysis.scripts, [], exclude_binaries=True,
+    name="ChessWizardPluginHost", debug=False, strip=False, upx=False, console=True)
+plugin_inputs = [host_exe, host_analysis.binaries, host_analysis.datas]
+service_analysis = Analysis([str(root / "servicing_host.py")], pathex=[str(root)], binaries=[], datas=[],
+    hiddenimports=[], hookspath=[], runtime_hooks=[],
+    excludes=["tkinter", "chess", "PIL", "pip", "pytest", "setuptools", "installer"], noarchive=False)
+build_identity(service_analysis)
+service_exe = EXE(PYZ(service_analysis.pure), service_analysis.scripts, [], exclude_binaries=True,
+    name="ChessWizardServicing", debug=False, strip=False, upx=False, console=True)
+coll = COLLECT(exe, *plugin_inputs, service_exe, service_analysis.binaries, service_analysis.datas,
+    a.binaries, a.datas, strip=False, upx=False,
     name="ChessWizard-" + version + "-" + rehearsal)
 
 # Separate internal test entry; never collected into the distributable folder.

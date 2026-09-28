@@ -16,7 +16,7 @@ from tools.license_audit import safe_file
 from tools.package_privacy import (PRIVATE_PARTS, PrivacyPolicy, content_findings,
     load_privacy_policy, validate_package_path)
 
-FORBIDDEN_MODULES = {"pip", "requests", "urllib3", "certifi", "idna", "charset_normalizer", "setuptools", "pytest", "pefile", "altgraph", "packaging", "tests"}
+FORBIDDEN_MODULES = {"pip", "requests", "urllib3", "certifi", "idna", "charset_normalizer", "setuptools", "pytest", "pefile", "altgraph", "tests"}
 
 
 def digest(path):
@@ -60,6 +60,10 @@ def owner(source: Path, root: Path, base: Path, environment: Path) -> tuple[str,
             return "Pillow 12.3.0", "MIT-CMU and bundled native notices"
         if dependency == "chess":
             return "chess 1.11.2", "GPL-3.0-or-later"
+        if dependency in {"installer", "installer-0.7.0.dist-info"}:
+            return "installer 0.7.0", "MIT"
+        if dependency in {"packaging", "packaging-26.3.dist-info"}:
+            return "packaging 26.3", "Apache-2.0 OR BSD-2-Clause"
         if dependency == "PyInstaller":
             relative = source.relative_to(site / dependency).as_posix()
             apache = relative.startswith(("hooks/rthooks/", "fake-modules/"))
@@ -80,7 +84,7 @@ def owner(source: Path, root: Path, base: Path, environment: Path) -> tuple[str,
     if source.is_relative_to(root):
         if source.name == "base_library.zip":
             return "CPython standard library archive", "PSF-2.0 and incorporated software notices"
-        if source.name == "ChessWizard.exe":
+        if source.name in {"ChessWizard.exe", "ChessWizardPluginHost.exe", "ChessWizardServicing.exe"}:
             return "ChessWizard frozen container", "GPL-3.0-or-later plus separately inventoried runtime components"
         return "ChessWizard / reviewed notices and resources", "GPL-3.0-or-later; third-party texts retain their declared terms"
     raise ValueError("Unreviewed input origin: " + str(source))
@@ -123,6 +127,11 @@ def inventory(root: Path, distribution: Path, *, build: Path | None = None,
     collected = ast.literal_eval((build / "COLLECT-00.toc").read_text())[0]
     origins = {(name if kind == "EXECUTABLE" else "_internal/" + name).replace("\\", "/"): (source, kind)
                for name, source, kind in collected}
+    from servicing_inventory import INVENTORY_NAME, load_inventory, verify_payload
+    if (distribution / INVENTORY_NAME).is_file():
+        verify_payload(distribution, load_inventory(distribution / INVENTORY_NAME), exact=True)
+        origins[INVENTORY_NAME] = (str(distribution / INVENTORY_NAME), "GENERATED_OWNERSHIP")
+    containers = [name for name, (_, kind) in origins.items() if kind == "EXECUTABLE"]
     files, findings = [], []
     for path in sorted(distribution.rglob("*")):
         if not path.is_file():
@@ -150,30 +159,36 @@ def inventory(root: Path, distribution: Path, *, build: Path | None = None,
         for label in content_findings(data, privacy):
             findings.append(dict(member=relative, marker=label, kind="raw bytes"))
     assert not origins, "Missing collected files"
-    archive = CArchiveReader(str(distribution / "ChessWizard.exe"))
-    pyz = archive.open_embedded_archive("PYZ.pyz")
-    pure = {name: source for name, source, _ in ast.literal_eval((build / "PYZ-00.toc").read_text())[1]}
-    modules = []
-    for name, (kind, offset, size) in sorted(pyz.toc.items()):
-        if name.split(".")[0] in FORBIDDEN_MODULES:
-            raise ValueError("Forbidden embedded dependency: " + name)
-        source = pure.pop(name)
-        ownership, license_name = owner(source, root, base, environment)
-        modules.append(dict(name=name, compressed_bytes=size, owner=ownership, license=license_name, source_sha256=digest(source)))
-        for category, value in code_strings(pyz.extract(name)):
-            for label in content_findings(value.encode(), privacy):
-                findings.append(dict(member="PYZ:"+name, marker=label, kind=category))
-    assert not pure
-    scripts = []
-    for name, entry in archive.toc.items():
-        if entry[-1] in {"s", "m", "M"}:
-            content = archive.extract(name)
-            scripts.append(dict(name=name, bytes=len(content), sha256=hashlib.sha256(content).hexdigest(),
-                owner="ChessWizard" if name=="run_chesswizard" else "PyInstaller runtime",
-                license="GPL-3.0-or-later" if name=="run_chesswizard" else "Apache-2.0" if name.startswith("pyi_rth_") else "GPL-2.0-or-later WITH Bootloader-exception"))
-            for category,value in code_strings(marshal.loads(content)):
+    pure_inputs = [dict((name, source) for name, source, _ in ast.literal_eval(path.read_text())[1])
+                   for path in sorted(build.glob("PYZ-*.toc"))]
+    modules, scripts = [], []
+    for container in containers:
+        archive = CArchiveReader(str(distribution / container))
+        pyz = archive.open_embedded_archive("PYZ.pyz")
+        matches = [pure for pure in pure_inputs if set(pure) == set(pyz.toc)]
+        if len(matches) != 1:
+            raise ValueError("Frozen archive has no unique exact PYZ source inventory: " + container)
+        pure = matches[0]
+        for name, (kind, offset, size) in sorted(pyz.toc.items()):
+            if name.split(".")[0] in FORBIDDEN_MODULES:
+                raise ValueError("Forbidden embedded dependency: " + name)
+            source = pure[name]
+            ownership, license_name = owner(source, root, base, environment)
+            modules.append(dict(container=container, name=name, compressed_bytes=size,
+                owner=ownership, license=license_name, source_sha256=digest(source)))
+            for category, value in code_strings(pyz.extract(name)):
                 for label in content_findings(value.encode(), privacy):
-                    findings.append(dict(member="EXE:"+name, marker=label, kind=category))
+                    findings.append(dict(member=container+":PYZ:"+name, marker=label, kind=category))
+        for name, entry in archive.toc.items():
+            if entry[-1] in {"s", "m", "M"}:
+                content = archive.extract(name)
+                application = name in {"run_chesswizard", "plugin_host", "servicing_host"}
+                scripts.append(dict(container=container, name=name, bytes=len(content), sha256=hashlib.sha256(content).hexdigest(),
+                    owner="ChessWizard" if application else "PyInstaller runtime",
+                    license="GPL-3.0-or-later" if application else "Apache-2.0" if name.startswith("pyi_rth_") else "GPL-2.0-or-later WITH Bootloader-exception"))
+                for category,value in code_strings(marshal.loads(content)):
+                    for label in content_findings(value.encode(), privacy):
+                        findings.append(dict(member=container+":EXE:"+name, marker=label, kind=category))
     archives = []
     for path in distribution.rglob("*"):
         if path.is_file() and zipfile.is_zipfile(path):
@@ -204,11 +219,12 @@ def main() -> int:
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("distribution",type=Path)
     parser.add_argument("--build-dir", type=Path)
+    parser.add_argument("--output", type=Path, help="Explicit local audit receipt")
     parser.add_argument("--privacy-config", type=Path, help="Ignored local JSON with additional private literals")
     args=parser.parse_args()
     root=Path(__file__).resolve().parents[1]
     result=inventory(root,args.distribution.resolve(),build=args.build_dir,privacy=load_privacy_policy(args.privacy_config))
-    path=root / "reports/v1_package_manifest.json"
+    path=args.output or root / "reports/v1_package_manifest.json"
     path.write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
     print(json.dumps({k:result[k] for k in ("file_count","total_bytes","privacy_findings")},indent=2))
     print("Manifest SHA256",digest(path))

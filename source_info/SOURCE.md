@@ -225,3 +225,19 @@ by this internal rehearsal.
 ## Current beta installer distribution (2026-09-20)
 
 The current 1.0.0-beta installer is built from the current accepted runtime sources, not a prior rehearsal folder. Its matching `ChessWizard-1.0.0-beta-Corresponding-Source.zip` is staged alongside the tester ZIP. Give the source companion to every tester together with the Windows package. It includes the exact consumed application sources, approved icon sources, locked build instructions and required Stockfish source/networks plus exact Tcl MPL data. The companion contains no user databases or libraries. SHA256SUMS binds the local distribution artifacts. No public download or upload is claimed. The preceding rehearsal entries are historical; the current build receipt identifies the exact artifacts.
+
+## Servicing and plugin source additions
+
+For the Phase 4 build, include `plugin_host.py`, `servicing_host.py`,
+`application_lifetime.py`, `servicing_*.py`, `chesswizard_plugin_api/`, and the
+runtime plugin service modules identified by **all** `PYZ-*.toc` inputs.
+Include the corresponding Inno scripts, inventory/build tools, build lock, and
+installation/upgrade instructions. The source-companion assembler reads every
+container's PYZ inventory; a desktop-only PYZ list is insufficient.
+
+Pin the additional pure-Python upstream distributions: installer 0.7.0
+([upstream](https://github.com/pypa/installer)) and packaging 26.3
+([upstream](https://github.com/pypa/packaging)). Retain their complete copied
+license texts. Stage matching upstream sources before distributing a changed
+binary/source companion; an old beta companion does not cover these additions.
+The Phase 4 owner handoff is a local servicing test, not permission to publish.

@@ -1,6 +1,7 @@
 """Distribution safety contracts for the per-user Windows installer."""
 from pathlib import Path
 import unittest
+import re
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -8,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 class BetaInstallerTests(unittest.TestCase):
     def section(self, name):
         text = (ROOT/'packaging/windows/ChessWizard.iss').read_text(encoding='utf-8-sig')
+        text = re.sub(r'#ifdef FixtureRoot\n.*?#else\n(.*?)#endif', r'\1', text, flags=re.S)
         return text.split('['+name+']', 1)[1].split('\n[', 1)[0]
 
     def test_default_desktop_and_start_menu_use_same_installed_executable(self):
@@ -34,3 +36,31 @@ class BetaInstallerTests(unittest.TestCase):
         with Image.open(ROOT/'packaging/windows/assets/ChessWizard.ico') as icon:
             self.assertEqual(icon.ico.sizes(), {(n,n) for n in (16,24,32,48,64,128,256)})
         self.assertIn('assets/ChessWizard.ico', (ROOT/'packaging/windows/ChessWizard.spec').read_text())
+
+    def test_servicing_lifetime_and_full_removal_are_explicit(self):
+        text=(ROOT/'packaging/windows/ChessWizard.iss').read_text(encoding='utf-8')
+        self.assertIn('CloseApplications=no',self.section('Setup'))
+        self.assertIn('AppMutex={code:ActivityMutex}',self.section('Setup'))
+        self.assertIn('67CE3406-96D1-4EB6-AF71-3C95D925CF8B',text)
+        self.assertIn('Choice.Checked := False',text)
+        self.assertIn('Your ChessWizard data will be kept.',text)
+        self.assertIn('MB_YESNO or MB_DEFBUTTON2',text)
+        self.assertIn("if UninstallSilent then",text)
+        self.assertIn('WizardForm.Close',text)
+        self.assertIn('if Prepared and not Finalized',text)
+
+    def test_servicing_validator_has_no_live_path_defaults(self):
+        text=(ROOT/'tools/validate_upgrade.py').read_text(encoding='utf-8')
+        for flag in ('--fixture','--profile','--receipts','--payloads','--wheel'):
+            self.assertIn("'"+flag+"'",text)
+        self.assertNotIn("/'Programs/ChessWizard'",text)
+        wrapper=(ROOT/'packaging/windows/validate_installer.py').read_text(encoding='utf-8')
+        self.assertNotIn('LOCALAPPDATA',wrapper)
+
+    def test_lifetime_released_before_finished_page_launch(self):
+        text=(ROOT/'packaging/windows/ChessWizard.iss').read_text(encoding='utf-8')
+        step=text.split('procedure CurStepChanged',1)[1].split('procedure DeinitializeSetup',1)[0]
+        self.assertIn('if CurStep = ssPostInstall then begin',step)
+        self.assertIn('Finalized := True',step)
+        self.assertIn('CloseHandle(ServicingHandle)',step)
+        self.assertNotIn('ssDone',step)

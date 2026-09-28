@@ -123,6 +123,8 @@ def scan_text(path: str, text: str) -> tuple[Finding, ...]:
             matches = re.findall(pattern, line)
             if matches:
                 effective = category
+                if reason == 'email address' and path.endswith('.iss') and re.fullmatch(r"\s*external '[A-Za-z_]\w*@(?:kernel32|user32)\.dll stdcall';\s*", line):
+                    effective = 'public-safe reference'
                 if reason == 'email address' and not path.startswith('licenses/') and all(re.fullmatch(r'[\w.+-]+@example\.(?:org|com|net)', value) for value in matches):
                     effective = 'safe/example'
                 found.append(Finding(path, number, effective, reason))

@@ -137,5 +137,18 @@
     "plugin_state",
     "plugin_presentation",
     "plugin_manager_controller"
+  ],
+  "Application servicing": [
+    "application_lifetime",
+    "servicing_paths",
+    "servicing_inventory",
+    "servicing_transaction",
+    "servicing_profile",
+    "servicing_host",
+    "tools.payload_inventory",
+    "tools.build_installer",
+    "tools.servicing_fixture",
+    "tools.servicing_smoke",
+    "tools.validate_upgrade"
   ]
 }

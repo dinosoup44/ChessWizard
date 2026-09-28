@@ -36,10 +36,18 @@ def check_hashes(entries, roots):
     return errors
 
 
-def external_imports(root, entry_points):
-    """Walk local source imports without importing application or analyzer modules."""
+def external_imports(root: Path, entry_points: list[str] | tuple[str, ...]) -> set[str]:
+    """Walk application and SDK source imports without executing modules.
+
+    Args:
+        root: Source tree containing the reviewed runtime entry points.
+        entry_points: Local entry module names to trace.
+
+    Returns:
+        Non-standard-library top-level imports needing package review.
+    """
     modules = {p.stem:p for p in root.glob('*.py')}
-    for directory in ('merlin_ui', 'theme_core', 'feedback', 'board_analysis', 'position_range_evidence'):
+    for directory in ('merlin_ui', 'theme_core', 'feedback', 'board_analysis', 'position_range_evidence', 'chesswizard_plugin_api'):
         for path in (root/directory).rglob('*.py'):
             name = '.'.join(path.relative_to(root).with_suffix('').parts)
             modules[name.removesuffix('.__init__')] = path
@@ -147,13 +155,19 @@ def audit_package(distribution, manifest, root=PROJECT):
         external_distribution_authorized=False, manual_visual_qa_required=True)
 
 
-def main():
+def main() -> int:
+    """Validate source inputs or an explicitly supplied frozen package.
+
+    Returns:
+        Zero when the requested audit has no errors or unresolved release gates.
+    """
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--release',action='store_true',help='Fail on unresolved release gates as well as changed inputs')
     parser.add_argument("--package-dir", type=Path, help="Validate an actual frozen folder against reports/v1_package_manifest.json")
+    parser.add_argument('--manifest', type=Path, help='Exact frozen manifest for --package-dir')
     args = parser.parse_args()
     try:
-        result = (audit_package(args.package_dir, json.loads((PROJECT/"reports/v1_package_manifest.json").read_text()))
+        result = (audit_package(args.package_dir, json.loads((args.manifest or PROJECT/"reports/v1_package_manifest.json").read_text()))
                   if args.package_dir else audit())
     except (OSError,ValueError,KeyError,metadata.PackageNotFoundError) as error:
         result = {'errors':[str(error)], 'release_gates':[], 'status':'AUDIT_FAILED'}

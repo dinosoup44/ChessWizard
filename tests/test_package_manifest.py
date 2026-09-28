@@ -45,3 +45,13 @@ class PackageManifestTests(unittest.TestCase):
             root=Path(temp)/'project'
             result=owner(root/'assets/openings/ChessWizard Default Openings.cwbook',root,Path(temp)/'python',root/'venv')
             self.assertIn('CC0',result[1])
+
+    def test_reviewed_plugin_runtime_dependencies_and_hosts(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)/'project'; base=Path(temp)/'python'; env=root/'build/venv'
+            self.assertEqual(owner(env/'Lib/site-packages/installer/_core.py',root,base,env),('installer 0.7.0','MIT'))
+            self.assertEqual(owner(env/'Lib/site-packages/packaging/version.py',root,base,env),('packaging 26.3','Apache-2.0 OR BSD-2-Clause'))
+            for name in ('ChessWizard.exe','ChessWizardPluginHost.exe','ChessWizardServicing.exe'):
+                self.assertIn('frozen container',owner(root/'build'/name,root,base,env)[0])
+            with self.assertRaises(ValueError):
+                owner(env/'Lib/site-packages/arbitrary_dependency/code.py',root,base,env)

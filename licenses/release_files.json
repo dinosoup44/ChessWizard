@@ -2,7 +2,7 @@
   {
     "root": "project",
     "path": "COPYING.md",
-    "sha256": "9476ce5ffe4492696409c70eb23b3f3c9e901de88b255c159d3bf100e8e49fe7"
+    "sha256": "86d8d2c303b3c8a24a4757b502e4c534bb4e8e12bc0e36a1b74dda7e840c7efe"
   },
   {
     "root": "project",
@@ -107,12 +107,12 @@
   {
     "root": "project",
     "path": "source_info/runtime_inputs.json",
-    "sha256": "8bba22af47fc591285ea85d9d1e920ccaeab34e6cc58a265ce33e725f283137c"
+    "sha256": "aa0eb92141021dc132fffbe53c30de16053be427cd1c176b5dc788ba5221b52d"
   },
   {
     "root": "project",
     "path": "source_info/SOURCE.md",
-    "sha256": "1d442f16ac05e6b759254dc2784d7ef18af6e92027425d042e02df3e2f4d3a41"
+    "sha256": "3c6793bfdc86fbd5e2a38ebee0c15793483838ebeefb93ce52be92cc8b3d45b4"
   },
   {
     "root": "project",
@@ -127,11 +127,36 @@
   {
     "root": "project",
     "path": "THIRD_PARTY_NOTICES.md",
-    "sha256": "b642776adac20ca6d22e8c5ba1edd80fc1d81514d92dfafd60aae2d106bcace6"
+    "sha256": "41792c909490cc4be2803a144aa4fbd3b056563b730ad4f9f9896369c7226fcd"
   },
   {
     "root": "project",
     "path": "licenses/pyinstaller/COPYING.txt",
     "sha256": "0598064c7d2718e38d7914a7d08343b2fa008e3bea9ebba2aa7a6ffa5900dd64"
+  },
+  {
+    "root": "project",
+    "path": "licenses/installer/LICENSE",
+    "sha256": "37b8b9f2569892fa54406383d431169dbb2115980d78b7efba6eeae5664c484f"
+  },
+  {
+    "root": "project",
+    "path": "licenses/packaging/LICENSE",
+    "sha256": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48"
+  },
+  {
+    "root": "project",
+    "path": "licenses/packaging/LICENSE.APACHE",
+    "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+  },
+  {
+    "root": "project",
+    "path": "licenses/packaging/LICENSE.BSD",
+    "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5"
+  },
+  {
+    "root": "project",
+    "path": "licenses/inno-setup/LICENSE.txt",
+    "sha256": "2e5346868c2a18434489824e11d65c3031620f792fefc415d05f19cd441abf5c"
   }
 ]

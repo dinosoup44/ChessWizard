@@ -1,7 +1,7 @@
-CHESSWIZARD 1.0.0-beta - WINDOWS TESTER QUICK START
+CHESSWIZARD {APP_VERSION} - WINDOWS TESTER QUICK START
 
 1. Extract ChessWizard_CURRENT_INSTALL.zip (or the versioned Windows ZIP) completely.
-2. Run ChessWizard-1.0.0-beta-Windows-x64-Setup.exe.
+2. Run ChessWizard-{APP_VERSION}-Windows-x64-Setup.exe.
 3. Leave "Create a desktop shortcut" checked (it is on by default).
 4. Open ChessWizard from the Desktop or Start Menu.
 5. Choose File > Import Games, choose Chess.com or Lichess, and enter your username.
