@@ -11,19 +11,55 @@ CLEAN_GATES = (
 HUMAN_GATES = ("installer_ui", "plugin_trust_ui", "cancellation_errors", "dpi_100", "dpi_125", "dpi_150", "security_prompts")
 
 
-def receipt_template() -> dict:
+FINAL_PLAN = "v15-final-external-v1"
+FINAL_CLEAN_GATES = (
+    "clean_install", "first_run", "plugin_lifecycle", "same_version_repair",
+    "default_uninstall", "reinstall_preserve", "optional_removal_review", "no_orphan_workers",
+)
+
+
+def required_gates(receipt: dict) -> tuple[tuple[str, ...], tuple[str, ...]]:
+    """Select an explicit acceptance contract without reinterpreting old receipts.
+
+    Args:
+        receipt: Receipt carrying its schema and, for final scope, plan identity.
+
+    Returns:
+        Required clean-machine and human gate names.
+
+    Raises:
+        ValueError: The receipt names an unknown schema or plan.
+    """
+    if isinstance(receipt, dict):
+        if receipt.get("schema_version") == 1 and not receipt.get("plan_id"):
+            return CLEAN_GATES, HUMAN_GATES
+        if receipt.get("schema_version") == 2 and receipt.get("plan_id") == FINAL_PLAN:
+            return FINAL_CLEAN_GATES, HUMAN_GATES
+    raise ValueError("Unsupported receipt")
+
+
+def receipt_template(plan_id: str | None = None) -> dict:
     """Create pending acceptance fields without asserting any observation.
+
+    Args:
+        plan_id: None retains the original Phase 5 contract; FINAL_PLAN selects
+            the owner-approved remaining external checks.
 
     Returns:
         Independent JSON-compatible receipt for a clean-machine reviewer.
+
+    Raises:
+        ValueError: An unknown plan is requested.
     """
-    return {"schema_version": 1, "status": "PENDING", "environment": {
+    identity = {"schema_version": 1} if plan_id is None else {"schema_version": 2, "plan_id": plan_id}
+    clean, human = required_gates(identity)
+    return {**identity, "status": "PENDING", "environment": {
         "genuinely_clean_windows": False, "windows_build": "", "reviewer": "",
         "source_checkout_absent": False, "developer_tools_not_required": False},
         "artifacts": {"installer_sha256": "", "source_sha256": "", "plugin_sha256": ""},
         "signing_decision": "pending", "signing_reason": "",
         "gates": {key: {"status": "PENDING", "evidence_kind": "", "notes": ""}
-                  for key in (*CLEAN_GATES, *HUMAN_GATES)}}
+                  for key in (*clean, *human)}}
 
 
 def acceptance_blockers(receipt: dict) -> tuple[str, ...]:
@@ -38,7 +74,9 @@ def acceptance_blockers(receipt: dict) -> tuple[str, ...]:
     Returns:
         Blocking reasons; empty only for a complete human-recorded PASS receipt.
     """
-    if not isinstance(receipt, dict) or receipt.get("schema_version") != 1:
+    try:
+        clean, human = required_gates(receipt)
+    except ValueError:
         return ("Unsupported receipt",)
     errors = []
     if receipt.get("status") != "PASS":
@@ -62,13 +100,25 @@ def acceptance_blockers(receipt: dict) -> tuple[str, ...]:
     gates = receipt.get("gates", {})
     if not isinstance(gates, dict):
         gates = {}
-    for key in (*CLEAN_GATES, *HUMAN_GATES):
+    for key in (*clean, *human):
         gate = gates.get(key, {})
-        expected = "clean_windows_observed" if key in CLEAN_GATES else "human_observed"
+        expected = "clean_windows_observed" if key in clean else "human_observed"
         if (not isinstance(gate, dict) or gate.get("status") != "PASS"
                 or gate.get("evidence_kind") != expected
                 or not isinstance(gate.get("notes"), str) or not gate["notes"].strip()):
             errors.append("Missing observed acceptance: " + key)
+    if receipt.get("schema_version") == 2:
+        observation = receipt.get("security_observation", {})
+        if not isinstance(observation, dict):
+            observation = {}
+        if observation.get("transfer") != "browser":
+            errors.append("Browser/download behavior unobserved; USB is insufficient")
+        fields = ("browser_warning", "smartscreen_warning", "defender_alert",
+                  "run_anyway_required", "execution_blocked")
+        if any(observation.get(key) not in ("Y", "N") for key in fields):
+            errors.append("Security observations incomplete")
+        if observation.get("defender_alert") == "Y" or observation.get("execution_blocked") == "Y":
+            errors.append("Security alert/block requires resolution before release")
     if receipt.get("signing_decision") not in {"unsigned_with_documentation", "sign_before_release"}:
         errors.append("Signing decision pending")
     if not isinstance(receipt.get("signing_reason"), str) or not receipt["signing_reason"].strip():

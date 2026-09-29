@@ -152,6 +152,11 @@
     "tools.validate_upgrade"
   ],
   "Release validation": [
-    "tools.release_acceptance"
+    "tools.release_acceptance",
+    "tools.acceptance.records",
+    "tools.acceptance.console",
+    "tools.acceptance.windows",
+    "tools.acceptance.workflow",
+    "tools.acceptance.observations"
   ]
 }

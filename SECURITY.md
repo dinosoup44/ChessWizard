@@ -11,13 +11,11 @@ Do not attach a private SQLite database, full game export, access token or unrev
 Review screenshots for usernames, game links, file paths and private notes before posting.
 Contributors must sanitize traces and fixtures before submitting issues or pull requests.
 
-A private security-reporting contact has **not yet been established**. For a sensitive
-vulnerability, do not post exploit details or secrets publicly. After the owner enables
-GitHub private vulnerability reporting, use the repository's Security / Report a
-vulnerability action. Until then, request a private reporting route without disclosing
-the sensitive details. No email address or response-time promise is implied.
+GitHub private vulnerability reporting is enabled for this repository. For a
+sensitive vulnerability, use **Security > Report a vulnerability** on GitHub.
+Do not post exploit details, secrets or private data in public issues. No email
+address or guaranteed response time is implied.
 
-The owner must establish the sensitive-reporting route before inviting external users.
 This document does not claim that the beta has received a formal security assessment.
 
 ## Plugin trust and distribution

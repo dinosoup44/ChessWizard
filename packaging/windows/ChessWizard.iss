@@ -50,8 +50,20 @@ Uninstallable=yes
 SetupLogging=yes
 AppMutex={code:ActivityMutex}
 
+[Messages]
+WizardSelectTasks=Additional options
+SelectTasksDesc=Choose optional shortcuts.
+SelectTasksLabel2=
+WizardReady=Ready to install ChessWizard
+ReadyLabel1=ChessWizard will be installed with the options shown below.
+ReadyLabel2a=
+ReadyLabel2b=
+FinishedHeadingLabel=ChessWizard is installed
+FinishedLabelNoIcons=ChessWizard is ready to use.
+FinishedLabel=ChessWizard is ready to use.
+
 [Tasks]
-Name: desktopicon; Description: "Create a &desktop shortcut"; GroupDescription: "Shortcuts:"
+Name: desktopicon; Description: "Create a &desktop shortcut"
 
 [Files]
 Source: "{#PayloadDir}\*"; DestDir: "{app}"; Excludes: "chesswizard-payload.json"; Flags: ignoreversion recursesubdirs createallsubdirs; AfterInstall: PayloadCopied
